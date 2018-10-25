@@ -11,8 +11,8 @@ namespace _9_2_Work_with_catalog
     {
         static void Main(string[] args)
         {
-            //GetFileList();
-            //CreateCatalog();
+            GetFileList();
+            CreateCatalog();
             GetInfo();
         }
         //Get list of files and subdirectories

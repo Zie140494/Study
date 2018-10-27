@@ -14,6 +14,8 @@ namespace _9_2_Work_with_catalog
             GetFileList();
             CreateCatalog();
             GetInfo();
+            DeleteCatalog();
+            MoveIntoOtherCatalog();
         }
         //Get list of files and subdirectories
         public static void GetFileList()
@@ -61,11 +63,44 @@ namespace _9_2_Work_with_catalog
             string dir = @"C:\Program Files";
             var dirInfo = new DirectoryInfo(dir);
 
-            Console.WriteLine("Name of catalog: {0}",dirInfo.Name);
-            Console.WriteLine("FullName of catalog: {0}",dirInfo.FullName);
+            Console.WriteLine("Name of catalog: {0}", dirInfo.Name);
+            Console.WriteLine("FullName of catalog: {0}", dirInfo.FullName);
             Console.WriteLine("Creation time: {0}", dirInfo.CreationTime);
-            Console.WriteLine("Root: {0}",dirInfo.Root);
+            Console.WriteLine("Root: {0}", dirInfo.Root);
 
+            Console.ReadLine();
+        }
+        //Delete some catalog
+        public static void DeleteCatalog()
+        {
+            var dirName = @"C:\someDir";
+
+            try
+            {
+                var dir = new DirectoryInfo(dirName);
+                dir.Delete(true);
+                Console.WriteLine("Катало {0}, удален", dir.Name);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.ReadLine();
+            }
+        }
+        //Move into other catalog
+        public static void MoveIntoOtherCatalog()
+        {
+            var oldPath = @"C:\SomeDir";
+            var newPath = @"C:\SomeOtherDir";
+
+            var dirInfo = new DirectoryInfo(oldPath);
+            if (dirInfo.Exists && Directory.Exists(newPath) == false)
+            {
+                dirInfo.MoveTo(newPath);
+            }
             Console.ReadLine();
         }
     }

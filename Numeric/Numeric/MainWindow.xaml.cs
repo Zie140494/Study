@@ -60,7 +60,7 @@ namespace Numeric
                     Nr12.n12 = GetFakeSum(sumNr.n4);
                     try
                     {
-                        string pathEx = @"C:\FTest\Test.xlsx";
+                        string pathEx = @"C:\Test\Test.xlsx";
                         string pathPdf = string.Format(@"C:\Test\{0}.pdf",KZtbF.Text);
                         
                         for (int i = 1; i < Int32.MaxValue; i++)
@@ -126,7 +126,7 @@ namespace Numeric
                     var t = GetLC(dt1);
                     var t2 = GetLC(dt1);
                     var t3 = GetLC(dt1);
-                    int iY = Ftb2.Text.Length - Ftb3.Text.Length;
+                    int iY = Ftb3.Text.Length - Ftb2.Text.Length;
                     if (iY < 0)
                         iY = 0;
                     var tY = new NumericRow6(GetFakeSum(Convert.ToInt32(Ftb4.Text)));
@@ -193,6 +193,78 @@ namespace Numeric
             else
             {
                 MessageBox.Show("Год не является целым числом");
+            }
+        }
+        //Семилетка (SY)
+        private void SYButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+
+            //SYtb1.Text = "14.04.1994";
+            DateTime dt1;
+            bool IsDate1 = DateTime.TryParse(SYtb1.Text, out dt1);
+            if (IsDate1)
+            {
+                var nr7 = GetLC7(dt1);
+                OneIfDoubleNull(nr7.n4,nr7.n5, out nr7.n4, out nr7.n5);
+                OneIfDoubleNull(nr7.n5, nr7.n6, out nr7.n5, out nr7.n6);
+                OneIfDoubleNull(nr7.n6, nr7.n7, out nr7.n6, out nr7.n7);
+                var nr12 = new NumericRow12(0);
+                nr12.n1 = nr7.n1;
+                nr12.n2 = nr7.n2;
+                nr12.n3 = nr7.n3;
+                nr12.n4 = nr7.n4;
+                nr12.n5 = nr7.n5;
+                nr12.n6 = nr7.n6;
+                nr12.n7 = nr7.n7;
+                nr12.n8 = nr7.n1;
+                nr12.n9 = nr7.n2;
+                nr12.n10 = nr7.n3;
+                nr12.n11 = nr7.n4;
+                nr12.n12 = nr7.n5;
+
+                try
+                {
+                    string pathEx = @"C:\Test\SYTest.xlsx";
+                    string pathPdf = string.Format(@"C:\Test\{0}.pdf", SYtbF.Text);
+
+                    for (int i = 1; i < Int32.MaxValue; i++)
+                    {
+                        if (!IsExists(pathPdf))
+                        {
+                            break;
+                        }
+                        pathPdf = string.Format(@"C:\Test\{0}{1}.pdf", SYtbF.Text, i.ToString());
+                    }
+
+                    Excel excel = new Excel(pathEx, 1);
+                    excel.WriteToCell(4, 1, nr12.n1.ToString());
+                    excel.WriteToCell(5, 1, nr12.n2.ToString());
+                    excel.WriteToCell(6, 1, nr12.n3.ToString());
+                    excel.WriteToCell(7, 1, nr12.n4.ToString());
+                    excel.WriteToCell(8, 1, nr12.n5.ToString());
+                    excel.WriteToCell(9, 1, nr12.n6.ToString());
+                    excel.WriteToCell(10, 1, nr12.n7.ToString());
+                    excel.WriteToCell(11, 1, nr12.n8.ToString());
+                    excel.WriteToCell(12, 1, nr12.n9.ToString());
+                    excel.WriteToCell(13, 1, nr12.n10.ToString());
+                    excel.WriteToCell(14, 1, nr12.n11.ToString());
+                    excel.WriteToCell(15, 1, nr12.n12.ToString());
+                    excel.WriteToCell(0, 1, SYtbF.Text);
+                    excel.WriteToCell(1, 1, SYtb1.Text);
+                    excel.Save();
+                    excel.Close();
+                    ExportWorkbookToPdf(pathEx, pathPdf);
+                    MessageBox.Show(string.Format("Файл {0} успешно создан", pathPdf));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Значение не является датой, введите в формате dd.mm.yyyy");
             }
         }
         //Метод существование файла
@@ -327,7 +399,7 @@ namespace Numeric
 
             return exportSuccessful;
         }
-        //Из даты в жизненный код
+        //Из даты в жизненный код(6)
         public NumericRow6 GetLC(DateTime dt)
         {
             NumericRow6 nr6 = new NumericRow6(0);
@@ -354,6 +426,34 @@ namespace Numeric
             nr6.n6 = (int)char.GetNumericValue(chc[5]);
             return nr6;
         }
+        //Из даты в жизненный код(6)
+        public NumericRow7 GetLC7(DateTime dt)
+        {
+            NumericRow7 nr7 = new NumericRow7(0);
+            string s = dt.ToShortDateString();
+            s = s.Replace(".", string.Empty);
+            var c = s.ToCharArray();
+            char[] ch1 = new char[2] { c[0], c[1] };
+            char[] ch2 = new char[2] { c[2], c[3] };
+            char[] ch3 = new char[4] { c[4], c[5], c[6], c[7] };
+            string s1 = new string(ch1);
+            string s2 = new string(ch2);
+            string s3 = new string(ch3);
+            int i = Convert.ToInt32(s1) * Convert.ToInt32(s2) * Convert.ToInt32(s3);
+            while (i < 1000000)
+            {
+                i *= 10;
+            }
+            var chc = i.ToString().ToCharArray();
+            nr7.n1 = (int)char.GetNumericValue(chc[0]);
+            nr7.n2 = (int)char.GetNumericValue(chc[1]);
+            nr7.n3 = (int)char.GetNumericValue(chc[2]);
+            nr7.n4 = (int)char.GetNumericValue(chc[3]);
+            nr7.n5 = (int)char.GetNumericValue(chc[4]);
+            nr7.n6 = (int)char.GetNumericValue(chc[5]);
+            nr7.n7 = (int)char.GetNumericValue(chc[6]);
+            return nr7;
+        }
         //Сумма из двух строк (6)
         public NumericRow6 SumNum6(NumericRow6 nr1, NumericRow6 nr2)
         {
@@ -366,5 +466,22 @@ namespace Numeric
             nr.n6 = nr1.n6 + nr2.n6;
             return nr;
         }
+        //Для семилетки, если два нуля, то минус один
+        public void OneIfDoubleNull(int i1, int i2, out int a, out int b)
+        {
+            if (i1==0 && i2==0)
+            {
+                a = -1;
+                b = -1;
+            }
+            else
+            {
+                a = i1;
+                b = i2;
+            }
+              
+        }
+
+        
     }
 }

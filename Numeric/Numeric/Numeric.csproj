@@ -69,6 +69,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NumericRow7.cs" />
     <Compile Include="NumericRow6.cs" />
     <Compile Include="NumericRow.cs" />
     <Compile Include="NumericRow12.cs" />

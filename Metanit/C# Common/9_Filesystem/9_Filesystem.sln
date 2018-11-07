@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9_Filesystem", "9_Filesyste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9_2_Work_with_catalog", "9_2_Work_with_catalog\9_2_Work_with_catalog.csproj", "{F48DFC7E-9EE9-4168-83DE-B27BEAC7BCE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9_3_FileInfo", "9_3_FileInfo\9_3_FileInfo.csproj", "{51141C5B-D15A-4250-A3C4-A11C48461FBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F48DFC7E-9EE9-4168-83DE-B27BEAC7BCE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F48DFC7E-9EE9-4168-83DE-B27BEAC7BCE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F48DFC7E-9EE9-4168-83DE-B27BEAC7BCE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51141C5B-D15A-4250-A3C4-A11C48461FBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51141C5B-D15A-4250-A3C4-A11C48461FBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51141C5B-D15A-4250-A3C4-A11C48461FBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51141C5B-D15A-4250-A3C4-A11C48461FBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -29,12 +29,14 @@ namespace Numeric
         //Календарь зачатия (KZ)
         private void KZButton_Click(object sender, RoutedEventArgs e)
         {
-            //tb1.Text = "25.4.2018";
-            //tb2.Text = "25.4.2018";
+            KZtb1.Text = "25.4.2018";
+            KZtb2.Text = "25.4.2018";
+            
             DateTime dt1;
             DateTime dt2;
             bool IsDate1 = DateTime.TryParse(KZtb1.Text,out dt1);
             bool IsDate2 = DateTime.TryParse(KZtb2.Text, out dt2);
+            GetSequence(dt1);
             int res;
             bool isInt = Int32.TryParse(KZtb3.Text, out res);
             if (isInt)
@@ -482,6 +484,25 @@ namespace Numeric
               
         }
 
-        
+        public Dictionary<int, int> GetSequence(DateTime dt)
+        {
+            int[] mas = new int[8] { 0,0,0,0,0,0,0,0};
+            var dc = new Dictionary<int, int>();
+            var s = dt.ToShortDateString();
+            s = s.Replace(".", string.Empty);
+            var ch = s.ToCharArray();
+            var i = 0;
+            foreach (var c in ch)
+            {
+                mas[i] = (int)char.GetNumericValue(c);
+                    i++;
+            }
+            
+            Array.Sort(mas);
+            mas.ToString();
+            return dc;
+            //Переписать на лист
+        }
+
     }
 }

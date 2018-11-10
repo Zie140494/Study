@@ -29,14 +29,14 @@ namespace Numeric
         //Календарь зачатия (KZ)
         private void KZButton_Click(object sender, RoutedEventArgs e)
         {
-            KZtb1.Text = "25.4.2018";
-            KZtb2.Text = "25.4.2018";
+            //KZtb1.Text = "25.4.2018";
+            //KZtb2.Text = "25.4.2018";
             
             DateTime dt1;
             DateTime dt2;
             bool IsDate1 = DateTime.TryParse(KZtb1.Text,out dt1);
             bool IsDate2 = DateTime.TryParse(KZtb2.Text, out dt2);
-            GetSequence(dt1);
+            //GetSequence(dt1);
             int res;
             bool isInt = Int32.TryParse(KZtb3.Text, out res);
             if (isInt)
@@ -125,9 +125,9 @@ namespace Numeric
             {
                 if (IsDate1)
                 {
-                    var t = GetLC(dt1);
-                    var t2 = GetLC(dt1);
-                    var t3 = GetLC(dt1);
+                    var t = GetLC6(dt1);
+                    var t2 = GetLC6(dt1);
+                    var t3 = GetLC6(dt1);
                     int iY = Ftb3.Text.Length - Ftb2.Text.Length;
                     if (iY < 0)
                         iY = 0;
@@ -200,8 +200,6 @@ namespace Numeric
         //Семилетка (SY)
         private void SYButton_Click(object sender, RoutedEventArgs e)
         {
-            
-
             //SYtb1.Text = "14.04.1994";
             DateTime dt1;
             bool IsDate1 = DateTime.TryParse(SYtb1.Text, out dt1);
@@ -254,6 +252,92 @@ namespace Numeric
                     excel.WriteToCell(15, 1, nr12.n12.ToString());
                     excel.WriteToCell(0, 1, SYtbF.Text);
                     excel.WriteToCell(1, 1, SYtb1.Text);
+                    excel.Save();
+                    excel.Close();
+                    ExportWorkbookToPdf(pathEx, pathPdf);
+                    MessageBox.Show(string.Format("Файл {0} успешно создан", pathPdf));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Значение не является датой, введите в формате dd.mm.yyyy");
+            }
+        }
+        //Матрица пифагора(MP)
+        private void MPButton_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime dt1;
+            bool IsDate1 = DateTime.TryParse(MPtb1.Text, out dt1);
+            if (IsDate1)
+            {
+                var nr8 = GetRow(dt1);
+                string s = nr8.n1.ToString() + nr8.n2.ToString() + nr8.n3.ToString() + nr8.n4.ToString() + nr8.n5.ToString() + nr8.n6.ToString() + nr8.n7.ToString() + nr8.n8.ToString();
+                int numOfFate = GetFakeSum(Convert.ToInt32(s));
+                int LC = GetLC(dt1);
+                int firstNum = nr8.n1 + nr8.n2 + nr8.n3 + nr8.n4 + nr8.n5 + nr8.n6 + nr8.n7 + nr8.n8;
+                int secondNum = GetFakeSum(firstNum);
+                int cnt;
+                if (nr8.n1 != 0)
+                    cnt = 2 * nr8.n1;
+                else
+                    cnt = 2 * nr8.n2;
+                int thirdNum = firstNum - cnt;
+                int fourthNum = GetFakeSum(thirdNum);
+                int addingNum;
+                if (dt1.Year > 1999)
+                {
+                    addingNum = dt1.Year - dt1.Day - dt1.Month - firstNum - secondNum - thirdNum - fourthNum;
+                }
+                else
+                    addingNum = 0;
+                var d = GetSequenceForm(Convert.ToInt32(s), firstNum, secondNum, thirdNum, fourthNum, addingNum);
+                var d2 = GetSequenceForm(Convert.ToInt32(s), firstNum, secondNum, thirdNum, fourthNum, addingNum);
+                try
+                {
+                    string pathEx = @"C:\Test\MPTest.xlsx";
+                    string pathPdf = string.Format(@"C:\Test\{0}.pdf", MPtbF.Text);
+
+                    for (int i = 1; i < Int32.MaxValue; i++)
+                    {
+                        if (!IsExists(pathPdf))
+                        {
+                            break;
+                        }
+                        pathPdf = string.Format(@"C:\Test\{0}{1}.pdf", MPtbF.Text, i.ToString());
+                    }
+
+                    Excel excel = new Excel(pathEx, 1);
+                    excel.WriteToCell(0, 1, MPtbF.Text);
+                    excel.WriteToCell(1, 1, MPtb1.Text);
+                    excel.WriteToCell(2, 1, numOfFate.ToString());
+                    excel.WriteToCell(2, 3, LC.ToString());
+                    excel.WriteToCell(4, 1, firstNum.ToString());
+                    excel.WriteToCell(4,2, secondNum.ToString());
+                    excel.WriteToCell(5, 1, thirdNum.ToString());
+                    excel.WriteToCell(5, 2, fourthNum.ToString());
+
+                    excel.WriteToCell(7, 0, d[1]!=""?d[1]:"нет");
+                    excel.WriteToCell(9, 0, d[2] != "" ? d[2] : "нет");
+                    excel.WriteToCell(11, 0, d[3] != "" ? d[3] : "нет");
+                    excel.WriteToCell(7, 1, d[4] != "" ? d[4] : "нет");
+                    excel.WriteToCell(9, 1, d[5] != "" ? d[5] : "нет");
+                    excel.WriteToCell(11, 1, d[6] != "" ? d[6] : "нет");
+                    excel.WriteToCell(7, 2, d[7] != "" ? d[7] : "нет");
+                    excel.WriteToCell(9, 2, d[8] != "" ? d[8] : "нет");
+                    excel.WriteToCell(11, 2, d[9] != "" ? d[9] : "нет");
+
+                    excel.WriteToCell(5, 3, (d2[3].Length+ d2[5].Length + d2[7].Length).ToString());
+                    excel.WriteToCell(7, 3, (d2[1].Length + d2[4].Length + d2[7].Length).ToString());
+                    excel.WriteToCell(9, 3, (d2[2].Length + d2[5].Length + d2[8].Length).ToString());
+                    excel.WriteToCell(11, 3, (d2[3].Length + d2[6].Length + d2[9].Length).ToString());
+                    excel.WriteToCell(13, 0, (d2[1].Length + d2[2].Length + d2[3].Length).ToString());
+                    excel.WriteToCell(13, 1, (d2[4].Length + d2[5].Length + d2[6].Length).ToString());
+                    excel.WriteToCell(13, 2, (d2[7].Length + d2[8].Length + d2[9].Length).ToString());
+                    excel.WriteToCell(13, 3, (d2[1].Length + d2[5].Length + d2[9].Length).ToString());
                     excel.Save();
                     excel.Close();
                     ExportWorkbookToPdf(pathEx, pathPdf);
@@ -401,8 +485,25 @@ namespace Numeric
 
             return exportSuccessful;
         }
+        //Из даты в жизненный код
+        public int GetLC(DateTime dt)
+        {
+            NumericRow6 nr6 = new NumericRow6(0);
+            string s = dt.ToShortDateString();
+            s = s.Replace(".", string.Empty);
+            var c = s.ToCharArray();
+            char[] ch1 = new char[2] { c[0], c[1] };
+            char[] ch2 = new char[2] { c[2], c[3] };
+            char[] ch3 = new char[4] { c[4], c[5], c[6], c[7] };
+            string s1 = new string(ch1);
+            string s2 = new string(ch2);
+            string s3 = new string(ch3);
+            int i = Convert.ToInt32(s1) * Convert.ToInt32(s2) * Convert.ToInt32(s3);
+            
+            return i;
+        }
         //Из даты в жизненный код(6)
-        public NumericRow6 GetLC(DateTime dt)
+        public NumericRow6 GetLC6(DateTime dt)
         {
             NumericRow6 nr6 = new NumericRow6(0);
             string s = dt.ToShortDateString();
@@ -428,7 +529,7 @@ namespace Numeric
             nr6.n6 = (int)char.GetNumericValue(chc[5]);
             return nr6;
         }
-        //Из даты в жизненный код(6)
+        //Из даты в жизненный код(8)
         public NumericRow7 GetLC7(DateTime dt)
         {
             NumericRow7 nr7 = new NumericRow7(0);
@@ -483,26 +584,69 @@ namespace Numeric
             }
               
         }
-
-        public Dictionary<int, int> GetSequence(DateTime dt)
+        //Получить последовательность для формы
+        public Dictionary<int, string> GetSequenceForm(int dt, int n1, int n2,int n3,int n4,int ad)
         {
-            int[] mas = new int[8] { 0,0,0,0,0,0,0,0};
-            var dc = new Dictionary<int, int>();
-            var s = dt.ToShortDateString();
-            s = s.Replace(".", string.Empty);
-            var ch = s.ToCharArray();
-            var i = 0;
-            foreach (var c in ch)
+            var d = new Dictionary<int, string>();
+            d.Add(0, "");
+            d.Add(1, "");
+            d.Add(2, "");
+            d.Add(3, "");
+            d.Add(4, "");
+            d.Add(5, "");
+            d.Add(6, "");
+            d.Add(7, "");
+            d.Add(8, "");
+            d.Add(9, "");
+            string sAllNum;
+            sAllNum = dt.ToString() + n1.ToString() + n2.ToString() + n3.ToString() + n4.ToString();
+            var chA = sAllNum.ToCharArray();
+            foreach (var ch in chA)
             {
-                mas[i] = (int)char.GetNumericValue(c);
-                    i++;
+                string st = ch.ToString();
+                int i = (int)char.GetNumericValue(ch);
+                d[i] = d[i] + st;
             }
-            
-            Array.Sort(mas);
-            mas.ToString();
-            return dc;
-            //Переписать на лист
+
+            if (ad!=0)
+            {
+                string sAdd = ad.ToString();
+                chA = sAdd.ToCharArray();
+                foreach (var ch in chA)
+                {
+                    string st = ch.ToString();
+                    int i = (int)char.GetNumericValue(ch);
+                    d[i] = d[i] + $"({st})";
+                }
+            }
+
+            return d;
         }
+        public Dictionary<int, string> GetSequencecalc(int dt, int n1, int n2, int n3, int n4, int ad)
+        {
+            var d = new Dictionary<int, string>();
+            d.Add(0, "");
+            d.Add(1, "");
+            d.Add(2, "");
+            d.Add(3, "");
+            d.Add(4, "");
+            d.Add(5, "");
+            d.Add(6, "");
+            d.Add(7, "");
+            d.Add(8, "");
+            d.Add(9, "");
+            string sAllNum;
+            sAllNum = dt.ToString() + n1.ToString() + n2.ToString() + n3.ToString() + n4.ToString()+ad.ToString();
+            var chA = sAllNum.ToCharArray();
+            foreach (var ch in chA)
+            {
+                string st = ch.ToString();
+                int i = (int)char.GetNumericValue(ch);
+                d[i] = d[i] + st;
+            }
+            return d;
+        }
+
 
     }
 }

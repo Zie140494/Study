@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Numeric
 {
-    class NumericRow12
+    public class NumericRow12
     {
         public int n1;
         public int n2;

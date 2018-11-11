@@ -205,23 +205,7 @@ namespace Numeric
             bool IsDate1 = DateTime.TryParse(SYtb1.Text, out dt1);
             if (IsDate1)
             {
-                var nr7 = GetLC7(dt1);
-                OneIfDoubleNull(nr7.n4,nr7.n5, out nr7.n4, out nr7.n5);
-                OneIfDoubleNull(nr7.n5, nr7.n6, out nr7.n5, out nr7.n6);
-                OneIfDoubleNull(nr7.n6, nr7.n7, out nr7.n6, out nr7.n7);
-                var nr12 = new NumericRow12(0);
-                nr12.n1 = nr7.n1;
-                nr12.n2 = nr7.n2;
-                nr12.n3 = nr7.n3;
-                nr12.n4 = nr7.n4;
-                nr12.n5 = nr7.n5;
-                nr12.n6 = nr7.n6;
-                nr12.n7 = nr7.n7;
-                nr12.n8 = nr7.n1;
-                nr12.n9 = nr7.n2;
-                nr12.n10 = nr7.n3;
-                nr12.n11 = nr7.n4;
-                nr12.n12 = nr7.n5;
+                var nr12 = SYMethod(dt1);
 
                 try
                 {
@@ -296,6 +280,7 @@ namespace Numeric
                     addingNum = 0;
                 var d = GetSequenceForm(Convert.ToInt32(s), firstNum, secondNum, thirdNum, fourthNum, addingNum);
                 var d2 = GetSequenceForm(Convert.ToInt32(s), firstNum, secondNum, thirdNum, fourthNum, addingNum);
+                var nr12 = SYMethod(dt1);
                 try
                 {
                     string pathEx = @"C:\Test\MPTest.xlsx";
@@ -338,6 +323,20 @@ namespace Numeric
                     excel.WriteToCell(13, 1, (d2[4].Length + d2[5].Length + d2[6].Length).ToString());
                     excel.WriteToCell(13, 2, (d2[7].Length + d2[8].Length + d2[9].Length).ToString());
                     excel.WriteToCell(13, 3, (d2[1].Length + d2[5].Length + d2[9].Length).ToString());
+
+                    excel.WriteToCell(15, 1, nr12.n1.ToString());
+                    excel.WriteToCell(16, 1, nr12.n2.ToString());
+                    excel.WriteToCell(17, 1, nr12.n3.ToString());
+                    excel.WriteToCell(18, 1, nr12.n4.ToString());
+                    excel.WriteToCell(19, 1, nr12.n5.ToString());
+                    excel.WriteToCell(20, 1, nr12.n6.ToString());
+                    excel.WriteToCell(21, 1, nr12.n7.ToString());
+                    excel.WriteToCell(22, 1, nr12.n8.ToString());
+                    excel.WriteToCell(23, 1, nr12.n9.ToString());
+                    excel.WriteToCell(24, 1, nr12.n10.ToString());
+                    excel.WriteToCell(25, 1, nr12.n11.ToString());
+                    excel.WriteToCell(26, 1, nr12.n12.ToString());
+
                     excel.Save();
                     excel.Close();
                     ExportWorkbookToPdf(pathEx, pathPdf);
@@ -622,6 +621,7 @@ namespace Numeric
 
             return d;
         }
+        //Получить последовательность для рассчетов
         public Dictionary<int, string> GetSequencecalc(int dt, int n1, int n2, int n3, int n4, int ad)
         {
             var d = new Dictionary<int, string>();
@@ -646,7 +646,29 @@ namespace Numeric
             }
             return d;
         }
-
+        //метод для семилетки
+        public NumericRow12  SYMethod(DateTime dt)
+        {
+            var nr7 = GetLC7(dt);
+            OneIfDoubleNull(nr7.n3, nr7.n4, out nr7.n3, out nr7.n4);
+            OneIfDoubleNull(nr7.n4, nr7.n5, out nr7.n4, out nr7.n5);
+            OneIfDoubleNull(nr7.n5, nr7.n6, out nr7.n5, out nr7.n6);
+            OneIfDoubleNull(nr7.n6, nr7.n7, out nr7.n6, out nr7.n7);
+            var nr12 = new NumericRow12(0);
+            nr12.n1 = nr7.n1;
+            nr12.n2 = nr7.n2;
+            nr12.n3 = nr7.n3;
+            nr12.n4 = nr7.n4;
+            nr12.n5 = nr7.n5;
+            nr12.n6 = nr7.n6;
+            nr12.n7 = nr7.n7;
+            nr12.n8 = nr7.n1;
+            nr12.n9 = nr7.n2;
+            nr12.n10 = nr7.n3;
+            nr12.n11 = nr7.n4;
+            nr12.n12 = nr7.n5;
+            return nr12;
+        }
 
     }
 }

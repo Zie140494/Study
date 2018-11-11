@@ -11,7 +11,7 @@ namespace _9_4_FileStream
     {
         static void Main(string[] args)
         {
-            
+            WritePart();
             Console.Read();
         }
         public static void WriteAndReadFIle()

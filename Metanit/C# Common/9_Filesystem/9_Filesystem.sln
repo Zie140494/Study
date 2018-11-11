@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9_3_FileInfo", "9_3_FileInf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9_4_FileStream", "9_4_FileStream\9_4_FileStream.csproj", "{29354BB8-064C-4591-BAB9-51B3CB8BA6DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9.5_streamReader", "9.5_streamReader\9.5_streamReader.csproj", "{4EF08BC5-1004-46CE-B080-0DEB2780D3F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{29354BB8-064C-4591-BAB9-51B3CB8BA6DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29354BB8-064C-4591-BAB9-51B3CB8BA6DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29354BB8-064C-4591-BAB9-51B3CB8BA6DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EF08BC5-1004-46CE-B080-0DEB2780D3F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EF08BC5-1004-46CE-B080-0DEB2780D3F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EF08BC5-1004-46CE-B080-0DEB2780D3F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EF08BC5-1004-46CE-B080-0DEB2780D3F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

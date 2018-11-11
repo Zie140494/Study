@@ -11,6 +11,11 @@ namespace _9_4_FileStream
     {
         static void Main(string[] args)
         {
+            
+            Console.Read();
+        }
+        public static void WriteAndReadFIle()
+        {
             Console.WriteLine("Введите строку для записи в файл");
             string text = Console.ReadLine();
 
@@ -28,7 +33,34 @@ namespace _9_4_FileStream
                 Console.WriteLine($"Текст из файла: {textFromFile}");
 
             }
-            Console.Read();
+        }
+        public static void WritePart()
+        {
+            string text = "Hello world!";
+            using (FileStream fs = new FileStream(@"D:/test.txt", FileMode.OpenOrCreate))
+            {
+                byte[] input = Encoding.Default.GetBytes(text);
+                fs.Write(input, 0, input.Length);
+                Console.WriteLine("Текст записан в файл");
+
+                fs.Seek(-5, SeekOrigin.End);
+
+                byte[] output = new byte[4];
+                fs.Read(output, 0, output.Length);
+                string textFromFile = Encoding.Default.GetString(output);
+                Console.WriteLine($"Текст из файла {textFromFile}");
+
+                string replacetext = "house";
+                fs.Seek(-5, SeekOrigin.End);
+                input = Encoding.Default.GetBytes(replacetext);
+                fs.Write(input, 0, input.Length);
+
+                fs.Seek(0, SeekOrigin.Begin);
+                output = new byte[fs.Length];
+                fs.Read(output, 0, output.Length);
+                textFromFile = Encoding.Default.GetString(output);
+                Console.WriteLine($"Текст из файла:{textFromFile}");
+            }
         }
     }
 }

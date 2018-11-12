@@ -11,6 +11,12 @@ namespace _9._5_streamReader
     {
         static void Main(string[] args)
         {
+            Read();
+            
+            Console.Read();
+        }
+        public static void Read()
+        {
             string path = @"c:/Test/vas.txt";
             Console.WriteLine("Считываем весь файл");
             using (StreamReader sr = new StreamReader(path))
@@ -22,11 +28,12 @@ namespace _9._5_streamReader
             using (StreamReader sr = new StreamReader(path, Encoding.Default))
             {
                 string line;
-                while ((line=sr.ReadLine())!=null)
+                while ((line = sr.ReadLine()) != null)
                 {
                     Console.WriteLine(line);
                 }
             }
         }
+   
     }
 }

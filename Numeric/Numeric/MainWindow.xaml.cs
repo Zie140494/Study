@@ -341,6 +341,155 @@ namespace Numeric
                 MessageBox.Show("Значение не является датой, введите в формате dd.mm.yyyy");
             }
         }
+        //56 судеб (SU)
+        private void SUButton_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime dt1;
+            DateTime dt2;
+            int a;
+            
+            bool IsDate1 = DateTime.TryParse(SUtb1.Text, out dt1);
+            bool IsDate2 = DateTime.TryParse(SUtb2.Text, out dt2);
+            bool isInt1 = Int32.TryParse(SUtb3.Text, out a);
+            bool isInt2 = Int32.TryParse(SUtb4.Text, out a);
+            if (0<a&&a<13)
+            {
+                if (isInt1 && isInt2)
+                {
+                    if (IsDate1)
+                    {
+                        var dt3 = new DateTime(2000, Convert.ToInt32(SUtb4.Text), 1);
+                        int i = dt1.Day + 5;
+                        DateTime first = new DateTime(dt3.Year, dt3.Month, 1);
+                        DateTime last = new DateTime(dt3.Year, dt3.Month + 1, 1).AddDays(-1);
+                        if (i > last.Day)
+                            i = i - last.Day;
+                        string s1 = "";
+                        string s2 = "";
+                        string s3 = "";
+                        string s4 = "";
+                        string s5 = "";
+                        string s6 = "";
+                        int t = last.Day;
+                        s1 = GetFiveNums(s1, 5, last.Day, i, out i);
+                        t -= 5;
+                        s2 = GetFiveNums(s2, 5, last.Day, i, out i);
+                        t -= 5;
+                        s3 = GetFiveNums(s3, 5, last.Day, i, out i);
+                        t -= 5;
+                        s4 = GetFiveNums(s4, 5, last.Day, i, out i);
+                        t -= 5;
+                        s5 = GetFiveNums(s5, 5, last.Day, i, out i);
+                        t -= 5;
+                        s6 = GetFiveNums(s6, t, last.Day, i, out i);
+                        int YearValue = GetSum(Convert.ToInt32(SUtb3.Text));
+                        var nr6cell1 = new NumericRow6(YearValue);
+                        string con = GetConstMonth(SUtb4.Text);
+                        var nr6cell2 = new NumericRow6(Convert.ToInt32(con));
+                        var nr6cell3 = new NumericRow6(0);
+                        nr6cell3.n1 = dt1.Day;
+                        nr6cell3.n2 = dt1.Month;
+                        nr6cell3.n3 = dt1.Year / 1000;
+                        nr6cell3.n4 = dt1.Year / 100%10;
+                        nr6cell3.n5 = dt1.Year / 10%10%10;
+                        nr6cell3.n6 = dt1.Year % 10;
+                        var nr6cell4 = GetLC6(dt1);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Значение не является датой, введите в формате dd.mm.yyyy");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Год или номер месяца не является целым числом");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Значение номера месяца должно быть от 1 до 12");
+            }
+            
+        }
+        public NumericRow6 AddNullsTo6(int i)
+        {
+            var nr6 = new NumericRow6(0);
+            while (i<1000000)
+            {
+                i *= 10;
+            }
+            string s = i.ToString();
+            var c = s.ToCharArray();
+            nr6.n1 = (int)char.GetNumericValue(c[0]);
+            nr6.n2 = (int)char.GetNumericValue(c[1]);
+            nr6.n3 = (int)char.GetNumericValue(c[2]);
+            nr6.n4 = (int)char.GetNumericValue(c[3]);
+            nr6.n5 = (int)char.GetNumericValue(c[4]);
+            nr6.n6 = (int)char.GetNumericValue(c[5]);
+            return nr6;
+        }
+        //константа месяца
+        public string GetConstMonth(string s)
+        {
+            switch (s)
+            {
+                case "1":
+                    return "7";
+                    break;
+                case "2":
+                    return "9";
+                    break;
+                case "3":
+                    return "28";
+                    break;
+                case "4":
+                    return "10";
+                    break;
+                case "5":
+                    return "8";
+                    break;
+                case "6":
+                    return "16";
+                    break;
+                case "7":
+                    return "11";
+                    break;
+                case "8":
+                    return "14";
+                    break;
+                case "9":
+                    return "17";
+                    break;
+                case "10":
+                    return "25";
+                    break;
+                case "11":
+                    return "2";
+                    break;
+                case "12":
+                    return "19";
+                    break;
+                default:
+                    return null;
+            }
+        }
+        //метод заполнения чисел последовательно для 56 судеб
+        public string GetFiveNums(string s, int i,int ld,int t, out int td)
+        {
+            int n = 0;
+            td = 0;
+            while (n<i)
+            {
+                if (t > ld)
+                    t = 1;
+                s += t.ToString() + ";";
+                td = t;
+                n++;
+                t++;
+            }
+            td++;
+            return s;
+        }
         //Метод существование файла
         public bool IsExists(string s)
         {
@@ -386,6 +535,20 @@ namespace Numeric
             nr.n7 = nr1.n7 + nr2.n7 + nr3.n7;
             nr.n8 = nr1.n8 + nr2.n8 + nr3.n8;
             return nr;
+        }
+        //Метод высчитывания по сумме
+        public int GetSum(int i)
+        {
+            string s;
+            s = i.ToString();
+            char[] c = s.ToCharArray();
+            int sum = 0;
+            foreach (char ch in c)
+            {
+               sum += (int)char.GetNumericValue(ch);
+            }
+            i = sum;
+            return i;
         }
         //Метод высчитывания по псевдосумме
         public int GetFakeSum(int i)

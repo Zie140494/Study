@@ -394,6 +394,107 @@ namespace Numeric
                         nr6cell3.n5 = dt1.Year / 10%10%10;
                         nr6cell3.n6 = dt1.Year % 10;
                         var nr6cell4 = GetLC6(dt1);
+                        var nr6cell5 = AddNullsTo6(dt1.Year/100%10 * dt1.Month*dt1.Day);
+                        var nr6cell6 = GetLC6(dt2);
+                        var nr6cell7Sum = new NumericRow6(0);
+                        nr6cell7Sum.n1 = nr6cell1.n1 + nr6cell2.n1 + nr6cell3.n1 + nr6cell4.n1 + nr6cell5.n1 + nr6cell6.n1;
+                        nr6cell7Sum.n2 = nr6cell1.n2 + nr6cell2.n2 + nr6cell3.n2 + nr6cell4.n2 + nr6cell5.n2 + nr6cell6.n2;
+                        nr6cell7Sum.n3 = nr6cell1.n3 + nr6cell2.n3 + nr6cell3.n3 + nr6cell4.n3 + nr6cell5.n3 + nr6cell6.n3;
+                        nr6cell7Sum.n4 = nr6cell1.n4 + nr6cell2.n4 + nr6cell3.n4 + nr6cell4.n4 + nr6cell5.n4 + nr6cell6.n4;
+                        nr6cell7Sum.n5 = nr6cell1.n5 + nr6cell2.n5 + nr6cell3.n5 + nr6cell4.n5 + nr6cell5.n5 + nr6cell6.n5;
+                        nr6cell7Sum.n6 = nr6cell1.n6 + nr6cell2.n6 + nr6cell3.n6 + nr6cell4.n6 + nr6cell5.n6 + nr6cell6.n6;
+
+                        nr6cell7Sum.n1 = TransSU(nr6cell7Sum.n1);
+                        nr6cell7Sum.n2 = TransSU(nr6cell7Sum.n2);
+                        nr6cell7Sum.n3 = TransSU(nr6cell7Sum.n3);
+                        nr6cell7Sum.n4 = TransSU(nr6cell7Sum.n4);
+                        nr6cell7Sum.n5 = TransSU(nr6cell7Sum.n5);
+                        nr6cell7Sum.n6 = TransSU(nr6cell7Sum.n6);
+
+                        try
+                        {
+                            string pathEx = @"C:\Test\SUTest.xlsx";
+                            string pathPdf = string.Format(@"C:\Test\{0}.pdf", SUtbF.Text);
+
+                            for (int iv = 1; iv < Int32.MaxValue; iv++)
+                            {
+                                if (!IsExists(pathPdf))
+                                {
+                                    break;
+                                }
+                                pathPdf = string.Format(@"C:\Test\{0}{1}.pdf", SUtbF.Text, iv.ToString());
+                            }
+
+
+
+                            Excel excel = new Excel(pathEx, 1);
+                            excel.WriteToCell(1, 0, SUtbF.Text);
+
+                            excel.WriteToCell(4, 0, s1);
+                            excel.WriteToCell(5, 0, s2);
+                            excel.WriteToCell(6, 0, s3);
+                            excel.WriteToCell(7, 0, s4);
+                            excel.WriteToCell(8, 0, s5);
+                            excel.WriteToCell(9, 0, s6);
+
+                            excel.WriteToCell(4, 1, nr6cell1.n1.ToString());
+                            excel.WriteToCell(5, 1, nr6cell1.n2.ToString());
+                            excel.WriteToCell(6, 1, nr6cell1.n3.ToString());
+                            excel.WriteToCell(7, 1, nr6cell1.n4.ToString());
+                            excel.WriteToCell(8, 1, nr6cell1.n5.ToString());
+                            excel.WriteToCell(9, 1, nr6cell1.n6.ToString());
+
+                            excel.WriteToCell(4, 2, nr6cell2.n1.ToString());
+                            excel.WriteToCell(5, 2, nr6cell2.n2.ToString());
+                            excel.WriteToCell(6, 2, nr6cell2.n3.ToString());
+                            excel.WriteToCell(7, 2, nr6cell2.n4.ToString());
+                            excel.WriteToCell(8, 2, nr6cell2.n5.ToString());
+                            excel.WriteToCell(9, 2, nr6cell2.n6.ToString());
+
+                            excel.WriteToCell(4, 3, nr6cell3.n1.ToString());
+                            excel.WriteToCell(5, 3, nr6cell3.n2.ToString());
+                            excel.WriteToCell(6, 3, nr6cell3.n3.ToString());
+                            excel.WriteToCell(7, 3, nr6cell3.n4.ToString());
+                            excel.WriteToCell(8, 3, nr6cell3.n5.ToString());
+                            excel.WriteToCell(9, 3, nr6cell3.n6.ToString());
+
+                            excel.WriteToCell(4, 4, nr6cell4.n1.ToString());
+                            excel.WriteToCell(5, 4, nr6cell4.n2.ToString());
+                            excel.WriteToCell(6, 4, nr6cell4.n3.ToString());
+                            excel.WriteToCell(7, 4, nr6cell4.n4.ToString());
+                            excel.WriteToCell(8, 4, nr6cell4.n5.ToString());
+                            excel.WriteToCell(9, 4, nr6cell4.n6.ToString());
+
+                            excel.WriteToCell(4, 5, nr6cell5.n1.ToString());
+                            excel.WriteToCell(5, 5, nr6cell5.n2.ToString());
+                            excel.WriteToCell(6, 5, nr6cell5.n3.ToString());
+                            excel.WriteToCell(7, 5, nr6cell5.n4.ToString());
+                            excel.WriteToCell(8, 5, nr6cell5.n5.ToString());
+                            excel.WriteToCell(9, 5, nr6cell5.n6.ToString());
+
+                            excel.WriteToCell(4, 6, nr6cell6.n1.ToString());
+                            excel.WriteToCell(5, 6, nr6cell6.n2.ToString());
+                            excel.WriteToCell(6, 6, nr6cell6.n3.ToString());
+                            excel.WriteToCell(7, 6, nr6cell6.n4.ToString());
+                            excel.WriteToCell(8, 6, nr6cell6.n5.ToString());
+                            excel.WriteToCell(5, 6, nr6cell6.n6.ToString());
+
+                            excel.WriteToCell(4, 7, nr6cell7Sum.n1.ToString());
+                            excel.WriteToCell(5, 7, nr6cell7Sum.n2.ToString());
+                            excel.WriteToCell(6, 7, nr6cell7Sum.n3.ToString());
+                            excel.WriteToCell(7, 7, nr6cell7Sum.n4.ToString());
+                            excel.WriteToCell(8, 7, nr6cell7Sum.n5.ToString());
+                            excel.WriteToCell(9, 7, nr6cell7Sum.n6.ToString());
+
+                            excel.Save();
+                            excel.Close();
+                            ExportWorkbookToPdf(pathEx, pathPdf);
+                            MessageBox.Show(string.Format("Файл {0} успешно создан", pathPdf));
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                     }
                     else
                     {
@@ -411,6 +512,47 @@ namespace Numeric
             }
             
         }
+        //для 56 судеб перевод итога
+        public int TransSU(int i)
+        {
+            if (i > 57)
+                i = GetSum(i);
+            switch (i)
+            {
+                case 56:
+                    return 1;
+                    break;
+                case 20:
+                    return 1;
+                    break;
+                case 33:
+                    return 3;
+                    break;
+                case 22:
+                    return 4;
+                    break;
+                case 50:
+                    return 5;
+                    break;
+                case 16:
+                    return 6;
+                    break;
+                case 37:
+                    return 7;
+                    break;
+                case 48:
+                    return 8;
+                    break;
+                case 49:
+                    return 9;
+                    break;
+                default:
+                    return i;
+                    break;
+            }
+            
+        }
+        //Добавление нулей до шестизначного числа
         public NumericRow6 AddNullsTo6(int i)
         {
             var nr6 = new NumericRow6(0);

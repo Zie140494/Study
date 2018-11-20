@@ -90,6 +90,15 @@ namespace Numeric
                         excel.WriteToCell(15, 1, Nr12.n12.ToString());
                         excel.WriteToCell(0,1,KZtbF.Text);
                         excel.WriteToCell(1, 1, KZtb1.Text);
+                        if((bool)KZCh.IsChecked)
+                        {
+                            var numEx = 29;
+                            foreach (var nt in GetWithoutDublicate12(Nr12))
+                            {
+                                excel.WriteToCell(numEx, 0, nt.ToString());
+                                numEx++;
+                            }
+                        }
                         excel.Save();
                         excel.Close();
                         ExportWorkbookToPdf(pathEx, pathPdf);
@@ -177,6 +186,27 @@ namespace Numeric
                         excel.WriteToCell(15, 1, nr12.n12.ToString());
                         excel.WriteToCell(0, 1, FtbF.Text);
                         excel.WriteToCell(1, 1, Ftb1.Text);
+                        var del = 30;
+                        for (int h=0;h<10;h++)
+                        {
+                            excel.Hide(del+h);
+                        }
+                        foreach (var nt in GetWithoutDublicate12(nr12))
+                        {
+                            excel.Unhide(del + nt);
+                        }
+
+
+                        if ((bool)FCh.IsChecked)
+                        {
+                            int n = 29;
+                            foreach (var nt in GetWithoutDublicate12(nr12))
+                            {
+                                excel.WriteToCell(n, 0, nt.ToString());
+                                n++;
+                            }
+                        }
+
                         excel.Save();
                         excel.Close();
                         ExportWorkbookToPdf(pathEx, pathPdf);
@@ -236,6 +266,16 @@ namespace Numeric
                     excel.WriteToCell(15, 1, nr12.n12.ToString());
                     excel.WriteToCell(0, 1, SYtbF.Text);
                     excel.WriteToCell(1, 1, SYtb1.Text);
+
+                    if ((bool)SYCh.IsChecked)
+                    {
+                        var numEx = 29;
+                        foreach (var nt in GetWithoutDublicate12(nr12))
+                        {
+                            excel.WriteToCell(numEx, 0, nt.ToString());
+                            numEx++;
+                        }
+                    }
                     excel.Save();
                     excel.Close();
                     ExportWorkbookToPdf(pathEx, pathPdf);
@@ -302,29 +342,43 @@ namespace Numeric
                     excel.WriteToCell(1, 1, MPtb1.Text);
                     excel.WriteToCell(2, 1, numOfFate.ToString());
                     excel.WriteToCell(2, 3, LC.ToString());
-                    excel.WriteToCell(4, 1, firstNum.ToString());
-                    excel.WriteToCell(4,2, secondNum.ToString());
-                    excel.WriteToCell(5, 1, thirdNum.ToString());
-                    excel.WriteToCell(5, 2, fourthNum.ToString());
 
-                    excel.WriteToCell(7, 0, d[1]!=""?d[1]:"нет");
-                    excel.WriteToCell(9, 0, d[2] != "" ? d[2] : "нет");
-                    excel.WriteToCell(11, 0, d[3] != "" ? d[3] : "нет");
-                    excel.WriteToCell(7, 1, d[4] != "" ? d[4] : "нет");
-                    excel.WriteToCell(9, 1, d[5] != "" ? d[5] : "нет");
-                    excel.WriteToCell(11, 1, d[6] != "" ? d[6] : "нет");
-                    excel.WriteToCell(7, 2, d[7] != "" ? d[7] : "нет");
-                    excel.WriteToCell(9, 2, d[8] != "" ? d[8] : "нет");
-                    excel.WriteToCell(11, 2, d[9] != "" ? d[9] : "нет");
+                    excel.WriteToCell(4, 0, d[1]!=""?d[1]:"нет");
+                    excel.WriteToCell(6, 0, d[2] != "" ? d[2] : "нет");
+                    excel.WriteToCell(8, 0, d[3] != "" ? d[3] : "нет");
+                    excel.WriteToCell(4, 1, d[4] != "" ? d[4] : "нет");
+                    excel.WriteToCell(6, 1, d[5] != "" ? d[5] : "нет");
+                    excel.WriteToCell(8, 1, d[6] != "" ? d[6] : "нет");
+                    excel.WriteToCell(4, 2, d[7] != "" ? d[7] : "нет");
+                    excel.WriteToCell(6, 2, d[8] != "" ? d[8] : "нет");
+                    excel.WriteToCell(8, 2, d[9] != "" ? d[9] : "нет");
 
-                    excel.WriteToCell(5, 3, (d2[3].Length+ d2[5].Length + d2[7].Length).ToString());
-                    excel.WriteToCell(7, 3, (d2[1].Length + d2[4].Length + d2[7].Length).ToString());
-                    excel.WriteToCell(9, 3, (d2[2].Length + d2[5].Length + d2[8].Length).ToString());
-                    excel.WriteToCell(11, 3, (d2[3].Length + d2[6].Length + d2[9].Length).ToString());
-                    excel.WriteToCell(13, 0, (d2[1].Length + d2[2].Length + d2[3].Length).ToString());
-                    excel.WriteToCell(13, 1, (d2[4].Length + d2[5].Length + d2[6].Length).ToString());
-                    excel.WriteToCell(13, 2, (d2[7].Length + d2[8].Length + d2[9].Length).ToString());
-                    excel.WriteToCell(13, 3, (d2[1].Length + d2[5].Length + d2[9].Length).ToString());
+                    excel.WriteToCell(11, 0, numOfFate.ToString());
+                    excel.WriteToCell(12, 0, firstNum.ToString());
+                    excel.WriteToCell(13, 0, secondNum.ToString());
+                    excel.WriteToCell(14, 0, thirdNum.ToString());
+                    excel.WriteToCell(15, 0, fourthNum.ToString());
+                    excel.WriteToCell(16, 0, d[1] != "" ? d[1] : "-1");
+                    excel.WriteToCell(17, 0, d[2] != "" ? d[2] : "-2");
+                    excel.WriteToCell(18, 0, d[3] != "" ? d[3] : "-3");
+                    excel.WriteToCell(19, 0, d[4] != "" ? d[4] : "-4");
+                    excel.WriteToCell(20, 0, d[5] != "" ? d[5] : "-5");
+                    excel.WriteToCell(21, 0, d[6] != "" ? d[6] : "-6");
+                    excel.WriteToCell(22, 0, d[7] != "" ? d[7] : "-7");
+                    excel.WriteToCell(23, 0, d[8] != "" ? d[8] : "-8");
+                    excel.WriteToCell(24, 0, d[9] != "" ? d[9] : "-9");
+
+                    excel.WriteToCell(24, 0, $"Темперамент {(d2[3].Length + d2[5].Length + d2[7].Length).ToString()}");
+                    excel.WriteToCell(25, 0, $"Цель {(d2[1].Length + d2[4].Length + d2[7].Length).ToString()}");
+                    excel.WriteToCell(26, 0, $"Семья {(d2[2].Length + d2[5].Length + d2[8].Length).ToString()}");
+                    excel.WriteToCell(27, 0, $"Стабильность {(d2[3].Length + d2[6].Length + d2[9].Length).ToString()}");
+                    excel.WriteToCell(28, 0, $"Самооценка {(d2[1].Length + d2[2].Length + d2[3].Length).ToString()}");
+                    excel.WriteToCell(29, 0, $"Быт {(d2[4].Length + d2[5].Length + d2[6].Length).ToString()}");
+                    excel.WriteToCell(30, 0, $"Талант {(d2[7].Length + d2[8].Length + d2[9].Length).ToString()}");
+                    excel.WriteToCell(31, 0, $"Духовность {(d2[1].Length + d2[5].Length + d2[9].Length).ToString()}");
+
+                    var numEx = 32;
+
 
                     excel.Save();
                     excel.Close();
@@ -403,14 +457,7 @@ namespace Numeric
                         nr6cell7Sum.n4 = nr6cell1.n4 + nr6cell2.n4 + nr6cell3.n4 + nr6cell4.n4 + nr6cell5.n4 + nr6cell6.n4;
                         nr6cell7Sum.n5 = nr6cell1.n5 + nr6cell2.n5 + nr6cell3.n5 + nr6cell4.n5 + nr6cell5.n5 + nr6cell6.n5;
                         nr6cell7Sum.n6 = nr6cell1.n6 + nr6cell2.n6 + nr6cell3.n6 + nr6cell4.n6 + nr6cell5.n6 + nr6cell6.n6;
-
-                        nr6cell7Sum.n1 = TransSU(nr6cell7Sum.n1);
-                        nr6cell7Sum.n2 = TransSU(nr6cell7Sum.n2);
-                        nr6cell7Sum.n3 = TransSU(nr6cell7Sum.n3);
-                        nr6cell7Sum.n4 = TransSU(nr6cell7Sum.n4);
-                        nr6cell7Sum.n5 = TransSU(nr6cell7Sum.n5);
-                        nr6cell7Sum.n6 = TransSU(nr6cell7Sum.n6);
-
+                                                
                         try
                         {
                             string pathEx = @"C:\Test\SUTest.xlsx";
@@ -477,15 +524,24 @@ namespace Numeric
                             excel.WriteToCell(6, 6, nr6cell6.n3.ToString());
                             excel.WriteToCell(7, 6, nr6cell6.n4.ToString());
                             excel.WriteToCell(8, 6, nr6cell6.n5.ToString());
-                            excel.WriteToCell(5, 6, nr6cell6.n6.ToString());
+                            excel.WriteToCell(9, 6, nr6cell6.n6.ToString());
 
-                            excel.WriteToCell(4, 7, nr6cell7Sum.n1.ToString());
-                            excel.WriteToCell(5, 7, nr6cell7Sum.n2.ToString());
-                            excel.WriteToCell(6, 7, nr6cell7Sum.n3.ToString());
-                            excel.WriteToCell(7, 7, nr6cell7Sum.n4.ToString());
-                            excel.WriteToCell(8, 7, nr6cell7Sum.n5.ToString());
-                            excel.WriteToCell(9, 7, nr6cell7Sum.n6.ToString());
+                            excel.WriteToCell(4, 7, TransSU(nr6cell7Sum.n1));
+                            excel.WriteToCell(5, 7, TransSU(nr6cell7Sum.n2));
+                            excel.WriteToCell(6, 7, TransSU(nr6cell7Sum.n3));
+                            excel.WriteToCell(7, 7, TransSU(nr6cell7Sum.n4));
+                            excel.WriteToCell(8, 7, TransSU(nr6cell7Sum.n5));
+                            excel.WriteToCell(9, 7, TransSU(nr6cell7Sum.n6));
 
+                            if ((bool)SUCh.IsChecked)
+                            {
+                                var numEx = 11;
+                                foreach (var nt in GetWithoutDublicate6(nr6cell7Sum))
+                                {
+                                    excel.WriteToCell(numEx, 0, TransSU(nt));
+                                    numEx++;
+                                }
+                            }
                             excel.Save();
                             excel.Close();
                             ExportWorkbookToPdf(pathEx, pathPdf);
@@ -512,45 +568,79 @@ namespace Numeric
             }
             
         }
+
+        //Выбор единственных значений и сортировка 6
+        private IEnumerable<int> GetWithoutDublicate6(NumericRow6 nr6)
+        {
+            List<int> list = new List<int>();
+            list.Add(nr6.n1);
+            list.Add(nr6.n2);
+            list.Add(nr6.n3);
+            list.Add(nr6.n4);
+            list.Add(nr6.n5);
+            list.Add(nr6.n6);
+            IEnumerable<int> list1 = list.Distinct();
+            list1 = list1.OrderBy(x => x);
+            return list1;
+        }
+        //Выбор единственных значений и сортировка 12
+        private IEnumerable<int> GetWithoutDublicate12(NumericRow12 nr12)
+        {
+            List<int> list = new List<int>();
+            list.Add(nr12.n1);
+            list.Add(nr12.n2);
+            list.Add(nr12.n3);
+            list.Add(nr12.n4);
+            list.Add(nr12.n5);
+            list.Add(nr12.n6);
+            list.Add(nr12.n7);
+            list.Add(nr12.n8);
+            list.Add(nr12.n9);
+            list.Add(nr12.n10);
+            list.Add(nr12.n11);
+            list.Add(nr12.n12);
+            IEnumerable <int> list1 = list.Distinct();
+            list1 = list1.OrderBy(x=>x);
+            return list1;
+        }
         //для 56 судеб перевод итога
-        public int TransSU(int i)
+        public string TransSU(int i)
         {
             if (i > 57)
                 i = GetSum(i);
             switch (i)
             {
                 case 56:
-                    return 1;
+                    return "56/1";
                     break;
                 case 20:
-                    return 1;
+                    return "20/1";
                     break;
                 case 33:
-                    return 3;
+                    return "33/1";
                     break;
                 case 22:
-                    return 4;
+                    return "22/4";
                     break;
                 case 50:
-                    return 5;
+                    return "50/5";
                     break;
                 case 16:
-                    return 6;
+                    return "16/6";
                     break;
                 case 37:
-                    return 7;
+                    return "37/7";
                     break;
                 case 48:
-                    return 8;
+                    return "48/8";
                     break;
                 case 49:
-                    return 9;
+                    return "49/9";
                     break;
                 default:
-                    return i;
+                    return i.ToString();
                     break;
             }
-            
         }
         //Добавление нулей до шестизначного числа
         public NumericRow6 AddNullsTo6(int i)
@@ -963,299 +1053,501 @@ namespace Numeric
             nr12.n12 = nr7.n5;
             return nr12;
         }
+        //Сопоставления для матрицы пифагора
         public List<string> GetMatch(Dictionary<int, string> d)
         {
+            foreach (var t in d.Keys)
+            {
+                if (d[t] == "")
+                    d[t] = $"(-{t})";
+            }
             List<string> list = new List<string>();
-            if (d[1] == "111" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
+            if (d[1] == "111" && d[4] == "4" && d[8] == "(-8)")
+                list.Add("111+4+(-8)");
             if (d[1] == "111" && d[4] == "4" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "111" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
+                list.Add("111+4+8");
+            if (d[1] == "111" && d[4] == "44" && d[8] == "(-8)")
+                list.Add("111+44+(-8)");
             if (d[1] == "111" && d[4] == "44" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "111" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
+                list.Add("111+44+8");
+            if (d[1] == "111" && d[4] == "444" && d[8] == "(-8)")
+                list.Add("111+444+(-8)");
             if (d[1] == "111" && d[4] == "444" && d[8] == "8")
-                list.Add("Характер");
+                list.Add("111+444+8");
             if (d[1] == "1" && d[4] == "4" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("1+4+88");
             if (d[1] == "1" && d[4] == "4" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("1+4+888");
             if (d[1] == "1" && d[4] == "44" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("1+44+88");
             if (d[1] == "1" && d[4] == "44" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("1+44+888");
             if (d[1] == "1" && d[4] == "444" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("1+444+88");
             if (d[1] == "1" && d[4] == "444" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("1+444+888");
             if (d[1] == "11" && d[4] == "4" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("11+4+88");
             if (d[1] == "11" && d[4] == "4" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("11+4+888");
             if (d[1] == "11" && d[4] == "44" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("11+44+88");
             if (d[1] == "11" && d[4] == "44" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("11+44+888");
             if (d[1] == "11" && d[4] == "444" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("11+444+88");
             if (d[1] == "11" && d[4] == "444" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("11+444+888");
 
             if (d[1] == "111" && d[4] == "4" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("111+4+88");
             if (d[1] == "111" && d[4] == "4" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("111+4+888");
             if (d[1] == "111" && d[4] == "44" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("111+44+88");
             if (d[1] == "111" && d[4] == "44" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("111+44+888");
             if (d[1] == "111" && d[4] == "444" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("111+444+88");
             if (d[1] == "111" && d[4] == "444" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("111+444+888");
 
             if (d[1] == "1111" && d[4] == "4" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("1111+4+88");
             if (d[1] == "1111" && d[4] == "4" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("1111+4+888");
             if (d[1] == "1111" && d[4] == "44" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("1111+44+88");
             if (d[1] == "1111" && d[4] == "44" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("1111+44+888");
             if (d[1] == "1111" && d[4] == "444" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("1111+444+88");
             if (d[1] == "1111" && d[4] == "444" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("1111+444+888");
 
             if (d[1] == "11111" && d[4] == "4" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("11111+4+88");
             if (d[1] == "11111" && d[4] == "4" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("11111+4+888");
             if (d[1] == "11111" && d[4] == "44" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("11111+44+88");
             if (d[1] == "11111" && d[4] == "44" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("11111+44+888");
             if (d[1] == "11111" && d[4] == "444" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("111111+444+88");
             if (d[1] == "11111" && d[4] == "444" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("11111+444+888");
 
             if (d[1] == "111111" && d[4] == "4" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("111111+4+88");
             if (d[1] == "111111" && d[4] == "4" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("111111+4+888");
             if (d[1] == "111111" && d[4] == "44" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("111111+44+88");
             if (d[1] == "111111" && d[4] == "44" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("111111+44+888");
             if (d[1] == "111111" && d[4] == "444" && d[8] == "88")
-                list.Add("Характер");
+                list.Add("111111+444+88");
             if (d[1] == "111111" && d[4] == "444" && d[8] == "888")
-                list.Add("Характер");
+                list.Add("111111+444+888");
 
-            if (d[1] == "11" && d[2] == "22" && d[8] == "33")
-                list.Add("Характер");
-            if (d[1] == "11" && d[2] == "22" && d[8] == "333")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "22" && d[8] == "33")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "22" && d[8] == "333")
-                list.Add("Характер");
-            if (d[1] == "11" && d[2] == "222" && d[8] == "33")
-                list.Add("Характер");
-            if (d[1] == "11" && d[2] == "222" && d[8] == "333")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "222" && d[8] == "33")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "222" && d[8] == "333")
-                list.Add("Характер");
-            if (d[1] == "11" && d[2] == "2222" && d[8] == "33")
-                list.Add("Характер");
-            if (d[1] == "11" && d[2] == "2222" && d[8] == "333")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "2222" && d[8] == "33")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "2222" && d[8] == "333")
-                list.Add("Характер");
-            if (d[1] == "11" && d[2] == "22222" && d[8] == "33")
-                list.Add("Характер");
-            if (d[1] == "11" && d[2] == "22222" && d[8] == "333")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "22222" && d[8] == "33")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "22222" && d[8] == "333")
-                list.Add("Характер");
-            if (d[1] == "11" && d[2] == "222222" && d[8] == "33")
-                list.Add("Характер");
-            if (d[1] == "11" && d[2] == "222222" && d[8] == "333")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "222222" && d[8] == "33")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "222222" && d[8] == "333")
-                list.Add("Характер");
+            if (d[1] == "11" && d[2] == "22" && d[3] == "33")
+                list.Add("11+22+33");
+            if (d[1] == "11" && d[2] == "22" && d[3] == "333")
+                list.Add("11+22+333");
+            if (d[1] == "111" && d[2] == "22" && d[3] == "33")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
+            if (d[1] == "111" && d[2] == "22" && d[3] == "333")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
+            if (d[1] == "11" && d[2] == "222" && d[3] == "33")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
+            if (d[1] == "11" && d[2] == "222" && d[3] == "333")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
+            if (d[1] == "111" && d[2] == "222" && d[3] == "33")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
+            if (d[1] == "111" && d[2] == "222" && d[3] == "333")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
+            if (d[1] == "11" && d[2] == "2222" && d[3] == "33")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
+            if (d[1] == "11" && d[2] == "2222" && d[3] == "333")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
+            if (d[1] == "111" && d[2] == "2222" && d[3] == "33")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
+            if (d[1] == "111" && d[2] == "2222" && d[3] == "333")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
+            if (d[1] == "11" && d[2] == "22222" && d[3] == "33")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
+            if (d[1] == "11" && d[2] == "22222" && d[3] == "333")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
+            if (d[1] == "111" && d[2] == "22222" && d[3] == "33")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
+            if (d[1] == "111" && d[2] == "22222" && d[3] == "333")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
+            if (d[1] == "11" && d[2] == "222222" && d[3] == "33")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
+            if (d[1] == "11" && d[2] == "222222" && d[3] == "333")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
+            if (d[1] == "111" && d[2] == "222222" && d[3] == "33")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
+            if (d[1] == "111" && d[2] == "222222" && d[3] == "333")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}");
 
-            if (d[1] == "111" && d[2] == "22" && d[3]==""&& d[4] == "4"&&d[8]=="")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "22" && d[3] == "3" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "22" && d[3] == "" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
+            if (d[1] == "111" && d[2] == "22" && d[3]=="(-3)"&& d[4] == "4"&&d[8]=="(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111" && d[2] == "22" && d[3] == "3" && d[4] == "4" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111" && d[2] == "22" && d[3] == "(-3)" && d[4] == "4" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "111" && d[2] == "22" && d[3] == "3" && d[4] == "4" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "222" && d[3] == "" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "222" && d[3] == "3" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "222" && d[3] == "" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "4" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111" && d[2] == "222" && d[3] == "3" && d[4] == "4" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "4" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "111" && d[2] == "222" && d[3] == "3" && d[4] == "4" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "22" && d[3] == "" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "22" && d[3] == "3" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "22" && d[3] == "" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111" && d[2] == "22" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111" && d[2] == "22" && d[3] == "3" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111" && d[2] == "22" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "111" && d[2] == "22" && d[3] == "3" && d[4] == "44" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "222" && d[3] == "" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "222" && d[3] == "3" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "222" && d[3] == "" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111" && d[2] == "222" && d[3] == "3" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "111" && d[2] == "222" && d[3] == "3" && d[4] == "44" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "22" && d[3] == "" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "22" && d[3] == "3" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "22" && d[3] == "" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111" && d[2] == "22" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111" && d[2] == "22" && d[3] == "3" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111" && d[2] == "22" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "111" && d[2] == "22" && d[3] == "3" && d[4] == "444" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "222" && d[3] == "" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "222" && d[3] == "3" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111" && d[2] == "222" && d[3] == "" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111" && d[2] == "222" && d[3] == "3" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "111" && d[2] == "222" && d[3] == "3" && d[4] == "444" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "22" && d[3] == "" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "22" && d[3] == "3" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "22" && d[3] == "" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "22" && d[3] == "(-3)" && d[4] == "4" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "22" && d[3] == "3" && d[4] == "4" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "22" && d[3] == "(-3)" && d[4] == "4" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "11111" && d[2] == "22" && d[3] == "3" && d[4] == "4" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "222" && d[3] == "" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "222" && d[3] == "3" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "222" && d[3] == "" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "4" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "222" && d[3] == "3" && d[4] == "4" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "4" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "11111" && d[2] == "222" && d[3] == "3" && d[4] == "4" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "22" && d[3] == "" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "22" && d[3] == "3" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "22" && d[3] == "" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "22" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "22" && d[3] == "3" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "22" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "11111" && d[2] == "22" && d[3] == "3" && d[4] == "44" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "222" && d[3] == "" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "222" && d[3] == "3" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "222" && d[3] == "" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "222" && d[3] == "3" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "11111" && d[2] == "222" && d[3] == "3" && d[4] == "44" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "22" && d[3] == "" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "22" && d[3] == "3" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "22" && d[3] == "" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "22" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "22" && d[3] == "3" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "22" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "11111" && d[2] == "22" && d[3] == "3" && d[4] == "444" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "222" && d[3] == "" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "222" && d[3] == "3" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "11111" && d[2] == "222" && d[3] == "" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "222" && d[3] == "3" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "11111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "11111" && d[2] == "222" && d[3] == "3" && d[4] == "444" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "22" && d[3] == "" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "22" && d[3] == "3" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "22" && d[3] == "" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "22" && d[3] == "(-3)" && d[4] == "4" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "22" && d[3] == "3" && d[4] == "4" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "22" && d[3] == "(-3)" && d[4] == "4" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "111111" && d[2] == "22" && d[3] == "3" && d[4] == "4" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "222" && d[3] == "" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "222" && d[3] == "3" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "222" && d[3] == "" && d[4] == "4" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "4" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "222" && d[3] == "3" && d[4] == "4" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "4" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "111111" && d[2] == "222" && d[3] == "3" && d[4] == "4" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "22" && d[3] == "" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "22" && d[3] == "3" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "22" && d[3] == "" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "22" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "22" && d[3] == "3" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "22" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "111111" && d[2] == "22" && d[3] == "3" && d[4] == "44" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "222" && d[3] == "" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "222" && d[3] == "3" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "222" && d[3] == "" && d[4] == "44" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "222" && d[3] == "3" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "111111" && d[2] == "222" && d[3] == "3" && d[4] == "44" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "22" && d[3] == "" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "22" && d[3] == "3" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "22" && d[3] == "" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "22" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "22" && d[3] == "3" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "22" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "111111" && d[2] == "22" && d[3] == "3" && d[4] == "444" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "222" && d[3] == "" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "222" && d[3] == "3" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[2] == "222" && d[3] == "" && d[4] == "444" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "222" && d[3] == "3" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "111111" && d[2] == "222" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
             if (d[1] == "111111" && d[2] == "222" && d[3] == "3" && d[4] == "444" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "1" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[2]}+{d[3]}+{d[4]}+{d[8]}");
+            if (d[1] == "1" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[8]}");
             if (d[1] == "1" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "11" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[8]}");
+            if (d[1] == "11" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[8]}");
             if (d[1] == "11" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "1111" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[8]}");
+            if (d[1] == "1111" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[8]}");
             if (d[1] == "1111" && d[8] == "8")
-                list.Add("Характер");
-            if (d[1] == "111111" && d[8] == "")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[8]}");
+            if (d[1] == "111111" && d[8] == "(-8)")
+                list.Add($"{d[1]}+{d[8]}");
             if (d[1] == "111111" && d[8] == "8")
-                list.Add("Характер");
+                list.Add($"{d[1]}+{d[8]}");
+            ////2 Энергия
+            if (d[2] == "22" && d[4] == "44")
+                list.Add($"{d[2]}+{d[4]}");
+            if (d[2] == "22" && d[4] == "444")
+                list.Add($"{d[2]}+{d[4]}");
+            if (d[2] == "22" && d[4] == "4444")
+                list.Add($"{d[2]}+{d[4]}");
+            if(d[2] == "222" && d[4] == "44")
+                list.Add($"{d[2]}+{d[4]}");
+            if (d[2] == "222" && d[4] == "444")
+                list.Add($"{d[2]}+{d[4]}");
+            if (d[2] == "222" && d[4] == "4444")
+                list.Add($"{d[2]}+{d[4]}");
+            if (d[2] == "2222" && d[4] == "44")
+                list.Add($"{d[2]}+{d[4]}");
+            if (d[2] == "2222" && d[4] == "444")
+                list.Add($"{d[2]}+{d[4]}");
+            if (d[2] == "2222" && d[4] == "4444")
+                list.Add($"{d[2]}+{d[4]}");
+            if (d[2] == "2" && d[4] == "4")
+                list.Add($"{d[2]}+{d[4]}");
+
+            if (d[2] == "22" && d[3] == "(-3)" && d[4] == "4" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "3" && d[4] == "4" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "(-3)" && d[4] == "4" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "3" && d[4] == "4" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "(-3)" && d[4] == "4" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "3" && d[4] == "4" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "(-3)" && d[4] == "4" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "3" && d[4] == "4" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "(-3)" && d[4] == "4" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "3" && d[4] == "4" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "(-3)" && d[4] == "4" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "3" && d[4] == "4" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "(-3)" && d[4] == "4" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "3" && d[4] == "4" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "(-3)" && d[4] == "4" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "3" && d[4] == "4" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "(-3)" && d[4] == "4" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "3" && d[4] == "4" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "(-3)" && d[4] == "4" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "3" && d[4] == "4" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "(-3)" && d[4] == "4" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "3" && d[4] == "4" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "(-3)" && d[4] == "4" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "3" && d[4] == "4" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "3" && d[4] == "44" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "(-3)" && d[4] == "44" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "3" && d[4] == "44" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "3" && d[4] == "44" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "(-3)" && d[4] == "44" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "3" && d[4] == "44" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "3" && d[4] == "44" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "(-3)" && d[4] == "44" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "3" && d[4] == "44" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "3" && d[4] == "44" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "(-3)" && d[4] == "44" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "3" && d[4] == "44" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "3" && d[4] == "44" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "(-3)" && d[4] == "44" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "3" && d[4] == "44" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "(-3)" && d[4] == "44" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "3" && d[4] == "44" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "(-3)" && d[4] == "44" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "3" && d[4] == "44" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+
+            if (d[2] == "22" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "3" && d[4] == "444" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "(-3)" && d[4] == "444" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "3" && d[4] == "444" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "3" && d[4] == "444" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "(-3)" && d[4] == "444" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "22" && d[3] == "3" && d[4] == "444" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "3" && d[4] == "444" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "(-3)" && d[4] == "444" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "3" && d[4] == "444" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "3" && d[4] == "444" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "(-3)" && d[4] == "444" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "222" && d[3] == "3" && d[4] == "444" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "3" && d[4] == "444" && d[8] == "(-8)" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "(-3)" && d[4] == "444" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "3" && d[4] == "444" && d[8] == "8" && d[9] == "99")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "(-3)" && d[4] == "444" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "3" && d[4] == "444" && d[8] == "(-8)" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "(-3)" && d[4] == "444" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+            if (d[2] == "2222" && d[3] == "3" && d[4] == "444" && d[8] == "8" && d[9] == "999")
+                list.Add($"{d[2]}+{d[3]}+{d[4]}+{d[8]}+{d[9]}");
+
+            if (d[2] == "2" && d[4] == "44")
+                list.Add($"{d[2]}+{d[4]}");
+            if (d[2] == "2" && d[4] == "444")
+                list.Add($"{d[2]}+{d[4]}");
+            if (d[2] == "22" && d[4] == "4")
+                list.Add($"{d[2]}+{d[4]}");
+            if (d[2] == "2" && d[4] == "(-4)")
+                list.Add($"{d[2]}+{d[4]}");
+            if (d[2] == "22" && d[4] == "(-4)")
+                list.Add($"{d[2]}+{d[4]}");
+            if (d[2] == "222" && d[4] == "(-4)")
+                list.Add($"{d[2]}+{d[4]}");
+            if (d[2] == "2222" && d[4] == "(-4)")
+                list.Add($"{d[2]}+{d[4]}");
+
+            if (d[2] == "22" && d[8] == "88")
+                list.Add($"{d[2]}+{d[8]}");
+            if (d[2] == "22" && d[8] == "888")
+                list.Add($"{d[2]}+{d[8]}");
+            if (d[2] == "222" && d[8] == "88")
+                list.Add($"{d[2]}+{d[8]}");
+            if (d[2] == "222" && d[8] == "888")
+                list.Add($"{d[2]}+{d[8]}");
+            if (d[2] == "2222" && d[8] == "88")
+                list.Add($"{d[2]}+{d[8]}");
+            if (d[2] == "2222" && d[8] == "888")
+                list.Add($"{d[2]}+{d[8]}");
+
             return list;
         }
     }

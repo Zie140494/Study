@@ -29,6 +29,7 @@ namespace Numeric
                 return ws.Cells[i, j].Value;
             else
                 return "";
+            
         }
         public void WriteToCell(int i,int j, string s)
         {
@@ -43,6 +44,14 @@ namespace Numeric
         public void Close()
         {
             wb.Close();
+        }
+        public void Hide(int i)
+        {
+            ws.Rows.Cells[i, ws.Columns.Count].EntireRow.Hidden = true;
+        }
+        public void Unhide(int i)
+        {
+            ws.Rows.Cells[i, ws.Columns.Count].EntireRow.Hidden = false;
         }
     }
 }

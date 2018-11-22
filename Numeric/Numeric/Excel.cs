@@ -53,5 +53,13 @@ namespace Numeric
         {
             ws.Rows.Cells[i, ws.Columns.Count].EntireRow.Hidden = false;
         }
+        public void HideCol(int i)
+        {
+            ws.Columns.Cells[ws.Rows.Count, i].EntireColumn.Hidden = true;
+        }
+        public void UnhideCol(int i)
+        {
+            ws.Columns.Cells[ws.Rows.Count, i].EntireColumn.Hidden = true;
+        }
     }
 }

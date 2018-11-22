@@ -90,15 +90,17 @@ namespace Numeric
                         excel.WriteToCell(15, 1, Nr12.n12.ToString());
                         excel.WriteToCell(0,1,KZtbF.Text);
                         excel.WriteToCell(1, 1, KZtb1.Text);
-                        if((bool)KZCh.IsChecked)
+
+                        var del = 30;
+                        for (int h = 0; h < 10; h++)
                         {
-                            var numEx = 29;
-                            foreach (var nt in GetWithoutDublicate12(Nr12))
-                            {
-                                excel.WriteToCell(numEx, 0, nt.ToString());
-                                numEx++;
-                            }
+                            excel.Hide(del + h);
                         }
+                        foreach (var nt in GetWithoutDublicate12(Nr12))
+                        {
+                            excel.Unhide(del + nt);
+                        }
+                        
                         excel.Save();
                         excel.Close();
                         ExportWorkbookToPdf(pathEx, pathPdf);
@@ -196,17 +198,6 @@ namespace Numeric
                             excel.Unhide(del + nt);
                         }
 
-
-                        if ((bool)FCh.IsChecked)
-                        {
-                            int n = 29;
-                            foreach (var nt in GetWithoutDublicate12(nr12))
-                            {
-                                excel.WriteToCell(n, 0, nt.ToString());
-                                n++;
-                            }
-                        }
-
                         excel.Save();
                         excel.Close();
                         ExportWorkbookToPdf(pathEx, pathPdf);
@@ -267,15 +258,16 @@ namespace Numeric
                     excel.WriteToCell(0, 1, SYtbF.Text);
                     excel.WriteToCell(1, 1, SYtb1.Text);
 
-                    if ((bool)SYCh.IsChecked)
+                    var del = 31;
+                    for (int h = -1; h < 10; h++)
                     {
-                        var numEx = 29;
-                        foreach (var nt in GetWithoutDublicate12(nr12))
-                        {
-                            excel.WriteToCell(numEx, 0, nt.ToString());
-                            numEx++;
-                        }
+                        excel.Hide(del + h);
                     }
+                    foreach (var nt in GetWithoutDublicate12(nr12))
+                    {
+                        excel.Unhide(del + nt);
+                    }
+                    
                     excel.Save();
                     excel.Close();
                     ExportWorkbookToPdf(pathEx, pathPdf);
@@ -343,42 +335,41 @@ namespace Numeric
                     excel.WriteToCell(2, 1, numOfFate.ToString());
                     excel.WriteToCell(2, 3, LC.ToString());
 
-                    excel.WriteToCell(4, 0, d[1]!=""?d[1]:"нет");
-                    excel.WriteToCell(6, 0, d[2] != "" ? d[2] : "нет");
-                    excel.WriteToCell(8, 0, d[3] != "" ? d[3] : "нет");
-                    excel.WriteToCell(4, 1, d[4] != "" ? d[4] : "нет");
-                    excel.WriteToCell(6, 1, d[5] != "" ? d[5] : "нет");
-                    excel.WriteToCell(8, 1, d[6] != "" ? d[6] : "нет");
-                    excel.WriteToCell(4, 2, d[7] != "" ? d[7] : "нет");
-                    excel.WriteToCell(6, 2, d[8] != "" ? d[8] : "нет");
-                    excel.WriteToCell(8, 2, d[9] != "" ? d[9] : "нет");
+                    excel.WriteToCell(3, 2, firstNum.ToString());
+                    excel.WriteToCell(3, 3, secondNum.ToString());
+                    excel.WriteToCell(4, 2, firstNum.ToString());
+                    excel.WriteToCell(4, 3, secondNum.ToString());
 
-                    excel.WriteToCell(11, 0, numOfFate.ToString());
-                    excel.WriteToCell(12, 0, firstNum.ToString());
-                    excel.WriteToCell(13, 0, secondNum.ToString());
-                    excel.WriteToCell(14, 0, thirdNum.ToString());
-                    excel.WriteToCell(15, 0, fourthNum.ToString());
-                    excel.WriteToCell(16, 0, d[1] != "" ? d[1] : "-1");
-                    excel.WriteToCell(17, 0, d[2] != "" ? d[2] : "-2");
-                    excel.WriteToCell(18, 0, d[3] != "" ? d[3] : "-3");
-                    excel.WriteToCell(19, 0, d[4] != "" ? d[4] : "-4");
-                    excel.WriteToCell(20, 0, d[5] != "" ? d[5] : "-5");
-                    excel.WriteToCell(21, 0, d[6] != "" ? d[6] : "-6");
-                    excel.WriteToCell(22, 0, d[7] != "" ? d[7] : "-7");
-                    excel.WriteToCell(23, 0, d[8] != "" ? d[8] : "-8");
-                    excel.WriteToCell(24, 0, d[9] != "" ? d[9] : "-9");
 
-                    excel.WriteToCell(24, 0, $"Темперамент {(d2[3].Length + d2[5].Length + d2[7].Length).ToString()}");
-                    excel.WriteToCell(25, 0, $"Цель {(d2[1].Length + d2[4].Length + d2[7].Length).ToString()}");
-                    excel.WriteToCell(26, 0, $"Семья {(d2[2].Length + d2[5].Length + d2[8].Length).ToString()}");
-                    excel.WriteToCell(27, 0, $"Стабильность {(d2[3].Length + d2[6].Length + d2[9].Length).ToString()}");
-                    excel.WriteToCell(28, 0, $"Самооценка {(d2[1].Length + d2[2].Length + d2[3].Length).ToString()}");
-                    excel.WriteToCell(29, 0, $"Быт {(d2[4].Length + d2[5].Length + d2[6].Length).ToString()}");
-                    excel.WriteToCell(30, 0, $"Талант {(d2[7].Length + d2[8].Length + d2[9].Length).ToString()}");
-                    excel.WriteToCell(31, 0, $"Духовность {(d2[1].Length + d2[5].Length + d2[9].Length).ToString()}");
+                    excel.WriteToCell(5, 0, d[1]!=""?d[1]:"нет");
+                    excel.WriteToCell(7, 0, d[2] != "" ? d[2] : "нет");
+                    excel.WriteToCell(9, 0, d[3] != "" ? d[3] : "нет");
+                    excel.WriteToCell(5, 1, d[4] != "" ? d[4] : "нет");
+                    excel.WriteToCell(7, 1, d[5] != "" ? d[5] : "нет");
+                    excel.WriteToCell(9, 1, d[6] != "" ? d[6] : "нет");
+                    excel.WriteToCell(5, 2, d[7] != "" ? d[7] : "нет");
+                    excel.WriteToCell(7, 2, d[8] != "" ? d[8] : "нет");
+                    excel.WriteToCell(9, 2, d[9] != "" ? d[9] : "нет");
 
-                    var numEx = 32;
+                    var del = 13;
+                    for (int h = 0; h < 10; h++)
+                    {
+                        excel.Hide(del + h);
+                    }
+                    excel.Unhide(del + numOfFate);
 
+
+                    //del = 21;
+                    //for (int h = 1; h < 100; h++)
+                    //{
+                    //    excel.Hide(del + h);
+                    //}
+                    //foreach (var nt in GetWithoutDublicate4(firstNum,secondNum,thirdNum,fourthNum))
+                    //{
+                    //    excel.Unhide(del + nt);
+                    //}
+
+                    excel.HideCol(5);
 
                     excel.Save();
                     excel.Close();
@@ -410,7 +401,7 @@ namespace Numeric
             {
                 if (isInt1 && isInt2)
                 {
-                    if (IsDate1)
+                    if (IsDate1&&IsDate2)
                     {
                         var dt3 = new DateTime(2000, Convert.ToInt32(SUtb4.Text), 1);
                         int i = dt1.Day + 5;
@@ -533,15 +524,17 @@ namespace Numeric
                             excel.WriteToCell(8, 7, TransSU(nr6cell7Sum.n5));
                             excel.WriteToCell(9, 7, TransSU(nr6cell7Sum.n6));
 
-                            if ((bool)SUCh.IsChecked)
+                            var del = 11;
+                            for (int h = 0; h < 57; h++)
                             {
-                                var numEx = 11;
-                                foreach (var nt in GetWithoutDublicate6(nr6cell7Sum))
-                                {
-                                    excel.WriteToCell(numEx, 0, TransSU(nt));
-                                    numEx++;
-                                }
+                                excel.Hide(del + h);
                             }
+                            foreach (var nt in GetWithoutDublicate6(nr6cell7Sum))
+                            {
+                                excel.Unhide(del + nt);
+                            }
+
+
                             excel.Save();
                             excel.Close();
                             ExportWorkbookToPdf(pathEx, pathPdf);
@@ -567,6 +560,18 @@ namespace Numeric
                 MessageBox.Show("Значение номера месяца должно быть от 1 до 12");
             }
             
+        }
+        //Выбор единственных значений и сортировка 4
+        private IEnumerable<int> GetWithoutDublicate4(int i1,int i2,int i3,int i4)
+        {
+            List<int> list = new List<int>();
+            list.Add(i1);
+            list.Add(i2);
+            list.Add(i3);
+            list.Add(i4);
+            IEnumerable<int> list1 = list.Distinct();
+            list1 = list1.OrderBy(x => x);
+            return list1;
         }
 
         //Выбор единственных значений и сортировка 6

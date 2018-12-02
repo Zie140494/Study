@@ -31,10 +31,10 @@ namespace Numeric
         {
             //KZtb1.Text = "25.4.2018";
             //KZtb2.Text = "25.4.2018";
-            
+
             DateTime dt1;
             DateTime dt2;
-            bool IsDate1 = DateTime.TryParse(KZtb1.Text,out dt1);
+            bool IsDate1 = DateTime.TryParse(KZtb1.Text, out dt1);
             bool IsDate2 = DateTime.TryParse(KZtb2.Text, out dt2);
             //GetSequence(dt1);
             int res;
@@ -63,8 +63,8 @@ namespace Numeric
                     try
                     {
                         string pathEx = @"C:\Test\Test.xlsx";
-                        string pathPdf = string.Format(@"C:\Test\{0}.pdf",KZtbF.Text);
-                        
+                        string pathPdf = string.Format(@"C:\Test\{0}.pdf", KZtbF.Text);
+
                         for (int i = 1; i < Int32.MaxValue; i++)
                         {
                             if (!IsExists(pathPdf))
@@ -73,7 +73,7 @@ namespace Numeric
                             }
                             pathPdf = string.Format(@"C:\Test\{0}{1}.pdf", KZtbF.Text, i.ToString());
                         }
-                        
+
                         Excel excel = new Excel(pathEx, 1);
                         //MessageBox.Show(excel.ReadCell(0, 0));
                         excel.WriteToCell(4, 1, Nr12.n1.ToString());
@@ -88,7 +88,7 @@ namespace Numeric
                         excel.WriteToCell(13, 1, Nr12.n10.ToString());
                         excel.WriteToCell(14, 1, Nr12.n11.ToString());
                         excel.WriteToCell(15, 1, Nr12.n12.ToString());
-                        excel.WriteToCell(0,1,KZtbF.Text);
+                        excel.WriteToCell(0, 1, KZtbF.Text);
                         excel.WriteToCell(1, 1, KZtb1.Text);
 
                         var del = 30;
@@ -100,11 +100,11 @@ namespace Numeric
                         {
                             excel.Unhide(del + nt);
                         }
-                        
+
                         excel.Save();
                         excel.Close();
                         ExportWorkbookToPdf(pathEx, pathPdf);
-                        MessageBox.Show(string.Format( "Файл {0} успешно создан", pathPdf));
+                        MessageBox.Show(string.Format("Файл {0} успешно создан", pathPdf));
                     }
                     catch (Exception ex)
                     {
@@ -122,7 +122,7 @@ namespace Numeric
                 MessageBox.Show("Год не является целым числом");
             }
 
-            
+
         }
         //Финансовый календарь (F)
         private void FButton_Click(object sender, RoutedEventArgs e)
@@ -189,9 +189,9 @@ namespace Numeric
                         excel.WriteToCell(0, 1, FtbF.Text);
                         excel.WriteToCell(1, 1, Ftb1.Text);
                         var del = 33;
-                        for (int h=0;h<10;h++)
+                        for (int h = 0; h < 10; h++)
                         {
-                            excel.Hide(del+h);
+                            excel.Hide(del + h);
                         }
                         foreach (var nt in GetWithoutDublicate12(nr12))
                         {
@@ -267,7 +267,7 @@ namespace Numeric
                     {
                         excel.Unhide(del + nt);
                     }
-                    
+
                     excel.Save();
                     excel.Close();
                     ExportWorkbookToPdf(pathEx, pathPdf);
@@ -312,7 +312,7 @@ namespace Numeric
                     addingNum = 0;
                 var d = GetSequenceForm(Convert.ToInt32(s), firstNum, secondNum, thirdNum, fourthNum, addingNum);
                 var d2 = GetSequencecalc(Convert.ToInt32(s), firstNum, secondNum, thirdNum, fourthNum, addingNum);
-                
+
                 try
                 {
                     string pathEx = @"C:\Test\MPTest.xlsx";
@@ -326,8 +326,8 @@ namespace Numeric
                         }
                         pathPdf = string.Format(@"C:\Test\{0}{1}.pdf", MPtbF.Text, i.ToString());
                     }
-                    
-                    
+
+
 
                     Excel excel = new Excel(pathEx, 1);
                     excel.WriteToCell(0, 1, MPtbF.Text);
@@ -341,7 +341,7 @@ namespace Numeric
                     excel.WriteToCell(4, 3, fourthNum.ToString());
 
 
-                    excel.WriteToCell(6, 0, d[1]!=""?d[1]:"нет");
+                    excel.WriteToCell(6, 0, d[1] != "" ? d[1] : "нет");
                     excel.WriteToCell(8, 0, d[2] != "" ? d[2] : "нет");
                     excel.WriteToCell(10, 0, d[3] != "" ? d[3] : "нет");
                     excel.WriteToCell(6, 1, d[4] != "" ? d[4] : "нет");
@@ -356,13 +356,13 @@ namespace Numeric
                     {
                         excel.Hide(del + h);
                     }
-                    excel.Unhide(del + numOfFate-1);
+                    excel.Unhide(del + numOfFate - 1);
                     string fs = $"{firstNum}.{secondNum}";
                     string tf = $"{thirdNum}.{fourthNum}";
 
                     for (int i = 24; i < 63; i++)
                     {
-                        excel.Hide(i+1);
+                        excel.Hide(i + 1);
                         if (excel.ReadCell(i, 4) == fs)
                             excel.Unhide(i + 1);
                     }
@@ -447,13 +447,13 @@ namespace Numeric
                     d2[8] = d2[8] == "" ? "(-8)" : d2[8];
                     d2[9] = d2[9] == "" ? "(-9)" : d2[9];
 
-                    
+
                     string all = $"{d2[1]}/{d2[2]}/{d2[3]}/{d2[4]}/{d2[5]}/{d2[6]}/{d2[7]}/{d2[8]}/{d2[9]}/Те{SecSkill1}/Це{SecSkill2}/Се{SecSkill3}/Ст{SecSkill4}/Са{SecSkill5}/Бы{SecSkill6}/Та{SecSkill7}/Ду{SecSkill8}/ЧС{numOfFate}";
                     for (int i = 190; i < 2700; i++)
                     {
                         excel.Hide(i);
 
-                        if (hideRowMatch(excel.ReadCell(i-1, 4), all, i))
+                        if (hideRowMatch(excel.ReadCell(i - 1, 4), all, i))
                             excel.Unhide(i);
                     }
 
@@ -481,17 +481,17 @@ namespace Numeric
             DateTime dt2;
             DateTime dt3;
             int a;
-            
+
             bool IsDate1 = DateTime.TryParse(SUtb1.Text, out dt1);
             bool IsDate2 = DateTime.TryParse(SUtF.Text, out dt2);
             bool IsDate3 = DateTime.TryParse(SUtM.Text, out dt3);
             bool isInt1 = Int32.TryParse(SUtb3.Text, out a);
             bool isInt2 = Int32.TryParse(SUtb4.Text, out a);
-            if (0<a&&a<13)
+            if (0 < a && a < 13)
             {
                 if (isInt1 && isInt2)
                 {
-                    if (IsDate1&&IsDate2)
+                    if (IsDate1 && IsDate2)
                     {
                         var dt4 = new DateTime(2000, Convert.ToInt32(SUtb4.Text), 1);
                         int i = dt1.Day + 5;
@@ -525,12 +525,12 @@ namespace Numeric
                         nr6cell3.n1 = dt1.Day;
                         nr6cell3.n2 = dt1.Month;
                         nr6cell3.n3 = dt1.Year / 1000;
-                        nr6cell3.n4 = dt1.Year / 100%10;
-                        nr6cell3.n5 = dt1.Year / 10%10%10;
+                        nr6cell3.n4 = dt1.Year / 100 % 10;
+                        nr6cell3.n5 = dt1.Year / 10 % 10 % 10;
                         nr6cell3.n6 = dt1.Year % 10;
                         var nr6cell4 = GetLC6(dt1);
                         var nr6cell4M = GetLC6(dt3);
-                        var nr6cell5 = AddNullsTo6(dt1.Year/100%10 * dt1.Month*dt1.Day);
+                        var nr6cell5 = AddNullsTo6(dt1.Year / 100 % 10 * dt1.Month * dt1.Day);
                         var nr6cell5M = AddNullsTo6(dt3.Year / 100 % 10 * dt3.Month * dt3.Day);
                         var nr6cell6 = GetLC6(dt2);
                         var nr6cell7Sum = new NumericRow6(0);
@@ -718,13 +718,200 @@ namespace Numeric
             {
                 MessageBox.Show("Значение номера месяца должно быть от 1 до 12");
             }
-            
+
         }
         //Девятилетний цикл (LC)
         private void LCButton_Click(object sender, RoutedEventArgs e)
         {
             DateTime dt1;
             bool IsDate1 = DateTime.TryParse(LCtb1.Text, out dt1);
+            if (IsDate1)
+            {
+                string s = GetSum(dt1.Day).ToString() + GetSum(dt1.Month).ToString();
+                int i1 = GetFakeSum(Convert.ToInt32(s));
+                int i2 = GetFakeSum(DateTime.Now.Year);
+                int res = GetFakeSum(i1 + i2);
+                var dic = GetDicForLC(res);
+
+                try
+                {
+                    string pathEx = @"C:\Test\LCTest.xlsx";
+                    string pathPdf = string.Format(@"C:\Test\{0}.pdf", LCtbF.Text);
+
+                    for (int i = 1; i < Int32.MaxValue; i++)
+                    {
+                        if (!IsExists(pathPdf))
+                        {
+                            break;
+                        }
+                        pathPdf = string.Format(@"C:\Test\{0}{1}.pdf", LCtbF.Text, i.ToString());
+                    }
+
+                    Excel excel = new Excel(pathEx, 1);
+
+                    excel.WriteToCell(0, 2, LCtbF.Text);
+                    excel.WriteToCell(1, 2, LCtb1.Text);
+                    int del = 11;
+                    for (int i = 1; i < 10; i++)
+                    {
+                        excel.Hide(del + i);
+                    }
+                    foreach (var t in dic)
+                    {
+                        excel.WriteToCell(9, t.Key - 1, t.Value.ToString());
+                        excel.Unhide(del + t.Key);
+                    }
+
+                    excel.Save();
+                    excel.Close();
+                    ExportWorkbookToPdf(pathEx, pathPdf);
+                    MessageBox.Show(string.Format("Файл {0} успешно создан", pathPdf));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Значение не является датой, введите в формате dd.mm.yyyy");
+            }
+        }
+        //Луна и солнце (LU)
+        private void LUButton_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime dt1;
+            bool IsDate1 = DateTime.TryParse(LUtb1.Text, out dt1);
+            int age = GetAge(dt1, DateTime.Now);
+            if (IsDate1 || age<18)
+            {
+                
+                int lc = GetLC(dt1);
+                
+                List<Lun> list = new List<Lun>();
+                List<Lun> listh = new List<Lun>();
+                for (int it=18;it<age+6;it++)
+                {
+                    list.Add(new Lun(it, GetSun(it, lc), GetLuna(it, lc)));
+                    if (it>=age)
+                        listh.Add(new Lun(it, GetSun(it, lc), GetLuna(it, lc)));
+                }
+                //Выдающиеся года
+                List<int> years = new List<int>();
+                int y = dt1.Year;
+                while (y<2023)
+                {
+                    var c = y.ToString().ToCharArray();
+                    foreach (var ch in c)
+                    {
+                        y += (int)char.GetNumericValue(ch);
+                        if (y<2023 && (int)char.GetNumericValue(ch)!=0)
+                        {
+                            years.Add(y);
+                        }
+                    }
+                }
+
+                try
+                {
+                    string pathEx = @"C:\Test\LUTest.xlsx";
+                    string pathPdf = string.Format(@"C:\Test\{0}.pdf", LUtbF.Text);
+
+                    for (int i = 1; i < Int32.MaxValue; i++)
+                    {
+                        if (!IsExists(pathPdf))
+                        {
+                            break;
+                        }
+                        pathPdf = string.Format(@"C:\Test\{0}{1}.pdf", LUtbF.Text, i.ToString());
+                    }
+
+                    Excel excel = new Excel(pathEx, 1);
+
+                    excel.WriteToCell(0, 2, LUtbF.Text);
+                    excel.WriteToCell(1, 2, LUtb1.Text);
+
+                    for (int il=6;il<69;il++)
+                    {
+                        excel.Hide(il);
+                    }
+                    
+                    foreach (var l in listh)
+                    {
+                        excel.Unhide(l.Year - 12);
+                    }
+                    foreach (var l in list)
+                    {
+                        excel.WriteToCell(l.Year - 13, 1,l.Luna.ToString());
+                        excel.WriteToCell(l.Year - 13, 2, l.Sun.ToString());
+                        excel.WriteToCell(l.Year - 13, 3, l.Sum.ToString());
+                    }
+
+                    for (int il = 71; il < 145; il++)
+                    {
+                        excel.Hide(il);
+                    }
+
+                    foreach (var ya in years)
+                    {
+                        excel.Unhide(ya-1879);
+                    }
+
+                    excel.Save();
+                    excel.Close();
+                    ExportWorkbookToPdf(pathEx, pathPdf);
+                    MessageBox.Show(string.Format("Файл {0} успешно создан", pathPdf));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Значение не является датой, введите в формате dd.mm.yyyy или возраст клиента меньше 18");
+            }
+        }
+        //Получить солнце
+        private int GetSun(int age, int lc)
+        {
+            var s = (lc / age).ToString();
+            int result = GetSum(Convert.ToInt32(s.Substring(2)));
+            return result;
+        }
+        //Получить луну
+        private int GetLuna (int age,int lc)
+        {
+            var s = (lc / age).ToString();
+            int result = GetSum(Convert.ToInt32(s.Substring(0, 2)));
+            return result;
+        }
+        //Получить возраст
+        private int GetAge (DateTime birthDate, DateTime now)
+        {
+            int age = now.Year - birthDate.Year;
+
+            if (now.Month < birthDate.Month || (now.Month == birthDate.Month && now.Day < birthDate.Day))
+                age--;
+
+            return age;
+        }
+            
+            
+        //Для девятилетнего цикла создание словаря
+        private Dictionary<int, int> GetDicForLC(int n)
+        {
+            var result = new Dictionary<int, int>();
+            for (int i=0;i<5;i++)
+            {
+                int sum = n + i;
+                if (sum > 9)
+                    sum = n+i-9;
+                result.Add(sum,DateTime.Now.Year+i);
+            }
+            return result;
         }
         //метод для комбинаций 
         private bool hideRowMatch(string sR, string sAll, int i)

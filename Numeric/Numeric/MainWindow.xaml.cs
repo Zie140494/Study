@@ -188,7 +188,7 @@ namespace Numeric
                         excel.WriteToCell(15, 1, nr12.n12.ToString());
                         excel.WriteToCell(0, 1, FtbF.Text);
                         excel.WriteToCell(1, 1, Ftb1.Text);
-                        var del = 30;
+                        var del = 33;
                         for (int h=0;h<10;h++)
                         {
                             excel.Hide(del+h);
@@ -337,37 +337,125 @@ namespace Numeric
 
                     excel.WriteToCell(3, 2, firstNum.ToString());
                     excel.WriteToCell(3, 3, secondNum.ToString());
-                    excel.WriteToCell(4, 2, firstNum.ToString());
-                    excel.WriteToCell(4, 3, secondNum.ToString());
+                    excel.WriteToCell(4, 2, thirdNum.ToString());
+                    excel.WriteToCell(4, 3, fourthNum.ToString());
 
 
-                    excel.WriteToCell(5, 0, d[1]!=""?d[1]:"нет");
-                    excel.WriteToCell(7, 0, d[2] != "" ? d[2] : "нет");
-                    excel.WriteToCell(9, 0, d[3] != "" ? d[3] : "нет");
-                    excel.WriteToCell(5, 1, d[4] != "" ? d[4] : "нет");
-                    excel.WriteToCell(7, 1, d[5] != "" ? d[5] : "нет");
-                    excel.WriteToCell(9, 1, d[6] != "" ? d[6] : "нет");
-                    excel.WriteToCell(5, 2, d[7] != "" ? d[7] : "нет");
-                    excel.WriteToCell(7, 2, d[8] != "" ? d[8] : "нет");
-                    excel.WriteToCell(9, 2, d[9] != "" ? d[9] : "нет");
+                    excel.WriteToCell(6, 0, d[1]!=""?d[1]:"нет");
+                    excel.WriteToCell(8, 0, d[2] != "" ? d[2] : "нет");
+                    excel.WriteToCell(10, 0, d[3] != "" ? d[3] : "нет");
+                    excel.WriteToCell(6, 1, d[4] != "" ? d[4] : "нет");
+                    excel.WriteToCell(8, 1, d[5] != "" ? d[5] : "нет");
+                    excel.WriteToCell(10, 1, d[6] != "" ? d[6] : "нет");
+                    excel.WriteToCell(6, 2, d[7] != "" ? d[7] : "нет");
+                    excel.WriteToCell(8, 2, d[8] != "" ? d[8] : "нет");
+                    excel.WriteToCell(10, 2, d[9] != "" ? d[9] : "нет");
 
                     var del = 13;
                     for (int h = 0; h < 10; h++)
                     {
                         excel.Hide(del + h);
                     }
-                    excel.Unhide(del + numOfFate);
+                    excel.Unhide(del + numOfFate-1);
+                    string fs = $"{firstNum}.{secondNum}";
+                    string tf = $"{thirdNum}.{fourthNum}";
 
+                    for (int i = 24; i < 63; i++)
+                    {
+                        excel.Hide(i+1);
+                        if (excel.ReadCell(i, 4) == fs)
+                            excel.Unhide(i + 1);
+                    }
+                    for (int i = 62; i < 100; i++)
+                    {
+                        excel.Hide(i + 1);
+                        if (excel.ReadCell(i, 4) == tf)
+                            excel.Unhide(i + 1);
+                    }
+                    string SecSkill1 = GetNumSecSkill(d2[3], d2[5], d2[7]);
+                    string SecSkill2 = GetNumSecSkill(d2[1], d2[4], d2[7]);
+                    string SecSkill3 = GetNumSecSkill(d2[2], d2[5], d2[8]);
+                    string SecSkill4 = GetNumSecSkill(d2[3], d2[6], d2[9]);
+                    string SecSkill5 = GetNumSecSkill(d2[1], d2[2], d2[3]);
+                    string SecSkill6 = GetNumSecSkill(d2[4], d2[5], d2[6]);
+                    string SecSkill7 = GetNumSecSkill(d2[7], d2[8], d2[9]);
+                    string SecSkill8 = GetNumSecSkill(d2[1], d2[5], d2[9]);
 
-                    //del = 21;
-                    //for (int h = 1; h < 100; h++)
-                    //{
-                    //    excel.Hide(del + h);
-                    //}
-                    //foreach (var nt in GetWithoutDublicate4(firstNum,secondNum,thirdNum,fourthNum))
-                    //{
-                    //    excel.Unhide(del + nt);
-                    //}
+                    for (int i = 101; i < 111; i++)
+                    {
+                        excel.Hide(i + 1);
+                        if (excel.ReadCell(i, 4) == SecSkill1)
+                            excel.Unhide(i + 1);
+                    }
+
+                    for (int i = 112; i < 122; i++)
+                    {
+                        excel.Hide(i + 1);
+                        if (excel.ReadCell(i, 4) == SecSkill2)
+                            excel.Unhide(i + 1);
+                    }
+
+                    for (int i = 123; i < 133; i++)
+                    {
+                        excel.Hide(i + 1);
+                        if (excel.ReadCell(i, 4) == SecSkill3)
+                            excel.Unhide(i + 1);
+                    }
+
+                    for (int i = 134; i < 144; i++)
+                    {
+                        excel.Hide(i + 1);
+                        if (excel.ReadCell(i, 4) == SecSkill4)
+                            excel.Unhide(i + 1);
+                    }
+
+                    for (int i = 145; i < 155; i++)
+                    {
+                        excel.Hide(i + 1);
+                        if (excel.ReadCell(i, 4) == SecSkill5)
+                            excel.Unhide(i + 1);
+                    }
+
+                    for (int i = 156; i < 166; i++)
+                    {
+                        excel.Hide(i + 1);
+                        if (excel.ReadCell(i, 4) == SecSkill6)
+                            excel.Unhide(i + 1);
+                    }
+
+                    for (int i = 167; i < 177; i++)
+                    {
+                        excel.Hide(i + 1);
+                        if (excel.ReadCell(i, 4) == SecSkill7)
+                            excel.Unhide(i + 1);
+                    }
+
+                    for (int i = 178; i < 188; i++)
+                    {
+                        excel.Hide(i + 1);
+                        if (excel.ReadCell(i, 4) == SecSkill8)
+                            excel.Unhide(i + 1);
+                    }
+
+                    d2[1] = d2[1] == "" ? "(-1)" : d2[1];
+                    d2[2] = d2[2] == "" ? "(-2)" : d2[2];
+                    d2[3] = d2[3] == "" ? "(-3)" : d2[3];
+                    d2[4] = d2[4] == "" ? "(-4)" : d2[4];
+                    d2[5] = d2[5] == "" ? "(-5)" : d2[5];
+                    d2[6] = d2[6] == "" ? "(-6)" : d2[6];
+                    d2[7] = d2[7] == "" ? "(-7)" : d2[7];
+                    d2[8] = d2[8] == "" ? "(-8)" : d2[8];
+                    d2[9] = d2[9] == "" ? "(-9)" : d2[9];
+
+                    
+                    string all = $"{d2[1]}/{d2[2]}/{d2[3]}/{d2[4]}/{d2[5]}/{d2[6]}/{d2[7]}/{d2[8]}/{d2[9]}/Те{SecSkill1}/Це{SecSkill2}/Се{SecSkill3}/Ст{SecSkill4}/Са{SecSkill5}/Бы{SecSkill6}/Та{SecSkill7}/Ду{SecSkill8}/ЧС{numOfFate}";
+                    for (int i = 190; i < 2700; i++)
+                    {
+                        excel.Hide(i);
+
+                        if (hideRowMatch(excel.ReadCell(i-1, 4), all, i))
+                            excel.Unhide(i);
+                    }
 
                     excel.HideCol(5);
 
@@ -391,10 +479,12 @@ namespace Numeric
         {
             DateTime dt1;
             DateTime dt2;
+            DateTime dt3;
             int a;
             
             bool IsDate1 = DateTime.TryParse(SUtb1.Text, out dt1);
-            bool IsDate2 = DateTime.TryParse(SUtb2.Text, out dt2);
+            bool IsDate2 = DateTime.TryParse(SUtF.Text, out dt2);
+            bool IsDate3 = DateTime.TryParse(SUtM.Text, out dt3);
             bool isInt1 = Int32.TryParse(SUtb3.Text, out a);
             bool isInt2 = Int32.TryParse(SUtb4.Text, out a);
             if (0<a&&a<13)
@@ -403,10 +493,10 @@ namespace Numeric
                 {
                     if (IsDate1&&IsDate2)
                     {
-                        var dt3 = new DateTime(2000, Convert.ToInt32(SUtb4.Text), 1);
+                        var dt4 = new DateTime(2000, Convert.ToInt32(SUtb4.Text), 1);
                         int i = dt1.Day + 5;
-                        DateTime first = new DateTime(dt3.Year, dt3.Month, 1);
-                        DateTime last = new DateTime(dt3.Year, dt3.Month + 1, 1).AddDays(-1);
+                        DateTime first = new DateTime(dt4.Year, dt4.Month, 1);
+                        DateTime last = new DateTime(dt4.Year, dt4.Month + 1, 1).AddDays(-1);
                         if (i > last.Day)
                             i = i - last.Day;
                         string s1 = "";
@@ -439,7 +529,9 @@ namespace Numeric
                         nr6cell3.n5 = dt1.Year / 10%10%10;
                         nr6cell3.n6 = dt1.Year % 10;
                         var nr6cell4 = GetLC6(dt1);
+                        var nr6cell4M = GetLC6(dt3);
                         var nr6cell5 = AddNullsTo6(dt1.Year/100%10 * dt1.Month*dt1.Day);
+                        var nr6cell5M = AddNullsTo6(dt3.Year / 100 % 10 * dt3.Month * dt3.Day);
                         var nr6cell6 = GetLC6(dt2);
                         var nr6cell7Sum = new NumericRow6(0);
                         nr6cell7Sum.n1 = nr6cell1.n1 + nr6cell2.n1 + nr6cell3.n1 + nr6cell4.n1 + nr6cell5.n1 + nr6cell6.n1;
@@ -448,7 +540,14 @@ namespace Numeric
                         nr6cell7Sum.n4 = nr6cell1.n4 + nr6cell2.n4 + nr6cell3.n4 + nr6cell4.n4 + nr6cell5.n4 + nr6cell6.n4;
                         nr6cell7Sum.n5 = nr6cell1.n5 + nr6cell2.n5 + nr6cell3.n5 + nr6cell4.n5 + nr6cell5.n5 + nr6cell6.n5;
                         nr6cell7Sum.n6 = nr6cell1.n6 + nr6cell2.n6 + nr6cell3.n6 + nr6cell4.n6 + nr6cell5.n6 + nr6cell6.n6;
-                                                
+
+                        var nr6cell7SumM = new NumericRow6(0);
+                        nr6cell7SumM.n1 = nr6cell1.n1 + nr6cell2.n1 + nr6cell3.n1 + nr6cell4M.n1 + nr6cell5M.n1;
+                        nr6cell7SumM.n2 = nr6cell1.n2 + nr6cell2.n2 + nr6cell3.n2 + nr6cell4M.n2 + nr6cell5M.n2;
+                        nr6cell7SumM.n3 = nr6cell1.n3 + nr6cell2.n3 + nr6cell3.n3 + nr6cell4M.n3 + nr6cell5M.n3;
+                        nr6cell7SumM.n4 = nr6cell1.n4 + nr6cell2.n4 + nr6cell3.n4 + nr6cell4M.n4 + nr6cell5M.n4;
+                        nr6cell7SumM.n5 = nr6cell1.n5 + nr6cell2.n5 + nr6cell3.n5 + nr6cell4M.n5 + nr6cell5M.n5;
+                        nr6cell7SumM.n6 = nr6cell1.n6 + nr6cell2.n6 + nr6cell3.n6 + nr6cell4M.n6 + nr6cell5M.n6;
                         try
                         {
                             string pathEx = @"C:\Test\SUTest.xlsx";
@@ -534,6 +633,66 @@ namespace Numeric
                                 excel.Unhide(del + nt);
                             }
 
+                            excel.WriteToCell(69, 0, s1);
+                            excel.WriteToCell(70, 0, s2);
+                            excel.WriteToCell(71, 0, s3);
+                            excel.WriteToCell(72, 0, s4);
+                            excel.WriteToCell(73, 0, s5);
+                            excel.WriteToCell(74, 0, s6);
+
+                            excel.WriteToCell(69, 1, nr6cell1.n1.ToString());
+                            excel.WriteToCell(70, 1, nr6cell1.n2.ToString());
+                            excel.WriteToCell(71, 1, nr6cell1.n3.ToString());
+                            excel.WriteToCell(72, 1, nr6cell1.n4.ToString());
+                            excel.WriteToCell(73, 1, nr6cell1.n5.ToString());
+                            excel.WriteToCell(74, 1, nr6cell1.n6.ToString());
+
+                            excel.WriteToCell(69, 2, nr6cell2.n1.ToString());
+                            excel.WriteToCell(70, 2, nr6cell2.n2.ToString());
+                            excel.WriteToCell(71, 2, nr6cell2.n3.ToString());
+                            excel.WriteToCell(72, 2, nr6cell2.n4.ToString());
+                            excel.WriteToCell(73, 2, nr6cell2.n5.ToString());
+                            excel.WriteToCell(74, 2, nr6cell2.n6.ToString());
+
+                            excel.WriteToCell(69, 3, nr6cell3.n1.ToString());
+                            excel.WriteToCell(70, 3, nr6cell3.n2.ToString());
+                            excel.WriteToCell(71, 3, nr6cell3.n3.ToString());
+                            excel.WriteToCell(72, 3, nr6cell3.n4.ToString());
+                            excel.WriteToCell(73, 3, nr6cell3.n5.ToString());
+                            excel.WriteToCell(74, 3, nr6cell3.n6.ToString());
+
+                            excel.WriteToCell(69, 4, nr6cell4M.n1.ToString());
+                            excel.WriteToCell(70, 4, nr6cell4M.n2.ToString());
+                            excel.WriteToCell(71, 4, nr6cell4M.n3.ToString());
+                            excel.WriteToCell(72, 4, nr6cell4M.n4.ToString());
+                            excel.WriteToCell(73, 4, nr6cell4M.n5.ToString());
+                            excel.WriteToCell(74, 4, nr6cell4M.n6.ToString());
+
+                            excel.WriteToCell(69, 5, nr6cell5M.n1.ToString());
+                            excel.WriteToCell(70, 5, nr6cell5M.n2.ToString());
+                            excel.WriteToCell(71, 5, nr6cell5M.n3.ToString());
+                            excel.WriteToCell(72, 5, nr6cell5M.n4.ToString());
+                            excel.WriteToCell(73, 5, nr6cell5M.n5.ToString());
+                            excel.WriteToCell(74, 5, nr6cell5M.n6.ToString());
+
+                            excel.WriteToCell(69, 6, TransSU(nr6cell7SumM.n1));
+                            excel.WriteToCell(70, 6, TransSU(nr6cell7SumM.n2));
+                            excel.WriteToCell(71, 6, TransSU(nr6cell7SumM.n3));
+                            excel.WriteToCell(72, 6, TransSU(nr6cell7SumM.n4));
+                            excel.WriteToCell(73, 6, TransSU(nr6cell7SumM.n5));
+                            excel.WriteToCell(74, 6, TransSU(nr6cell7SumM.n6));
+
+                            del = 76;
+                            for (int h = 0; h < 57; h++)
+                            {
+                                excel.Hide(del + h);
+                            }
+                            foreach (var nt in GetWithoutDublicate6(nr6cell7SumM))
+                            {
+                                excel.Unhide(del + nt);
+                            }
+
+                            excel.HideCol(9);
 
                             excel.Save();
                             excel.Close();
@@ -560,6 +719,40 @@ namespace Numeric
                 MessageBox.Show("Значение номера месяца должно быть от 1 до 12");
             }
             
+        }
+        //Девятилетний цикл (LC)
+        private void LCButton_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime dt1;
+            bool IsDate1 = DateTime.TryParse(LCtb1.Text, out dt1);
+        }
+        //метод для комбинаций 
+        private bool hideRowMatch(string sR, string sAll, int i)
+        {
+            string[] wordsR = sR.Split(new char[] { '+' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] wordsAll = sAll.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+            int fd = 0;
+            foreach (string si in wordsR)
+            {
+                foreach (string sj in wordsAll)
+                {
+                    if (sj == si)
+                        fd++;
+                }
+            }
+            if (wordsR.Length == fd)
+                return true;
+            else
+                return false;
+        }
+        //Подчет для второстепенных качеств
+        private string GetNumSecSkill(string s1,string s2,string s3)
+        {
+            int i = s1.Length + s2.Length + s3.Length;
+            if (i == 0)
+                return "нет";
+            else
+                return i.ToString();
         }
         //Выбор единственных значений и сортировка 4
         private IEnumerable<int> GetWithoutDublicate4(int i1,int i2,int i3,int i4)
@@ -1555,5 +1748,25 @@ namespace Numeric
 
             return list;
         }
+        //Смена папа/мама
+        private void ChangeClick(object sender, RoutedEventArgs e)
+        {
+            if (SuLF.Visibility == Visibility.Hidden)
+            {
+                SuLF.Visibility = Visibility.Visible;
+                SUtF.Visibility = Visibility.Visible;
+                SuLM.Visibility = Visibility.Hidden;
+                SUtM.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                SuLF.Visibility = Visibility.Hidden;
+                SUtF.Visibility = Visibility.Hidden;
+                SuLM.Visibility = Visibility.Visible;
+                SUtM.Visibility = Visibility.Visible;
+            }
+        }
+
+        
     }
 }

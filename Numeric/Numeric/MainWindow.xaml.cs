@@ -756,6 +756,12 @@ namespace Numeric
                     {
                         excel.Hide(del + i);
                     }
+
+                    for (int i=0;i<9;i++)
+                    {
+                        excel.WriteToCell(9, i, "");
+                    }
+
                     foreach (var t in dic)
                     {
                         excel.WriteToCell(9, t.Key - 1, t.Value.ToString());
@@ -787,8 +793,10 @@ namespace Numeric
             if (IsDate1 || age<18)
             {
                 
-                int lc = GetLC(dt1);
-                
+                var lc6 = GetLC6(dt1);
+                var lc = Convert.ToInt32(lc6.n1.ToString() + lc6.n2.ToString() + lc6.n3.ToString() + lc6.n4.ToString() + lc6.n5.ToString() + lc6.n6.ToString());
+
+
                 List<Lun> list = new List<Lun>();
                 List<Lun> listh = new List<Lun>();
                 for (int it=18;it<age+6;it++)
@@ -845,7 +853,7 @@ namespace Numeric
                     {
                         excel.WriteToCell(l.Year - 13, 1,l.Luna.ToString());
                         excel.WriteToCell(l.Year - 13, 2, l.Sun.ToString());
-                        excel.WriteToCell(l.Year - 13, 3, l.Sum.ToString());
+                        excel.WriteToCell(l.Year - 13, 3, TransfLun(l.Sum));
                     }
 
                     for (int il = 71; il < 145; il++)
@@ -874,18 +882,161 @@ namespace Numeric
                 MessageBox.Show("Значение не является датой, введите в формате dd.mm.yyyy или возраст клиента меньше 18");
             }
         }
+        //Матричный цикл
+        private void MCButton_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime dt1;
+            bool IsDate1 = DateTime.TryParse(MCtb1.Text, out dt1);
+            if (IsDate1)
+            {
+                var mer26 = dt1.AddDays(26);
+                var mer = mer26.AddDays(26);
+                var ven1 = mer.AddDays(1);
+                var ven26 = ven1.AddDays(26);
+                var ven = ven26.AddDays(26);
+                var mar1 = ven.AddDays(1);
+                var mar26 = mar1.AddDays(26);
+                var mar = mar26.AddDays(26);
+                var up1 = mar.AddDays(1);
+                var up26 = up1.AddDays(26);
+                var up = up26.AddDays(26);
+                var sat1 = up.AddDays(1); 
+                var sat26 = sat1.AddDays(26);
+                var sat = sat26.AddDays(26);
+                var ur1 = sat.AddDays(1);
+                var ur26 = ur1.AddDays(26);
+                var ur = ur26.AddDays(26);
+                var nep1 = ur.AddDays(1);
+                var nep26 = nep1.AddDays(26);
+                var nep = nep26.AddDays(26);
+
+                try
+                {
+                    string pathEx = @"C:\Test\MCTest.xlsx";
+                    string pathPdf = string.Format(@"C:\Test\{0}.pdf", MCtbF.Text);
+
+                    for (int i = 1; i < Int32.MaxValue; i++)
+                    {
+                        if (!IsExists(pathPdf))
+                        {
+                            break;
+                        }
+                        pathPdf = string.Format(@"C:\Test\{0}{1}.pdf", MCtbF.Text, i.ToString());
+                    }
+
+                    Excel excel = new Excel(pathEx, 1);
+
+                    excel.WriteToCell(0, 2, MCtbF.Text);
+                    excel.WriteToCell(1, 2, MCtb1.Text);
+
+                    excel.WriteToCell(3, 0, $"{dt1.ToString("dd/MM")}-{mer.ToString("dd/MM")} Меркурий; 26 день {mer26.ToString("dd/MM")}");
+                    excel.WriteToCell(4, 0, $"{ven1.ToString("dd/MM")}-{ven.ToString("dd/MM")} Венера; 26 день {ven26.ToString("dd/MM")}");
+                    excel.WriteToCell(5, 0, $"{mar1.ToString("dd/MM")}-{mar.ToString("dd/MM")} Марс; 26 день {mar26.ToString("dd/MM")}");
+                    excel.WriteToCell(6, 0, $"{up1.ToString("dd/MM")}-{up.ToString("dd/MM")} Юпитер; 26 день {up26.ToString("dd/MM")}");
+                    excel.WriteToCell(7, 0, $"{sat1.ToString("dd/MM")}-{sat.ToString("dd/MM")} Сатурн; 26 день {sat26.ToString("dd/MM")}");
+                    excel.WriteToCell(8, 0, $"{ur1.ToString("dd/MM")}-{ur.ToString("dd/MM")} Уран; 26 день {ur26.ToString("dd/MM")}");
+                    excel.WriteToCell(9, 0, $"{nep1.ToString("dd/MM")}-{nep.ToString("dd/MM")} Нептун; 26 день {nep26.ToString("dd/MM")}");
+
+                    excel.Save();
+                    excel.Close();
+                    ExportWorkbookToPdf(pathEx, pathPdf);
+                    MessageBox.Show(string.Format("Файл {0} успешно создан", pathPdf));
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            
+            }
+            else
+            {
+                MessageBox.Show("Значение не является датой, введите в формате dd.mm.yyyy");
+            }
+        }
+        //Карма
+        private void KAButton_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime dt1;
+            bool IsDate1 = DateTime.TryParse(KAtb1.Text, out dt1);
+            if (IsDate1)
+            {
+                int it = GetFakeSum(dt1.Day+dt1.Day);
+
+                int i1 = dt1.Day + 10 + 13;
+                int i2 = GetFakeSum(dt1.Year);
+                int i3 = i1 - i2;
+                if (i3 > 22)
+                    i3 = GetFakeSum(i3);
+
+                try
+                {
+                    string pathEx = @"C:\Test\KATest.xlsx";
+                    string pathPdf = string.Format(@"C:\Test\{0}.pdf", KAtbF.Text);
+
+                    for (int i = 1; i < Int32.MaxValue; i++)
+                    {
+                        if (!IsExists(pathPdf))
+                        {
+                            break;
+                        }
+                        pathPdf = string.Format(@"C:\Test\{0}{1}.pdf", KAtbF.Text, i.ToString());
+                    }
+
+                    Excel excel = new Excel(pathEx, 1);
+
+                    excel.WriteToCell(0, 2, KAtbF.Text);
+                    excel.WriteToCell(1, 2, KAtb1.Text);
+
+                    for (int i = 1; i < 10; i++)
+                        excel.Hide(3 + i);
+
+                    excel.Unhide(3 + it);
+
+                    for (int i = 1; i < 23; i++)
+                        excel.Hide(13+i);
+
+                    excel.Unhide(13 + i3);
+
+                    excel.Save();
+                    excel.Close();
+                    ExportWorkbookToPdf(pathEx, pathPdf);
+                    MessageBox.Show(string.Format("Файл {0} успешно создан", pathPdf));
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Значение не является датой, введите в формате dd.mm.yyyy");
+            }
+        }
+        //Если 0, то 50/50 для луны
+        private string TransfLun(int i)
+        {
+            if (i == 0)
+                return "50/50";
+            else
+                return i.ToString();
+        }
+
         //Получить солнце
         private int GetSun(int age, int lc)
         {
-            var s = (lc / age).ToString();
-            int result = GetSum(Convert.ToInt32(s.Substring(2)));
+            var ch = (lc / age).ToString().ToCharArray();
+            char [] ch1 = { ch[2],ch[3]};
+            int result = GetSum(Convert.ToInt32(new string(ch1)));
             return result;
         }
         //Получить луну
         private int GetLuna (int age,int lc)
         {
-            var s = (lc / age).ToString();
-            int result = GetSum(Convert.ToInt32(s.Substring(0, 2)));
+            var ch= (lc / age).ToString().ToCharArray();
+            char[] ch1 = { ch[0], ch[1] };
+            int result = GetSum(Convert.ToInt32(new string(ch1)));
             return result;
         }
         //Получить возраст
@@ -1256,7 +1407,6 @@ namespace Numeric
         //Из даты в жизненный код
         public int GetLC(DateTime dt)
         {
-            NumericRow6 nr6 = new NumericRow6(0);
             string s = dt.ToShortDateString();
             s = s.Replace(".", string.Empty);
             var c = s.ToCharArray();

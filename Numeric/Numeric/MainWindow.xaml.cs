@@ -91,7 +91,7 @@ namespace Numeric
                         excel.WriteToCell(0, 1, KZtbF.Text);
                         excel.WriteToCell(1, 1, KZtb1.Text);
 
-                        var del = 30;
+                        var del = 33;
                         for (int h = 0; h < 10; h++)
                         {
                             excel.Hide(del + h);
@@ -480,6 +480,7 @@ namespace Numeric
             DateTime dt1;
             DateTime dt2;
             DateTime dt3;
+            DateTime last;
             int a;
 
             bool IsDate1 = DateTime.TryParse(SUtb1.Text, out dt1);
@@ -496,7 +497,15 @@ namespace Numeric
                         var dt4 = new DateTime(2000, Convert.ToInt32(SUtb4.Text), 1);
                         int i = dt1.Day + 5;
                         DateTime first = new DateTime(dt4.Year, dt4.Month, 1);
-                        DateTime last = new DateTime(dt4.Year, dt4.Month + 1, 1).AddDays(-1);
+                        if (dt4.Month==12)
+                        {
+                            last = new DateTime(dt4.Year, 1, 1).AddDays(-1);
+                        }
+                        else
+                        {
+                            last = new DateTime(dt4.Year, dt4.Month + 1, 1).AddDays(-1);
+                        }
+                        
                         if (i > last.Day)
                             i = i - last.Day;
                         string s1 = "";
@@ -675,12 +684,12 @@ namespace Numeric
                             excel.WriteToCell(73, 5, nr6cell5M.n5.ToString());
                             excel.WriteToCell(74, 5, nr6cell5M.n6.ToString());
 
-                            excel.WriteToCell(69, 6, TransSU(nr6cell7SumM.n1));
-                            excel.WriteToCell(70, 6, TransSU(nr6cell7SumM.n2));
-                            excel.WriteToCell(71, 6, TransSU(nr6cell7SumM.n3));
-                            excel.WriteToCell(72, 6, TransSU(nr6cell7SumM.n4));
-                            excel.WriteToCell(73, 6, TransSU(nr6cell7SumM.n5));
-                            excel.WriteToCell(74, 6, TransSU(nr6cell7SumM.n6));
+                            excel.WriteToCell(69, 7, TransSU(nr6cell7SumM.n1));
+                            excel.WriteToCell(70, 7, TransSU(nr6cell7SumM.n2));
+                            excel.WriteToCell(71, 7, TransSU(nr6cell7SumM.n3));
+                            excel.WriteToCell(72, 7, TransSU(nr6cell7SumM.n4));
+                            excel.WriteToCell(73, 7, TransSU(nr6cell7SumM.n5));
+                            excel.WriteToCell(74, 7, TransSU(nr6cell7SumM.n6));
 
                             del = 76;
                             for (int h = 0; h < 57; h++)
@@ -692,7 +701,7 @@ namespace Numeric
                                 excel.Unhide(del + nt);
                             }
 
-                            excel.HideCol(9);
+                            //excel.HideCol(9);
 
                             excel.Save();
                             excel.Close();
@@ -797,14 +806,26 @@ namespace Numeric
                 var lc = Convert.ToInt32(lc6.n1.ToString() + lc6.n2.ToString() + lc6.n3.ToString() + lc6.n4.ToString() + lc6.n5.ToString() + lc6.n6.ToString());
 
 
-                List<Lun> list = new List<Lun>();
-                List<Lun> listh = new List<Lun>();
+                List<Lun> list = new List<Lun>();//18-years+5
+                List<Lun> listh = new List<Lun>();//18
+                List<int> luns = new List<int>();
+                List<int> suns = new List<int>();
+                List<int> sums = new List<int>();
                 for (int it=18;it<age+6;it++)
                 {
                     list.Add(new Lun(it, GetSun(it, lc), GetLuna(it, lc)));
                     if (it>=age)
+                    {
                         listh.Add(new Lun(it, GetSun(it, lc), GetLuna(it, lc)));
+                        luns.Add(GetLuna(it, lc));
+                        suns.Add(GetSun(it, lc));
+                        sums.Add(GetSun(it, lc) - GetLuna(it, lc));
+                    }
                 }
+                luns.Distinct();
+                suns.Distinct();
+                sums.Distinct();
+
                 //Выдающиеся года
                 List<int> years = new List<int>();
                 int y = dt1.Year;
@@ -856,14 +877,27 @@ namespace Numeric
                         excel.WriteToCell(l.Year - 13, 3, TransfLun(l.Sum));
                     }
 
-                    for (int il = 71; il < 145; il++)
+                    for (int i = 71; i < 90; i++)
+                        excel.Hide(i);
+                    foreach (var i in luns)
+                        excel.Unhide(i+71);
+                    for (int i = 92; i < 111; i++)
+                        excel.Hide(i);
+                    foreach (var i in suns)
+                        excel.Unhide(i+92);
+                    for (int i = 113; i < 150; i++)
+                        excel.Hide(i);
+                    foreach (var i in sums)
+                        excel.Unhide(i + 131);
+                    //Years
+                    for (int il = 152; il < 226; il++)
                     {
                         excel.Hide(il);
                     }
 
                     foreach (var ya in years)
                     {
-                        excel.Unhide(ya-1879);
+                        excel.Unhide(ya-1798);
                     }
 
                     excel.Save();
@@ -885,30 +919,125 @@ namespace Numeric
         //Матричный цикл
         private void MCButton_Click(object sender, RoutedEventArgs e)
         {
+
             DateTime dt1;
             bool IsDate1 = DateTime.TryParse(MCtb1.Text, out dt1);
+            var dt2 = new DateTime(2020,2,29);
+            dt1 = new DateTime(2020,dt1.Month, dt1.Day);
+            DateTime dt3;
+            if (dt2 > dt1)
+                dt3 = new DateTime(2016, dt1.Month, dt1.Day );
+            else
+                dt3 = new DateTime(2015, dt1.Month,dt1.Day );
             if (IsDate1)
             {
-                var mer26 = dt1.AddDays(26);
-                var mer = mer26.AddDays(26);
-                var ven1 = mer.AddDays(1);
-                var ven26 = ven1.AddDays(26);
-                var ven = ven26.AddDays(26);
-                var mar1 = ven.AddDays(1);
-                var mar26 = mar1.AddDays(26);
-                var mar = mar26.AddDays(26);
-                var up1 = mar.AddDays(1);
-                var up26 = up1.AddDays(26);
-                var up = up26.AddDays(26);
-                var sat1 = up.AddDays(1); 
-                var sat26 = sat1.AddDays(26);
-                var sat = sat26.AddDays(26);
-                var ur1 = sat.AddDays(1);
-                var ur26 = ur1.AddDays(26);
-                var ur = ur26.AddDays(26);
-                var nep1 = ur.AddDays(1);
-                var nep26 = nep1.AddDays(26);
-                var nep = nep26.AddDays(26);
+                var Tdate1 = new DateTime(2016,2,29);
+                var Tdate2 = Tdate1.AddDays(-52);
+
+                DateTime mer1;
+                DateTime mer;
+                DateTime mer26;
+                DateTime ven1;
+                DateTime mar1;
+                DateTime up1;
+                DateTime sat1;
+                DateTime ur1;
+                DateTime nep1;
+                DateTime ven26;
+                DateTime mar26;
+                DateTime up26;
+                DateTime sat26;
+                DateTime ur26;
+                DateTime nep26;
+                DateTime ven;
+                DateTime mar;
+                DateTime up;
+                DateTime sat;
+                DateTime ur;
+                DateTime nep;
+
+
+                bool notUpdate = true;
+                if (dt3<Tdate1&&dt3>Tdate2&&notUpdate)
+                {
+                    mer26 = dt3.AddDays(26);
+                    mer = mer26.AddDays(26);
+                    ven1 = mer.AddDays(1);
+                    notUpdate = false;
+                }
+                else
+                {
+                    mer26 = dt3.AddDays(25);
+                    mer = mer26.AddDays(26);
+                    ven1 = mer.AddDays(1);
+                }
+                if (ven1 < Tdate1 && ven1 > Tdate2 && notUpdate)
+                {
+                    ven26 = ven1.AddDays(26);
+                    ven = ven26.AddDays(26);
+                    mar1 = ven.AddDays(1);
+                }
+                else
+                {
+                    ven26 = ven1.AddDays(25);
+                    ven = ven26.AddDays(26);
+                    mar1 = ven.AddDays(1);
+                }
+
+                if (mar1 < Tdate1 && mar1 > Tdate2 && notUpdate)
+                {
+                    mar26 = mar1.AddDays(26);
+                    mar = mar26.AddDays(26);
+                    up1 = mar.AddDays(1);
+                }
+                else
+                {
+                    mar26 = mar1.AddDays(25);
+                    mar = mar26.AddDays(26);
+                    up1 = mar.AddDays(1);
+                }
+
+                if (up1 < Tdate1 && up1 > Tdate2 && notUpdate)
+                {
+                    up26 = up1.AddDays(26);
+                    up = up26.AddDays(26);
+                    sat1 = up.AddDays(1);
+                }
+                else
+                {
+                    up26 = up1.AddDays(25);
+                    up = up26.AddDays(26);
+                    sat1 = up.AddDays(1);
+                }
+
+                if (sat1 < Tdate1 && sat1 > Tdate2 && notUpdate)
+                {
+                    sat26 = sat1.AddDays(26);
+                    sat = sat26.AddDays(26);
+                    ur1 = sat.AddDays(1);
+                }
+                else
+                {
+                    sat26 = sat1.AddDays(25);
+                    sat = sat26.AddDays(26);
+                    ur1 = sat.AddDays(1);
+                }
+
+                if (ur1 < Tdate1 && ur1 > Tdate2 && notUpdate)
+                {
+                    ur26 = ur1.AddDays(26);
+                    ur = ur26.AddDays(26);
+                    nep1 = ur.AddDays(1);
+                }
+                else
+                {
+                    ur26 = ur1.AddDays(25);
+                    ur = ur26.AddDays(26);
+                    nep1 = ur.AddDays(1);
+                }
+                
+                nep26 = nep1.AddDays(26);
+                nep = nep26.AddDays(26);
 
                 try
                 {

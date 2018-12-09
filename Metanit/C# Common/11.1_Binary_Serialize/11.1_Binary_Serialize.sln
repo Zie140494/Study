@@ -5,6 +5,12 @@ VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11.1_Binary_Serialize", "11.1_Binary_Serialize\11.1_Binary_Serialize.csproj", "{38882EE5-EED4-4BFA-AC17-2B3A123D83EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11.2-SOAP_Serialization", "11.2-SOAP_Serialization\11.2-SOAP_Serialization.csproj", "{0C46C002-B66C-4260-985C-0028B3D3759A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11.3.XML-serialization", "11.3.XML-serialization\11.3.XML-serialization.csproj", "{068C2B8D-02C8-4D41-9EF9-758CF3C3132F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11.4-JSON_serializzation", "11.4-JSON_serializzation\11.4-JSON_serializzation.csproj", "{A06F7887-2027-4C7A-BA34-195E519D8381}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{38882EE5-EED4-4BFA-AC17-2B3A123D83EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38882EE5-EED4-4BFA-AC17-2B3A123D83EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38882EE5-EED4-4BFA-AC17-2B3A123D83EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C46C002-B66C-4260-985C-0028B3D3759A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C46C002-B66C-4260-985C-0028B3D3759A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C46C002-B66C-4260-985C-0028B3D3759A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C46C002-B66C-4260-985C-0028B3D3759A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{068C2B8D-02C8-4D41-9EF9-758CF3C3132F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{068C2B8D-02C8-4D41-9EF9-758CF3C3132F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{068C2B8D-02C8-4D41-9EF9-758CF3C3132F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{068C2B8D-02C8-4D41-9EF9-758CF3C3132F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A06F7887-2027-4C7A-BA34-195E519D8381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A06F7887-2027-4C7A-BA34-195E519D8381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A06F7887-2027-4C7A-BA34-195E519D8381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A06F7887-2027-4C7A-BA34-195E519D8381}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

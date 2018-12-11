@@ -45,6 +45,46 @@ namespace _12_Strings
             int indexOfChar = s12.IndexOf(ch1);
             bool isStart = s12.StartsWith(s13);
 
+            //Split
+            string[] sa2 = s12.Split(new char[] {' '});
+            foreach (var s14 in sa2)
+            {
+                Console.WriteLine($"Split {s14}", StringSplitOptions.RemoveEmptyEntries);
+            }
+
+            //Trim
+            string s15 = "Hello world";
+            s15 = s15.Trim(new char[] { 'H', 'd' });
+            Console.WriteLine($"Trim {s15}");
+
+            //Substring
+            string s16 = "Hello world";
+            s16 = s16.Substring(6);
+            Console.WriteLine($"substring1 - {s16}");
+            s16 = s16.Substring(0, 2);
+            Console.WriteLine($"substring2 - {s16}");
+
+            //Insert
+            string s17 = "Hello";
+            string s18 = "World";
+            s17 = s17.Insert(5,s18);
+            Console.WriteLine($"Insert {s18}");
+
+            //Remove
+            string s19 = "hello world";
+            s19 = s19.Remove(0,1);
+            s19 = s19.Remove(s19.Length-1);
+            Console.WriteLine($"Remove {s19}");
+
+            //Replace
+            string s20 = "Hello world";
+            s20 = s20.Replace('o','0');
+            Console.WriteLine($"Replace {s20}");
+
+            //switch register
+            string s21 = "Hello world";
+            Console.WriteLine($"Upper {s21.ToUpper()}");
+            Console.WriteLine($"Lower {s21.ToLower()}");
 
             Console.ReadLine();
         }

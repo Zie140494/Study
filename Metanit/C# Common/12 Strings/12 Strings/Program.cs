@@ -86,6 +86,64 @@ namespace _12_Strings
             Console.WriteLine($"Upper {s21.ToUpper()}");
             Console.WriteLine($"Lower {s21.ToLower()}");
 
+            //float
+            double num = 23.7;
+            Console.WriteLine(string.Format("{0:C}",num));//23.7
+            Console.WriteLine(string.Format("{0:C2}",num));
+
+            //int with adding zero
+            int num1 = 23;
+            Console.WriteLine(string.Format("{0:d}",num1));
+            Console.WriteLine(string.Format("{0:d4}", num1));
+
+            //float format
+            double num2 = 45.88;
+            Console.WriteLine(string.Format("{0:f1}",num2));
+            Console.WriteLine(string.Format("{0:f3}", num2));
+
+
+            //Percent
+            decimal num3 = 0.1543m;
+            Console.WriteLine(string.Format("{0:P2}",num3));
+
+            //Phone and ToString()
+            long num4 = 79528848904;
+            Console.WriteLine(string.Format("{+# (###) ###-##-##}"));
+            Console.WriteLine(num4.ToString("+# (###) ###-##-##"));
+
+            //Interpolation
+            Console.WriteLine($"{num4:#-###-###-##-##}");
+            //Add space
+            string name = "Vasya";
+            int age = 24;
+            Console.WriteLine($"Имя: {name, -5},возраст - {age} ");
+            Console.WriteLine($"Имя: {name,5},возраст - {age} ");
+
+
+            //String builder
+            StringBuilder sb = new StringBuilder("Hello world");
+            Console.WriteLine($"Length of string - {sb.Length}");
+            Console.WriteLine($"Capacity of string - {sb.Capacity}");
+
+            //empty string
+            StringBuilder sb1 = new StringBuilder(20);
+
+            //sb append
+            StringBuilder sb2 = new StringBuilder("Руководство ");
+            Console.WriteLine($"Capacity1 {sb2.Capacity}");
+            sb.Append("Po");
+            Console.WriteLine($"Capacity2 {sb2.Capacity}");
+
+            //sb other methods
+            StringBuilder sb3 = new StringBuilder("Hello world");
+            sb3.Append("!");
+            sb3.Insert(7, "World");
+            Console.WriteLine(sb3);
+
+            sb3.Remove(7, 13);
+            Console.WriteLine(sb3);
+
+
             Console.ReadLine();
         }
     }

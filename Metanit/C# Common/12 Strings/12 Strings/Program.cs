@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace _12_Strings
@@ -142,6 +143,22 @@ namespace _12_Strings
 
             sb3.Remove(7, 13);
             Console.WriteLine(sb3);
+
+            //Regular expression
+            string s23 = "Бык тупогуб, тупогубенький бычок, у быка губа бела была тупа";
+            Regex regex = new Regex(@"Туп(\w)",RegexOptions.Compiled|RegexOptions.IgnoreCase);
+            MatchCollection match = regex.Matches(s23);
+            if (match.Count>0)
+            {
+                foreach (var m in match)
+                    Console.WriteLine(m);
+            }
+            else
+            {
+                Console.WriteLine("Совпадений не найдено");
+            }
+
+
 
 
             Console.ReadLine();

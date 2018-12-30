@@ -327,7 +327,7 @@ namespace Numeric
                         pathPdf = string.Format(@"C:\Test\{0}{1}.pdf", MPtbF.Text, i.ToString());
                     }
 
-
+                 
 
                     Excel excel = new Excel(pathEx, 1);
                     excel.WriteToCell(0, 1, MPtbF.Text);
@@ -350,12 +350,13 @@ namespace Numeric
                     excel.WriteToCell(6, 2, d[7] != "" ? d[7] : "нет");
                     excel.WriteToCell(8, 2, d[8] != "" ? d[8] : "нет");
                     excel.WriteToCell(10, 2, d[9] != "" ? d[9] : "нет");
-
+                    
                     var del = 13;
                     for (int h = 0; h < 10; h++)
                     {
                         excel.Hide(del + h);
                     }
+
                     excel.Unhide(del + numOfFate - 1);
                     string fs = $"{firstNum}.{secondNum}";
                     string tf = $"{thirdNum}.{fourthNum}";
@@ -447,7 +448,6 @@ namespace Numeric
                     d2[8] = d2[8] == "" ? "(-8)" : d2[8];
                     d2[9] = d2[9] == "" ? "(-9)" : d2[9];
 
-
                     string all = $"{d2[1]}/{d2[2]}/{d2[3]}/{d2[4]}/{d2[5]}/{d2[6]}/{d2[7]}/{d2[8]}/{d2[9]}/Те{SecSkill1}/Це{SecSkill2}/Се{SecSkill3}/Ст{SecSkill4}/Са{SecSkill5}/Бы{SecSkill6}/Та{SecSkill7}/Ду{SecSkill8}/ЧС{numOfFate}";
                     for (int i = 190; i < 2700; i++)
                     {
@@ -466,6 +466,7 @@ namespace Numeric
                 }
                 catch (Exception ex)
                 {
+                    
                     MessageBox.Show(ex.Message);
                 }
             }
@@ -1634,6 +1635,10 @@ namespace Numeric
         //Получить последовательность для формы
         public Dictionary<int, string> GetSequenceForm(int dt, int n1, int n2,int n3,int n4,int ad)
         {
+            if (n3 < 0)
+                n3 = n3 * (-1);
+            if (n4 < 0)
+                n4 = n4 * (-1);
             var d = new Dictionary<int, string>();
             d.Add(0, "");
             d.Add(1, "");
@@ -1663,7 +1668,7 @@ namespace Numeric
                 {
                     string st = ch.ToString();
                     int i = (int)char.GetNumericValue(ch);
-                    d[i] = d[i] + $"({st})";
+                    d[i] = d[i] + $"[{st}]";
                 }
             }
 

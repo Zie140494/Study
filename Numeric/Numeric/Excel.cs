@@ -26,7 +26,11 @@ namespace Numeric
             i++;
             j++;
             if (ws.Cells[i, j].Value != null)
+            {
+                //var k= ws.Cells[i, j].Value;
                 return ws.Cells[i, j].Value;
+            }
+                
             else
                 return "";
             

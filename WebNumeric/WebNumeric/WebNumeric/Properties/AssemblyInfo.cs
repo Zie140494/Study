@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется следующим образом
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных с этой сборкой.
-[assembly: AssemblyTitle("Web")]
+[assembly: AssemblyTitle("WebNumeric")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Web")]
-[assembly: AssemblyCopyright("© , 2018")]
+[assembly: AssemblyProduct("WebNumeric")]
+[assembly: AssemblyCopyright("© , 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для ID библиотеки типов typelib, если этот проект видим для COM
-[assembly: Guid("8f17f3f7-d047-4a94-b99f-48af29e23c84")]
+[assembly: Guid("fb07a989-281c-448a-acff-8f0d912eda8f")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //

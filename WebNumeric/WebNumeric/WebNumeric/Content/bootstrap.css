@@ -6791,6 +6791,28 @@ th.visible-print,
 td.visible-print {
   display: none !important;
 }
+.mytable {
+    border-collapse:collapse;
+    border:3px solid black;
+}
+.mytd {
+    border: 2px solid black;
+    border-collapse:collapse;
+    text-align:center;
+    color:black;
+}
+.backcolor1 {
+    background-color:mediumpurple;
+}
+.backcolor2 {
+    background-color:darksalmon;
+}
+.text-color1 {
+    color:blue;
+}
+.text-color2 {
+    color:red;
+}
 
 @media print {
   .visible-print {

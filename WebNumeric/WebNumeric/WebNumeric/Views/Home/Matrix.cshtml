@@ -1,0 +1,15 @@
+﻿@model WebNumeric.Models.User
+
+@using (Html.BeginForm("Matrix", "Home", FormMethod.Post))
+{
+<h1>Matrix</h1>
+@*@Html.TextBox("p");*@
+@Html.EditorFor(model => model.Date)
+@Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+    <div></div>
+<p>
+    <input class="btn" type="submit" value="Рассчитать" />
+</p>
+    
+}
+

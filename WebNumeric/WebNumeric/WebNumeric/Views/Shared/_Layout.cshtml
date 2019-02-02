@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title – приложение ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="wrapper">
+        <div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/Home/Index">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/Home/About">О нумерологии</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/Home/Result">Результ консультации</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/Home/Review">Отзывы</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/Home/Matrix">Матрица пифагора</a>
+                </li>
+            </ul>
+        </div>
+        <div>@RenderBody()</div>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

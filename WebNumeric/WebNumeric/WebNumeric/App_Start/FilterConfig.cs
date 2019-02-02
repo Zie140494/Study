@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Web
+namespace WebNumeric
 {
     public class FilterConfig
     {

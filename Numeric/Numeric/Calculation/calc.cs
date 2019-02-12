@@ -498,7 +498,7 @@ namespace Numeric.Calculation
 
         }
         //Получить последовательность для формы
-        public static Dictionary<int, string> GetSequenceForm(int dt, int n1, int n2, int n3, int n4, int ad)
+        public static Dictionary<int, string> GetSequenceForm(int dt, int n1, int n2, int n3, int n4)
         {
             if (n3 < 0)
                 n3 = n3 * (-1);
@@ -525,22 +525,10 @@ namespace Numeric.Calculation
                 d[i] = d[i] + st;
             }
 
-            if (ad != 0)
-            {
-                string sAdd = ad.ToString();
-                chA = sAdd.ToCharArray();
-                foreach (var ch in chA)
-                {
-                    string st = ch.ToString();
-                    int i = (int)char.GetNumericValue(ch);
-                    d[i] = d[i] + $"[{st}]";
-                }
-            }
-
             return d;
         }
         //Получить последовательность для рассчетов
-        public static Dictionary<int, string> GetSequencecalc(int dt, int n1, int n2, int n3, int n4, int ad)
+        public static Dictionary<int, string> GetSequencecalc(int dt, int n1, int n2, int n3, int n4)
         {
             var d = new Dictionary<int, string>();
             d.Add(0, "");
@@ -554,7 +542,7 @@ namespace Numeric.Calculation
             d.Add(8, "");
             d.Add(9, "");
             string sAllNum;
-            sAllNum = dt.ToString() + n1.ToString() + n2.ToString() + n3.ToString() + n4.ToString() + ad.ToString();
+            sAllNum = dt.ToString() + n1.ToString() + n2.ToString() + n3.ToString() + n4.ToString();
             var chA = sAllNum.ToCharArray();
             foreach (var ch in chA)
             {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -326,8 +327,10 @@ namespace Numeric
                 }
                 else
                     addingNum = 0;
-                var d = Calculation.Calc.GetSequenceForm(Convert.ToInt32(s), firstNum, secondNum, thirdNum, fourthNum, addingNum);
-                var d2 = Calculation.Calc.GetSequencecalc(Convert.ToInt32(s), firstNum, secondNum, thirdNum, fourthNum, addingNum);
+
+                var d = Calculation.Calc.GetSequenceForm(Convert.ToInt32(s), firstNum, secondNum, thirdNum, fourthNum);
+                var d2 = Calculation.Calc.GetSequencecalc(Convert.ToInt32(s), firstNum, secondNum, thirdNum, fourthNum);
+                
 
                 try
                 {
@@ -343,7 +346,7 @@ namespace Numeric
                         pathPdf = string.Format(@"C:\Test\{0}{1}.pdf", MPtbF.Text, i.ToString());
                     }
 
-                 
+                    
 
                     Excel excel = new Excel(pathEx, 1);
                     excel.WriteToCell(0, 1, MPtbF.Text);
@@ -351,11 +354,8 @@ namespace Numeric
                     excel.WriteToCell(2, 1, numOfFate.ToString());
                     excel.WriteToCell(2, 3, LC.ToString());
 
-                    excel.WriteToCell(3, 2, firstNum.ToString());
-                    excel.WriteToCell(3, 3, secondNum.ToString());
-                    excel.WriteToCell(4, 2, thirdNum.ToString());
-                    excel.WriteToCell(4, 3, fourthNum.ToString());
-
+                    excel.WriteToCell(3, 2, $"{firstNum.ToString()}.{secondNum.ToString()}");
+                    excel.WriteToCell(4, 2, $"{thirdNum.ToString()}.{fourthNum.ToString()}");
 
                     excel.WriteToCell(6, 0, d[1] != "" ? d[1] : "нет");
                     excel.WriteToCell(8, 0, d[2] != "" ? d[2] : "нет");
@@ -367,126 +367,233 @@ namespace Numeric
                     excel.WriteToCell(8, 2, d[8] != "" ? d[8] : "нет");
                     excel.WriteToCell(10, 2, d[9] != "" ? d[9] : "нет");
 
-                    for (int i = 13; i < 5001; i++)
+                    string SecSkill1 = Calculation.Calc.GetNumSecSkill(d2[3], d2[5], d2[7]);
+                    string SecSkill2 = Calculation.Calc.GetNumSecSkill(d2[1], d2[4], d2[7]);
+                    string SecSkill3 = Calculation.Calc.GetNumSecSkill(d2[2], d2[5], d2[8]);
+                    string SecSkill4 = Calculation.Calc.GetNumSecSkill(d2[3], d2[6], d2[9]);
+                    string SecSkill5 = Calculation.Calc.GetNumSecSkill(d2[1], d2[2], d2[3]);
+                    string SecSkill6 = Calculation.Calc.GetNumSecSkill(d2[4], d2[5], d2[6]);
+                    string SecSkill7 = Calculation.Calc.GetNumSecSkill(d2[7], d2[8], d2[9]);
+                    string SecSkill8 = Calculation.Calc.GetNumSecSkill(d2[1], d2[5], d2[9]);
+                    string all = $"{d2[1]}/{d2[2]}/{d2[3]}/{d2[4]}/{d2[5]}/{d2[6]}/{d2[7]}/{d2[8]}/{d2[9]}/Те{SecSkill1}/Це{SecSkill2}/Се{SecSkill3}/Ст{SecSkill4}/Са{SecSkill5}/Бы{SecSkill6}/Та{SecSkill7}/Ду{SecSkill8}/ЧС{numOfFate}";
+
+                    excel.WriteToCell(2, 4, all);
+                    excel.WriteToCell(3, 7, addingNum.ToString());
+
+                    excel.WriteToCell(4, 3, SecSkill1);
+                    excel.WriteToCell(6, 3, SecSkill2);
+                    excel.WriteToCell(8, 3, SecSkill3);
+                    excel.WriteToCell(10, 3, SecSkill4);
+                    excel.WriteToCell(12, 0, SecSkill5);
+                    excel.WriteToCell(12, 1, SecSkill6);
+                    excel.WriteToCell(12, 2, SecSkill7);
+                    excel.WriteToCell(12, 3, SecSkill8);
+
+                    excel.Unhide(14);
+                    excel.Unhide(27);
+                    excel.Unhide(66);
+                    excel.Unhide(77);
+                    excel.Unhide(84);
+                    excel.Unhide(95);
+                    excel.Unhide(101);
+                    excel.Unhide(107);
+                    excel.Unhide(113);
+                    excel.Unhide(118);
+                    excel.Unhide(126);
+                    excel.Unhide(137);
+                    excel.Unhide(148);
+                    excel.Unhide(159);
+                    excel.Unhide(170);
+                    excel.Unhide(181);
+                    excel.Unhide(192);
+                    excel.Unhide(203);
+                    excel.Unhide(214);
+                    excel.Unhide(225);
+
+                    if (dt1.Year > 1999)
+                    {
+                        excel.Unhide(234);
+                    }
+
+                    for (int i = 15; i < 27; i++)
                     {
                         excel.Hide(i);
                     }
-
                     switch (numOfFate)
                     {
                         case 11:
-                            excel.Unhide(22);
-                            break;
-                        case 22:
-                            excel.Unhide(23);
-                            break;
-                        case 33:
                             excel.Unhide(24);
                             break;
+                        case 22:
+                            excel.Unhide(25);
+                            break;
+                        case 33:
+                            excel.Unhide(26);
+                            break;
                         default:
-                            excel.Unhide(12 + numOfFate);
+                            excel.Unhide(14 + numOfFate);
                             break;
                     }
 
-                    excel.Unhide(25);
 
                     string fs = $"{firstNum}.{secondNum}";
                     string tf = $"{thirdNum}.{fourthNum}";
 
-                    for (int i = 24; i < 63; i++)
+                    for (int i = 28; i < 66; i++)
                     {
-                        if (excel.ReadCell(i, 4) == fs)
-                            excel.Unhide(i + 1);
+                        var cel = excel.ReadCell(i - 1, 4);
+                        if (cel == fs || cel == tf)
+                            excel.Unhide(i);
+                        else
+                            excel.Hide(i);
                     }
-                    //for (int i = 62; i < 100; i++)
-                    //{
-                    //    excel.Hide(i + 1);
-                    //    if (excel.ReadCell(i, 4) == tf)
-                    //        excel.Unhide(i + 1);
-                    //}
-                    //string SecSkill1 = Calculation.Calc.GetNumSecSkill(d2[3], d2[5], d2[7]);
-                    //string SecSkill2 = Calculation.Calc.GetNumSecSkill(d2[1], d2[4], d2[7]);
-                    //string SecSkill3 = Calculation.Calc.GetNumSecSkill(d2[2], d2[5], d2[8]);
-                    //string SecSkill4 = Calculation.Calc.GetNumSecSkill(d2[3], d2[6], d2[9]);
-                    //string SecSkill5 = Calculation.Calc.GetNumSecSkill(d2[1], d2[2], d2[3]);
-                    //string SecSkill6 = Calculation.Calc.GetNumSecSkill(d2[4], d2[5], d2[6]);
-                    //string SecSkill7 = Calculation.Calc.GetNumSecSkill(d2[7], d2[8], d2[9]);
-                    //string SecSkill8 = Calculation.Calc.GetNumSecSkill(d2[1], d2[5], d2[9]);
 
-                    //for (int i = 101; i < 111; i++)
-                    //{
-                    //    excel.Hide(i + 1);
-                    //    if (excel.ReadCell(i, 4) == SecSkill1)
-                    //        excel.Unhide(i + 1);
-                    //}
+                    for (int i = 67; i < 77; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(67 + d[1].Length);
 
-                    //for (int i = 112; i < 122; i++)
-                    //{
-                    //    excel.Hide(i + 1);
-                    //    if (excel.ReadCell(i, 4) == SecSkill2)
-                    //        excel.Unhide(i + 1);
-                    //}
+                    for (int i = 78; i < 84; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(78 + d[3].Length);
 
-                    //for (int i = 123; i < 133; i++)
-                    //{
-                    //    excel.Hide(i + 1);
-                    //    if (excel.ReadCell(i, 4) == SecSkill3)
-                    //        excel.Unhide(i + 1);
-                    //}
+                    for (int i = 85; i < 95; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(85 + d[2].Length);
 
-                    //for (int i = 134; i < 144; i++)
-                    //{
-                    //    excel.Hide(i + 1);
-                    //    if (excel.ReadCell(i, 4) == SecSkill4)
-                    //        excel.Unhide(i + 1);
-                    //}
+                    for (int i = 96; i < 101; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(96 + d[4].Length);
 
-                    //for (int i = 145; i < 155; i++)
-                    //{
-                    //    excel.Hide(i + 1);
-                    //    if (excel.ReadCell(i, 4) == SecSkill5)
-                    //        excel.Unhide(i + 1);
-                    //}
+                    for (int i = 102; i < 107; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(102 + d[5].Length);
 
-                    //for (int i = 156; i < 166; i++)
-                    //{
-                    //    excel.Hide(i + 1);
-                    //    if (excel.ReadCell(i, 4) == SecSkill6)
-                    //        excel.Unhide(i + 1);
-                    //}
+                    for (int i = 108; i < 113; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(108 + d[6].Length);
 
-                    //for (int i = 167; i < 177; i++)
-                    //{
-                    //    excel.Hide(i + 1);
-                    //    if (excel.ReadCell(i, 4) == SecSkill7)
-                    //        excel.Unhide(i + 1);
-                    //}
+                    for (int i = 114; i < 118; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(114 + d[7].Length);
 
-                    //for (int i = 178; i < 188; i++)
-                    //{
-                    //    excel.Hide(i + 1);
-                    //    if (excel.ReadCell(i, 4) == SecSkill8)
-                    //        excel.Unhide(i + 1);
-                    //}
+                    for (int i = 119; i < 126; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(119 + d[8].Length);
 
-                    //d2[1] = d2[1] == "" ? "(-1)" : d2[1];
-                    //d2[2] = d2[2] == "" ? "(-2)" : d2[2];
-                    //d2[3] = d2[3] == "" ? "(-3)" : d2[3];
-                    //d2[4] = d2[4] == "" ? "(-4)" : d2[4];
-                    //d2[5] = d2[5] == "" ? "(-5)" : d2[5];
-                    //d2[6] = d2[6] == "" ? "(-6)" : d2[6];
-                    //d2[7] = d2[7] == "" ? "(-7)" : d2[7];
-                    //d2[8] = d2[8] == "" ? "(-8)" : d2[8];
-                    //d2[9] = d2[9] == "" ? "(-9)" : d2[9];
+                    for (int i = 127; i < 137; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(127 + d[9].Length);
 
-                    //string all = $"{d2[1]}/{d2[2]}/{d2[3]}/{d2[4]}/{d2[5]}/{d2[6]}/{d2[7]}/{d2[8]}/{d2[9]}/Те{SecSkill1}/Це{SecSkill2}/Се{SecSkill3}/Ст{SecSkill4}/Са{SecSkill5}/Бы{SecSkill6}/Та{SecSkill7}/Ду{SecSkill8}/ЧС{numOfFate}";
-                    //for (int i = 190; i < 2700; i++)
-                    //{
-                    //    excel.Hide(i);
+                    for (int i = 138; i < 148; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(138 + Convert.ToInt32(SecSkill1));
 
-                    //    if (Calculation.Calc.hideRowMatch(excel.ReadCell(i - 1, 4), all, i))
-                    //        excel.Unhide(i);
-                    //}
+                    for (int i = 149; i < 159; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(149 + Convert.ToInt32(SecSkill2));
+
+                    for (int i = 160; i < 170; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(160 + Convert.ToInt32(SecSkill3));
+
+                    for (int i = 171; i < 181; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(171 + Convert.ToInt32(SecSkill6));
+
+                    for (int i = 182; i < 192; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(182 + Convert.ToInt32(SecSkill4));
+
+                    for (int i = 193; i < 203; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(193 + Convert.ToInt32(SecSkill5));
+
+                    for (int i = 204; i < 214; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(204 + Convert.ToInt32(SecSkill7));
+
+                    for (int i = 215; i < 225; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(215 + Convert.ToInt32(SecSkill8));
+
+                    for (int i = 226; i < 235; i++)
+                    {
+                        excel.Hide(i);
+                    }
+                    excel.Unhide(225 + Calculation.Calc.GetFakeSum(dt1.Day));
+
+                    bool b = false;
+                    bool b1 = true;
+
+                    for (int i = 236; i < 5001; i++)
+                    {
+                        if (b1)
+                        {
+                            var cel = excel.ReadCell(i - 1, 0);
+                            if (cel == "Профессии" || cel == "Комбинации" || cel == "Сочетания")
+                            {
+                                excel.Unhide(i);
+                                b1 = cel == "Комбинации" ?
+                                    false
+                                    : true;
+                                b = true;
+                                if (cel == "Сочетания")
+                                {
+                                    if (dt1.Year < 1999)
+                                    {
+                                        excel.Hide(i);
+                                    }
+                                    b = false;
+                                }
+
+                            }
+                        }
+                        if (b || dt1.Year > 1999)
+                        {
+                            var cel1 = excel.ReadCell(i - 1, 4);
+
+                            if (Calculation.Calc.hideRowMatch(cel1, all, i))
+                                excel.Unhide(i);
+                            else
+                                excel.Hide(i);
+                        }
+
+
+                    }
 
                     excel.HideCol(5);
 
@@ -1684,7 +1791,5 @@ namespace Numeric
                 SUtM.Visibility = Visibility.Visible;
             }
         }
-
-        
     }
 }

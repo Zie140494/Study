@@ -78,6 +78,12 @@ namespace Numeric.Calculation
             else
                 return false;
         }
+        public static string ZeroToString(string s)
+        {
+            if (s == "нет")
+                return "0";
+            return s;
+        }
         //Подчет для второстепенных качеств
         public static string GetNumSecSkill(string s1, string s2, string s3)
         {

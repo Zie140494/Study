@@ -375,10 +375,10 @@ namespace Numeric
                     string SecSkill6 = Calculation.Calc.GetNumSecSkill(d2[4], d2[5], d2[6]);
                     string SecSkill7 = Calculation.Calc.GetNumSecSkill(d2[7], d2[8], d2[9]);
                     string SecSkill8 = Calculation.Calc.GetNumSecSkill(d2[1], d2[5], d2[9]);
-                    string all = $"{d2[1]}/{d2[2]}/{d2[3]}/{d2[4]}/{d2[5]}/{d2[6]}/{d2[7]}/{d2[8]}/{d2[9]}/Те{SecSkill1}/Це{SecSkill2}/Се{SecSkill3}/Ст{SecSkill4}/Са{SecSkill5}/Бы{SecSkill6}/Та{SecSkill7}/Ду{SecSkill8}/ЧС{numOfFate}";
+                    
 
-                    excel.WriteToCell(2, 4, all);
-                    excel.WriteToCell(3, 7, addingNum.ToString());
+                    
+                    excel.WriteToCell(3, 4, addingNum.ToString());
 
                     excel.WriteToCell(4, 3, SecSkill1);
                     excel.WriteToCell(6, 3, SecSkill2);
@@ -388,6 +388,18 @@ namespace Numeric
                     excel.WriteToCell(12, 1, SecSkill6);
                     excel.WriteToCell(12, 2, SecSkill7);
                     excel.WriteToCell(12, 3, SecSkill8);
+
+                    SecSkill1 = Calculation.Calc.ZeroToString(SecSkill1);
+                    SecSkill2 = Calculation.Calc.ZeroToString(SecSkill2);
+                    SecSkill3 = Calculation.Calc.ZeroToString(SecSkill3);
+                    SecSkill4 = Calculation.Calc.ZeroToString(SecSkill4);
+                    SecSkill5 = Calculation.Calc.ZeroToString(SecSkill5);
+                    SecSkill6 = Calculation.Calc.ZeroToString(SecSkill6);
+                    SecSkill7 = Calculation.Calc.ZeroToString(SecSkill7);
+                    SecSkill8 = Calculation.Calc.ZeroToString(SecSkill8);
+
+                    string all = $"{d2[1]}/{d2[2]}/{d2[3]}/{d2[4]}/{d2[5]}/{d2[6]}/{d2[7]}/{d2[8]}/{d2[9]}/Те{SecSkill1}/Це{SecSkill2}/Се{SecSkill3}/Ст{SecSkill4}/Са{SecSkill5}/Бы{SecSkill6}/Та{SecSkill7}/Ду{SecSkill8}/ЧС{numOfFate}";
+                    excel.WriteToCell(2, 4, all);
 
                     excel.Unhide(14);
                     excel.Unhide(27);
@@ -506,6 +518,7 @@ namespace Numeric
                     {
                         excel.Hide(i);
                     }
+                    var tfd = SecSkill1;
                     excel.Unhide(138 + Convert.ToInt32(SecSkill1));
 
                     for (int i = 149; i < 159; i++)
@@ -559,7 +572,7 @@ namespace Numeric
                     bool b = false;
                     bool b1 = true;
 
-                    for (int i = 236; i < 5001; i++)
+                    for (int i = 236; i < 10001; i++)
                     {
                         if (b1)
                         {

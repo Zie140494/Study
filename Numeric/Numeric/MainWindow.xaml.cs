@@ -1019,8 +1019,18 @@ namespace Numeric
                     }
                     foreach (var l in list)
                     {
-                        excel.WriteToCell(l.Year - 13, 1,l.Luna.ToString());
-                        excel.WriteToCell(l.Year - 13, 2, l.Sun.ToString());
+                        if (l.Luna>l.Sun)
+                        {
+                            excel.WriteToCell(l.Year - 13, 1, l.Luna.ToString());
+                            excel.WriteToCell(l.Year - 13, 2, "");
+                        }
+                            
+                        else
+                        {
+                            excel.WriteToCell(l.Year - 13, 2, l.Sun.ToString());
+                            excel.WriteToCell(l.Year - 13, 1, "");
+                        }
+                            
                         excel.WriteToCell(l.Year - 13, 3, Calculation.Calc.TransfLun(l.Sum));
                     }
 

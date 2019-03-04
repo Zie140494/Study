@@ -105,17 +105,59 @@ namespace Numeric.Calculation
             list1 = list1.OrderBy(x => x);
             return list1;
         }
+        public static void addWithAddingNum(List<int> list, int i)
+        {
+            switch (i)
+            {
+                case 56:
+                    list.Add(1);
+                    break;
+                case 20:
+                    list.Add(1);
+                    break;
+                case 33:
+                    list.Add(1);
+                    break;
+                case 22:
+                    list.Add(4);
+                    break;
+                case 50:
+                    list.Add(5);
+                    break;
+                case 16:
+                    list.Add(6);
+                    break;
+                case 37:
+                    list.Add(7);
+                    break;
+                case 48:
+                    list.Add(8);
+                    break;
+                case 49:
+                    list.Add(9);
+                    break;
+                default:
+                    break;
+            }
 
+            list.Add(i);
+        }
         //Выбор единственных значений и сортировка 6
         public static IEnumerable<int> GetWithoutDublicate6(NumericRow6 nr6)
         {
             List<int> list = new List<int>();
-            list.Add(nr6.n1);
-            list.Add(nr6.n2);
-            list.Add(nr6.n3);
-            list.Add(nr6.n4);
-            list.Add(nr6.n5);
-            list.Add(nr6.n6);
+            addWithAddingNum(list, nr6.n1);
+            addWithAddingNum(list, nr6.n2);
+            addWithAddingNum(list, nr6.n3);
+            addWithAddingNum(list, nr6.n4);
+            addWithAddingNum(list, nr6.n5);
+            addWithAddingNum(list, nr6.n6);
+            //list.Add(nr6.n1);
+            //list.Add(nr6.n2);
+            //list.Add(nr6.n3);
+            //list.Add(nr6.n4);
+            //list.Add(nr6.n5);
+            //list.Add(nr6.n6);
             IEnumerable<int> list1 = list.Distinct();
             list1 = list1.OrderBy(x => x);
             return list1;

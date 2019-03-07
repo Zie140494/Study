@@ -3,7 +3,88 @@
 <head>
 	<meta charset="UTF-8">
 	<title>HC</title>
+	<script src="brain.js-master/browser.min.js"></script>
+	
+	<style>
+		body {
+			background-color:#333;
+		}
+		#canv {
+			position:absolute;
+			top:0;right:0;bottom:0;left:0;
+			margin:auto;
+			background-color: white;
+		}
+	</style>
+	
+	
+	
 </head>
 <body>
+	<canvas id="canv" style:"display:block;">Ваш браузер устарел, обновитесь</canvas>
+	<script>
+		function DCanvas(el)
+		{
+			const ctx = el.getContext('2d');
+			const pixel = 20;
+			
+			let is_mouse_down = false;
+			
+			canv.width = 500;
+			canv.height = 500;
+			
+			this.drawLine = function(x1,y1,x2,y2, color = 'gray'){
+				ctx.beginPath();
+				ctx.strokeStyle = color;
+				ctx.lineJoin = 'miter';
+				ctx.lineWidth =1;
+				ctx.moveTo(x1,y1);
+				ctx.lineTo(x2,y2);
+				ctx.stroke();
+			}
+			
+			this.drawCell = function(x,y,w,h){
+				ctx.fillStyle = 'blue';
+				ctx.strokeStyle = 'blue';
+				ctx.lineJoin = 'miter';
+				ctx.lineWidth = 1;
+				ctx.rect(x,y,w,h);
+				ctx.fill();
+			}
+			
+			this.clear = function(){
+				ctx.clearReact(0,0,canv.width,canv.height)
+			}
+			
+			this.drawGrid = function() {
+				const w = canv.width;
+				const h = canv.height;
+				const p = w/pixel;
+				
+				const xStep = w/p;
+				const yStep = h/p;
+				
+				for (let x=0;x<w;x+=xStep)
+				{
+					this.drawLine(x,0,x,h);
+				}
+				
+				for (let y=0;y<w;y+=yStep)
+				{
+					this.drawLine(0,y,w,y);
+				}
+			}
+			
+			el.addEventListener('mousedown',function(){
+				is_mouse_down=true;
+				ctx.beginPath();
+			}
+			
+		}
+		
+		const d = new DCanvas(document.getElementById('canv'));
+		
+		d.drawGrid();
+	</script>
 </body>
 </html>

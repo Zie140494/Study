@@ -334,6 +334,7 @@ namespace Numeric
 
                 try
                 {
+                    #region excel
                     string pathEx = @"C:\Test\MPTest.xlsx";
                     string pathPdf = string.Format(@"C:\Test\{0}.pdf", MPtbF.Text);
 
@@ -346,9 +347,72 @@ namespace Numeric
                         pathPdf = string.Format(@"C:\Test\{0}{1}.pdf", MPtbF.Text, i.ToString());
                     }
 
-                    
-
                     Excel excel = new Excel(pathEx, 1);
+                    #endregion
+
+                    #region excelCom
+                    string pathExCom = @"C:\Test\MPTestCom.xlsx";
+                    string pathPdfCom = string.Format(@"C:\Test\{0}_Com_.pdf", MPtbF.Text);
+
+                    for (int i = 1; i < Int32.MaxValue; i++)
+                    {
+                        if (!Calculation.Calc.IsExists(pathPdfCom))
+                        {
+                            break;
+                        }
+                        pathPdfCom = string.Format(@"C:\Test\{0}_Com_{1}.pdf", MPtbF.Text, i.ToString());
+                    }
+
+                    Excel excelCom = new Excel(pathExCom, 1);
+                    #endregion
+
+                    #region excelProf1
+                    string pathExProf1 = @"C:\Test\MPTestProf1.xlsx";
+                    string pathPdfProf1 = string.Format(@"C:\Test\{0}_Prof1_.pdf", MPtbF.Text);
+
+                    for (int i = 1; i < Int32.MaxValue; i++)
+                    {
+                        if (!Calculation.Calc.IsExists(pathPdfProf1))
+                        {
+                            break;
+                        }
+                        pathPdfProf1 = string.Format(@"C:\Test\{0}_Prof1_{1}.pdf", MPtbF.Text, i.ToString());
+                    }
+
+                    Excel excelProf1 = new Excel(pathExProf1, 1);
+                    #endregion
+                    #region excelProf2
+                    string pathExProf2 = @"C:\Test\MPTestProf2.xlsx";
+                    string pathPdfProf2 = string.Format(@"C:\Test\{0}_Prof2_.pdf", MPtbF.Text);
+
+                    for (int i = 1; i < Int32.MaxValue; i++)
+                    {
+                        if (!Calculation.Calc.IsExists(pathPdfProf2))
+                        {
+                            break;
+                        }
+                        pathPdfProf2 = string.Format(@"C:\Test\{0}_Prof2_{1}.pdf", MPtbF.Text, i.ToString());
+                    }
+
+                    Excel excelProf2 = new Excel(pathExProf2, 1);
+                    #endregion
+
+                    #region excelSoch
+                    string pathExSoch = @"C:\Test\MPTestSoch.xlsx";
+                    string pathPdfSoch = string.Format(@"C:\Test\{0}_Soch_.pdf", MPtbF.Text);
+
+                    for (int i = 1; i < Int32.MaxValue; i++)
+                    {
+                        if (!Calculation.Calc.IsExists(pathPdfSoch))
+                        {
+                            break;
+                        }
+                        pathPdfSoch = string.Format(@"C:\Test\{0}_Soch_{1}.pdf", MPtbF.Text, i.ToString());
+                    }
+
+                    Excel excelSoch = new Excel(pathExSoch, 1);
+                    #endregion
+
                     excel.WriteToCell(0, 1, MPtbF.Text);
                     excel.WriteToCell(1, 1, MPtb1.Text);
                     excel.WriteToCell(2, 1, numOfFate.ToString());
@@ -375,8 +439,6 @@ namespace Numeric
                     string SecSkill6 = Calculation.Calc.GetNumSecSkill(d2[4], d2[5], d2[6]);
                     string SecSkill7 = Calculation.Calc.GetNumSecSkill(d2[7], d2[8], d2[9]);
                     string SecSkill8 = Calculation.Calc.GetNumSecSkill(d2[1], d2[5], d2[9]);
-                    
-
                     
                     excel.WriteToCell(3, 4, addingNum.ToString());
 
@@ -569,50 +631,29 @@ namespace Numeric
                     }
                     excel.Unhide(225 + Calculation.Calc.GetFakeSum(dt1.Day));
 
-                    bool b = false;
-                    bool b1 = true;
-
-                    for (int i = 236; i < 10001; i++)
+                    Task[] tasks1 = new Task[4]
                     {
-                        if (b1)
-                        {
-                            var cel = excel.ReadCell(i - 1, 0);
-                            if (cel == "Профессии" || cel == "Комбинации" || cel == "Сочетания")
-                            {
-                                excel.Unhide(i);
-                                b1 = cel == "Комбинации" ?
-                                    false
-                                    : true;
-                                b = true;
-                                if (cel == "Сочетания")
-                                {
-                                    if (dt1.Year < 1999)
-                                    {
-                                        excel.Hide(i);
-                                    }
-                                    b = false;
-                                }
-
-                            }
-                        }
-                        if (b || dt1.Year > 1999)
-                        {
-                            var cel1 = excel.ReadCell(i - 1, 4);
-
-                            if (Calculation.Calc.hideRowMatch(cel1, all, i))
-                                excel.Unhide(i);
-                            else
-                                excel.Hide(i);
-                        }
+                         new Task(() => MatrixCalc(excelCom,all,2500,true,false)),
+                         new Task(() => MatrixCalc(excelProf1,all,2602,true,false)),
+                         new Task(() => MatrixCalc(excelProf2,all,2700,false,false)),
+                         new Task(() => MatrixCalc(excelSoch,all,2000,true,dt1.Year<1999))
+                    };
+                    foreach (var t in tasks1)
+                        t.Start();
+                    Task.WaitAll(tasks1);
 
 
-                    }
+                    
 
                     excel.HideCol(5);
 
                     excel.Save();
                     excel.Close();
                     Calculation.Calc.ExportWorkbookToPdf(pathEx, pathPdf);
+                    Calculation.Calc.ExportWorkbookToPdf(pathExCom, pathPdfCom);
+                    Calculation.Calc.ExportWorkbookToPdf(pathExProf1, pathPdfProf1);
+                    Calculation.Calc.ExportWorkbookToPdf(pathExProf2, pathPdfProf2);
+                    Calculation.Calc.ExportWorkbookToPdf(pathExSoch, pathPdfSoch);
                     MessageBox.Show(string.Format("Файл {0} успешно создан", pathPdf));
                 }
                 catch (Exception ex)
@@ -1813,6 +1854,30 @@ namespace Numeric
                 SuLM.Visibility = Visibility.Visible;
                 SUtM.Visibility = Visibility.Visible;
             }
+        }
+        private void MatrixCalc(Excel excel, string all, int max, bool isFirstDesc, bool isKids)
+        {
+            if (!isKids)
+            {
+                int t=1;
+                if (isFirstDesc)
+                {
+                    excel.Unhide(1);
+                    t = 2;
+                }
+                for (int i = t; i < max + 1; i++)
+                {
+                    var cel = excel.ReadCell(i - 1, 4);
+
+                    if (Calculation.Calc.hideRowMatch(cel, all, i))
+                        excel.Unhide(i);
+                    else
+                        excel.Hide(i);
+                }
+                excel.HideCol(5);
+            }
+            excel.Save();
+            excel.Close();
         }
     }
 }

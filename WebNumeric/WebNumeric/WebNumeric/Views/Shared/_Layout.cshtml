@@ -4,9 +4,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title – приложение ASP.NET</title>
+    <title>Нумерология</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <ul style="list-style-type:none; text-align:center;padding-left:250px;padding-top:0px;">
+        <li style="display:inline;">
+            <a href="http://htmlbook.ru/html/img">
+                <img src="~/Content/Whatsapp.png" width="70" height="70" />
+            </a>
+        </li>
+        <li style="display:inline;">
+            <a href="http://htmlbook.ru/html/img">
+                <img src="~/Content/instagram.png" width="70" height="70" />
+            </a>
+        </li>
+        <li style="display:inline;">
+            <a href="http://htmlbook.ru/html/img">
+                <img src="~/Content/YouTube.png" width="70" height="70" />
+            </a>
+        </li>
+    </ul>
 </head>
 <body>
     <div class="wrapper">
@@ -32,7 +49,23 @@
         <div>@RenderBody()</div>
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+            <ul style="list-style-type:none; text-align:center;padding-left:0;">
+                <li style="display:inline;">
+                    <a href="http://htmlbook.ru/html/img">
+                        <img src="~/Content/Whatsapp.png" width="40" height="40" />
+                    </a>
+                </li>
+                <li style="display:inline;">
+                    <a href="http://htmlbook.ru/html/img">
+                        <img src="~/Content/instagram.png" width="40" height="40" />
+                    </a>
+                </li>
+                <li style="display:inline;">
+                    <a href="http://htmlbook.ru/html/img">
+                        <img src="~/Content/YouTube.png" width="40" height="40" />
+                    </a>
+                </li>
+            </ul>
         </footer>
     </div>
     @Scripts.Render("~/bundles/jquery")

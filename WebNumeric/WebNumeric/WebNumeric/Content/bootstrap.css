@@ -6801,6 +6801,25 @@ td.visible-print {
     text-align:center;
     color:black;
 }
+.mytdbot {
+    /*border: 2px solid black;*/
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    /*border-collapse: collapse;*/
+    text-align: center;
+    color: black;
+}
+.mytdtop {
+    /*border: 2px solid black;*/
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    /*border-collapse: collapse;*/
+    text-align: center;
+    color: black;
+}
+
 .backcolor1 {
     background-color:mediumpurple;
 }

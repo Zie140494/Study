@@ -294,7 +294,12 @@ namespace Numeric
                 var nr8 = Calculation.Calc.GetRow(dt1);
                 string s = nr8.n1.ToString() + nr8.n2.ToString() + nr8.n3.ToString() + nr8.n4.ToString() + nr8.n5.ToString() + nr8.n6.ToString() + nr8.n7.ToString() + nr8.n8.ToString();
                 int numOfFate = 0;
-                switch (Calculation.Calc.GetSum(Convert.ToInt32(s)))
+                int TestFate = Convert.ToInt32(s);
+                while (!(TestFate<10 || TestFate==11||TestFate==22||TestFate==33))
+                {
+                    TestFate = Calculation.Calc.GetSum(Convert.ToInt32(TestFate));
+                }
+                switch (TestFate)
                 {
                     case 11:
                         numOfFate = 11;
@@ -306,7 +311,7 @@ namespace Numeric
                         numOfFate = 33;
                         break;
                     default:
-                        numOfFate = Calculation.Calc.GetFakeSum(Convert.ToInt32(s));
+                        numOfFate = TestFate;
                         break;
                 }
 
@@ -631,16 +636,16 @@ namespace Numeric
                     }
                     excel.Unhide(225 + Calculation.Calc.GetFakeSum(dt1.Day));
 
-                    Task[] tasks1 = new Task[4]
-                    {
-                         new Task(() => MatrixCalc(excelCom,all,2500,true,false)),
-                         new Task(() => MatrixCalc(excelProf1,all,2602,true,false)),
-                         new Task(() => MatrixCalc(excelProf2,all,2700,false,false)),
-                         new Task(() => MatrixCalc(excelSoch,all,2000,true,dt1.Year<1999))
-                    };
-                    foreach (var t in tasks1)
-                        t.Start();
-                    Task.WaitAll(tasks1);
+                    //Task[] tasks1 = new Task[4]
+                    //{
+                    //     new Task(() => MatrixCalc(excelCom,all,2500,true,false)),
+                    //     new Task(() => MatrixCalc(excelProf1,all,2602,true,false)),
+                    //     new Task(() => MatrixCalc(excelProf2,all,2700,false,false)),
+                    //     new Task(() => MatrixCalc(excelSoch,all,2000,true,dt1.Year<1999))
+                    //};
+                    //foreach (var t in tasks1)
+                    //    t.Start();
+                    //Task.WaitAll(tasks1);
 
 
                     
@@ -1005,8 +1010,10 @@ namespace Numeric
                     if (it>=age)
                     {
                         listh.Add(new Lun(it, Calculation.Calc.GetSun(it, lc), Calculation.Calc.GetLuna(it, lc)));
-                        luns.Add(Calculation.Calc.GetLuna(it, lc));
-                        suns.Add(Calculation.Calc.GetSun(it, lc));
+                        if (Calculation.Calc.GetLuna(it, lc)> Calculation.Calc.GetSun(it, lc))
+                            luns.Add(Calculation.Calc.GetLuna(it, lc));
+                        else
+                            suns.Add(Calculation.Calc.GetSun(it, lc));
                         sums.Add(Calculation.Calc.GetSun(it, lc) - Calculation.Calc.GetLuna(it, lc));
                     }
                 }

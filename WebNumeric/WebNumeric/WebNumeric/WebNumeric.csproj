@@ -195,6 +195,7 @@
     <Content Include="Views\Home\Matrix.cshtml" />
     <Content Include="Views\Home\MatrixResult.cshtml" />
     <Content Include="Views\Home\MatrixError.cshtml" />
+    <Content Include="Views\Home\Study.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

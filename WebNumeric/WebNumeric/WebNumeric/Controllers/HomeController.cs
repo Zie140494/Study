@@ -29,6 +29,10 @@ namespace WebNumeric.Controllers
         {
             return View();
         }
+        public ActionResult Study()
+        {
+            return View();
+        }
         [HttpPost]
         public ActionResult Matrix(string Date)
         {

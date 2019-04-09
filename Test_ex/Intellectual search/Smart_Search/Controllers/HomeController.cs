@@ -12,6 +12,7 @@ namespace Smart_Search.Controllers
     {
         public IActionResult Index()
         {
+
             return View();
         }
 

@@ -154,6 +154,9 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Index1.JPG" />
+    <Content Include="Content\Index2.jpg" />
+    <Content Include="Content\Index3.jpg" />
     <Content Include="Content\instagram.png" />
     <Content Include="Content\Whatsapp.png" />
     <Content Include="Content\YouTube.png" />

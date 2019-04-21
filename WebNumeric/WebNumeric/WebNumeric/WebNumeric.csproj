@@ -158,6 +158,10 @@
     <Content Include="Content\Index2.jpg" />
     <Content Include="Content\Index3.jpg" />
     <Content Include="Content\instagram.png" />
+    <Content Include="Content\Study\1.PNG" />
+    <Content Include="Content\Study\2.JPG" />
+    <Content Include="Content\Study\3.JPG" />
+    <Content Include="Content\Study\4.jpg" />
     <Content Include="Content\Whatsapp.png" />
     <Content Include="Content\YouTube.png" />
     <Content Include="favicon.ico" />

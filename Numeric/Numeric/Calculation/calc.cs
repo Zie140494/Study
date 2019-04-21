@@ -623,5 +623,38 @@ namespace Numeric.Calculation
             nr12.n12 = nr7.n5;
             return nr12;
         }
+        //получить число для семилетки в нужный год
+        public static int SYCurrentValue(NumericRow12 nr, DateTime dt)
+        {
+            int age = GetAge(dt,DateTime.Now);
+            switch (age)
+            {
+                case int n when (n < 7):
+                    return nr.n1;
+                case int n when (n < 14):
+                    return nr.n2;
+                case int n when (n < 21):
+                    return nr.n3;
+                case int n when (n < 28):
+                    return nr.n4;
+                case int n when (n < 35):
+                    return nr.n5;
+                case int n when (n < 42):
+                    return nr.n6;
+                case int n when (n < 49):
+                    return nr.n7;
+                case int n when (n < 56):
+                    return nr.n8;
+                case int n when (n < 63):
+                    return nr.n9;
+                case int n when (n < 70):
+                    return nr.n10;
+                case int n when (n < 77):
+                    return nr.n11;
+                case int n when (n < 84):
+                    return nr.n12;
+                default: throw new Exception("Для такого возраста не существует значения");
+            }
+        }
     }
 }

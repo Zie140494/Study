@@ -264,11 +264,9 @@ namespace Numeric
                     {
                         excel.Hide(del + h);
                     }
-                    foreach (var nt in Calculation.Calc.GetWithoutDublicate12(nr12))
-                    {
-                        excel.Unhide(del + nt);
-                    }
-
+                    
+                    excel.Unhide(del + Calculation.Calc.SYCurrentValue(nr12, dt1));
+                    
                     excel.Save();
                     excel.Close();
                     Calculation.Calc.ExportWorkbookToPdf(pathEx, pathPdf);

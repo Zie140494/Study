@@ -152,11 +152,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\About1\1.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Index1.JPG" />
     <Content Include="Content\Index2.jpg" />
     <Content Include="Content\Index3.jpg" />
+    <Content Include="Content\Index4.JPG" />
     <Content Include="Content\instagram.png" />
     <Content Include="Content\Study\1.PNG" />
     <Content Include="Content\Study\2.JPG" />

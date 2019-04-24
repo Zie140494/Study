@@ -4,10 +4,11 @@
         <input checked type="radio" name="slider" id="switch1">
         <input type="radio" name="slider" id="switch2">
         <input type="radio" name="slider" id="switch3">
+        <input type="radio" name="slider" id="switch4">
         <div id="slides">
             <div id="overflow">
                 <div class="image">
-                    <article><img src="~/Content/Study/1.PNG"></article>
+                    <article><img src="~/Content/Study/1.jpg"></article>
                     <article><img src="~/Content/Study/2.JPG"></article>
                     <article><img src="~/Content/Study/3.JPG"></article>
                     <article><img src="~/Content/Study/4.jpg"></article>
@@ -18,11 +19,13 @@
             <label for="switch1"></label>
             <label for="switch2"></label>
             <label for="switch3"></label>
+            <label for="switch4"></label>
         </div>
         <div id="active">
             <label for="switch1"></label>
             <label for="switch2"></label>
             <label for="switch3"></label>
+            <label for="switch4"></label>
         </div>
     </article>
 
@@ -55,8 +58,8 @@
     }
 
     article img { /*размер изображений слайдера*/
-        width: 30%;
-        height: 30%;
+        width: 60%;
+        height: 60%;
     }
 
     #desktop:checked ~ #slider { /*размер всего слайдера*/
@@ -67,9 +70,9 @@
     /*если свич1-5 активны, то идет обращение к лейблу из блока с id контролс*/
     #switch1:checked ~ #controls label:nth-child(4),
     #switch2:checked ~ #controls label:nth-child(1),
-    #switch3:checked ~ #controls label:nth-child(2), 
+    #switch3:checked ~ #controls label:nth-child(2),
     #switch4:checked ~ #controls label:nth-child(3) {
-        background: url('prev.png') no-repeat; /*заливка фона картинкой без повторений*/
+        background: url('/Content/prev.png') no-repeat; /*заливка фона картинкой без повторений*/
         float: left;
         margin: 0 0 0 -84px; /*сдвиг влево*/
         display: block;
@@ -82,7 +85,7 @@
     #switch2:checked ~ #controls label:nth-child(3),
     #switch3:checked ~ #controls label:nth-child(4),
     #switch4:checked ~ #controls label:nth-child(1) {
-        background: url('next.png') no-repeat; /*заливка фона картинкой без повторений*/
+        background: url('/Content/next.png') no-repeat; /*заливка фона картинкой без повторений*/
         float: right;
         margin: 0 -84px 0 0; /*сдвиг вправо*/
         display: block;

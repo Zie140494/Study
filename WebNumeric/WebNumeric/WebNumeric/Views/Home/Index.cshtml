@@ -71,8 +71,8 @@
     }
 
     article img { /*размер изображений слайдера*/
-        width: 40%;
-        height: 40%;
+        width: 30%;
+        height: 30%;
     }
 
     #desktop:checked ~ #slider { /*размер всего слайдера*/
@@ -83,9 +83,8 @@
     /*если свич1-5 активны, то идет обращение к лейблу из блока с id контролс*/
     #switch1:checked ~ #controls label:nth-child(3),
     #switch2:checked ~ #controls label:nth-child(1),
-    #switch3:checked ~ #controls label:nth-child(2)
-    {
-        background: url('prev.png') no-repeat; /*заливка фона картинкой без повторений*/
+    #switch3:checked ~ #controls label:nth-child(2) {
+        background: url('/Content/prev.png') no-repeat; /*заливка фона картинкой без повторений*/
         float: left;
         margin: 0 0 0 -84px; /*сдвиг влево*/
         display: block;
@@ -96,9 +95,8 @@
     /*настройка переключения и положения для правой стрелки*/
     #switch1:checked ~ #controls label:nth-child(2),
     #switch2:checked ~ #controls label:nth-child(3),
-    #switch3:checked ~ #controls label:nth-child(1)
-    {
-        background: url('next.png') no-repeat; /*заливка фона картинкой без повторений*/
+    #switch3:checked ~ #controls label:nth-child(1) {
+        background: url('/Content/next.png') no-repeat; /*заливка фона картинкой без повторений*/
         float: right;
         margin: 0 -84px 0 0; /*сдвиг вправо*/
         display: block;

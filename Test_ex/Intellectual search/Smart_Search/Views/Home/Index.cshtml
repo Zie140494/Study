@@ -2,29 +2,26 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="dropdown open">
-    @*<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" hidden="hidden" >
-        Dropdown Example
-        <span class="caret"></span>
-    </button>*@
-    <ul class="dropdown-menu">
-        <input class="form-control" id="myInput" type="text" placeholder="Search..">
-        <li><a href="#">Моя прекрасная няня</a></li>
-        <li><a href="#">CSS</a></li>
-        <li><a href="#">JavaScript</a></li>
-        <li><a href="#">jQuery</a></li>
-        <li><a href="#">Bootstrap</a></li>
-        <li><a href="#">Angular</a></li>
-    </ul>
-</div>
-
+<input type="text" name="country" id="autocomplete" />
 <script>
-    $(document).ready(function () {
-        $("#myInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $(".dropdown-menu li").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
+    //var countries = [
+    //    { value: 'Andorra', data: 'AD' },
+    //    // ...
+    //    { value: 'Zimbabwe', data: 'ZZ' }
+    //];
+
+    $('#autocomplete').autocomplete()
+    $('#autocomplete').autocomplete({
+        serviceUrl: '/Home/Test',
+        onSelect: function (suggestion) {
+            alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+        }
     });
+
+    //$('#autocomplete').autocomplete({
+    //    lookup: countries,
+    //    onSelect: function (suggestion) {
+    //        alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+    //    }
+    //});
 </script>

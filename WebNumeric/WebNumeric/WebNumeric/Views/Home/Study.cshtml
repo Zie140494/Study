@@ -1,10 +1,22 @@
-﻿<div class="all">
+﻿<p>
+    <ol>
+        Виды обучения - Пифагорейская школа
+        <li>Классическая Нумерология - «сам себе Нумеролог» или «Новичок»</li>
+        <li>Ведическая и Индийская Нумерология</li>
+        <li>Нумерология Таро</li>
+        <li>Мандалы</li>
+        <li>Нумерология здоровья</li>
+        <li>Прогнозирование</li>
+    </ol>
+</p>
+
+
+<div class="all">
     <input checked type="radio" name="respond" id="desktop">
     <article id="slider">
         <input checked type="radio" name="slider" id="switch1">
         <input type="radio" name="slider" id="switch2">
         <input type="radio" name="slider" id="switch3">
-        <input type="radio" name="slider" id="switch4">
         <div id="slides">
             <div id="overflow">
                 <div class="image">
@@ -12,6 +24,8 @@
                     <article><img src="~/Content/Study/2.JPG"></article>
                     <article><img src="~/Content/Study/3.JPG"></article>
                     <article><img src="~/Content/Study/4.jpg"></article>
+                    <article><video autoplay controls loop height="550"><source src="~/Content/Study/Video1.mov"/></video></article>
+                    <article><video autoplay controls loop height="550"><source src="~/Content/Study/Video2.mov"/></video></article>
                 </div>
             </div>
         </div>
@@ -19,16 +33,13 @@
             <label for="switch1"></label>
             <label for="switch2"></label>
             <label for="switch3"></label>
-            <label for="switch4"></label>
         </div>
         <div id="active">
             <label for="switch1"></label>
             <label for="switch2"></label>
             <label for="switch3"></label>
-            <label for="switch4"></label>
         </div>
     </article>
-
 </div>
 
 <style>
@@ -43,13 +54,16 @@
     }
 
     #slides article { /*все изображения справа друг от доруга*/
-        width: 20%;
+        width: 10%;
         float: left;
+        
     }
 
     #slides .image { /*устанавливает общий размер блока с изображениями*/
         width: 500%;
         line-height: 0;
+        display: flex;
+        align-items: center;
     }
 
     #overflow { /*сркывает все, что находится за пределами этого блока*/
@@ -58,20 +72,21 @@
     }
 
     article img { /*размер изображений слайдера*/
-        width: 60%;
-        height: 60%;
+        width: 98%;
+        height: 98%;
+        
+        /*padding-top: 100px;*/
     }
-
+       
     #desktop:checked ~ #slider { /*размер всего слайдера*/
         max-width: 960px; /*максимальнная длинна*/
     }
 
     /*настройка переключения и положения для левой стрелки*/
     /*если свич1-5 активны, то идет обращение к лейблу из блока с id контролс*/
-    #switch1:checked ~ #controls label:nth-child(4),
+    #switch1:checked ~ #controls label:nth-child(3),
     #switch2:checked ~ #controls label:nth-child(1),
-    #switch3:checked ~ #controls label:nth-child(2),
-    #switch4:checked ~ #controls label:nth-child(3) {
+    #switch3:checked ~ #controls label:nth-child(2){
         background: url('/Content/prev.png') no-repeat; /*заливка фона картинкой без повторений*/
         float: left;
         margin: 0 0 0 -84px; /*сдвиг влево*/
@@ -83,8 +98,7 @@
     /*настройка переключения и положения для правой стрелки*/
     #switch1:checked ~ #controls label:nth-child(2),
     #switch2:checked ~ #controls label:nth-child(3),
-    #switch3:checked ~ #controls label:nth-child(4),
-    #switch4:checked ~ #controls label:nth-child(1) {
+    #switch3:checked ~ #controls label:nth-child(1) {
         background: url('/Content/next.png') no-repeat; /*заливка фона картинкой без повторений*/
         float: right;
         margin: 0 -84px 0 0; /*сдвиг вправо*/
@@ -114,10 +128,6 @@
         margin-left: -200%;
     }
 
-    #switch4:checked ~ #slides .image {
-        margin-left: -300%;
-    }
-
     #controls { /*положение блока всех управляющих элементов*/
         margin: -25% 0 0 0;
         width: 100%;
@@ -145,8 +155,7 @@
     /*цвет активного лейбла при активации чекбокса*/
     #switch1:checked ~ #active label:nth-child(1),
     #switch2:checked ~ #active label:nth-child(2),
-    #switch3:checked ~ #active label:nth-child(3),
-    #switch4:checked ~ #active label:nth-child(4) {
+    #switch3:checked ~ #active label:nth-child(3){
         background: #18a3dd;
         border-color: #18a3dd !important;
     }

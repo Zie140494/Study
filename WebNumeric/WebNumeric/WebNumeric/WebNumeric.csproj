@@ -189,6 +189,8 @@
     <Content Include="Content\Study\2.JPG" />
     <Content Include="Content\Study\3.JPG" />
     <Content Include="Content\Study\4.jpg" />
+    <Content Include="Content\Study\Video1.mov" />
+    <Content Include="Content\Study\Video2.mov" />
     <Content Include="Content\Whatsapp.png" />
     <Content Include="Content\YouTube.png" />
     <Content Include="favicon.ico" />

@@ -103,27 +103,27 @@ namespace WebNumeric.Controllers
                 ViewBag.ex7Ta = SecSkill7;
                 ViewBag.ex8Du = SecSkill8;
 
-                var numbers = new Dictionary<string, int>();
-                numbers.Add("Характер", d[1].Length);
-                numbers.Add("Энергия", d[2].Length);
-                numbers.Add("Интерес", d[3].Length);
-                numbers.Add("Здоровье", d[4].Length);
-                numbers.Add("Логика", d[5].Length);
-                numbers.Add("Труд", d[6].Length);
-                numbers.Add("Удача", d[7].Length);
-                numbers.Add("Долг", d[8].Length);
-                numbers.Add("Память", d[9].Length);
+                string st = "";
+                
 
-                numbers.Add("Темперамент", Convert.ToInt32(SecSkill1));
-                numbers.Add("Цель", Convert.ToInt32(SecSkill2));
-                numbers.Add("Семья", Convert.ToInt32(SecSkill3));
-                numbers.Add("Стабильность", Convert.ToInt32(SecSkill4));
-                numbers.Add("Самооценка", Convert.ToInt32(SecSkill5));
-                numbers.Add("Быт", Convert.ToInt32(SecSkill6));
-                numbers.Add("Талант", Convert.ToInt32(SecSkill7));
-                numbers.Add("Духовность", Convert.ToInt32(SecSkill8));
+                    switch (Convert.ToInt32(SecSkill3))
+                {
+                    case int n when (n < 3):
+                        st = "У вас низкая инициативность, вы ждете, что ситуация решится сама собой и ждете действий от окружения или партнера, это очень снижает ваши денежные потоки, для исправления данной ситуации, запишитесь на консультацию ";
+                        break;
+                    case int n when (n == 3):
+                        st = "Вы отталкиваете от себя гармоничные отношения, пытаясь их всячески разорвать. Сомнения и подозрения по любому поводу, ревность, желание оттолкнуть партнёра, для исправления данной ситуации, запишитесь на консультацию";
+                        break;
+                    case int n when (n == 4):
+                        st = " У вас программа «создания отношений», стремление находиться в группе/семье/обществе, за более подробной информацией, запишитесь на консультацию";
+                        break;
+                    case int n when (n > 4):
+                        st = "У вас сильно высокие требования к семье и своему партнеру, перфекционизм во всем, придирчивость и требовательность, для исправления данной ситуации, запишитесь на консультацию";
+                        break;
+                }
 
-                ViewBag.minKey = numbers.OrderBy(kvp => kvp.Value).FirstOrDefault().Key;
+                ViewBag.st = st;
+
                 #endregion
 
 

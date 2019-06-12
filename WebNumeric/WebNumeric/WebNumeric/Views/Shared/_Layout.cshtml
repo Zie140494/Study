@@ -1,26 +1,28 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Нумерология</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link rel="stylesheet" type="text/css" href="~/Content/lightbox.min.css"/>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <link rel="stylesheet" type="text/css" href="~/Content/lightbox.min.css" />
     <ul style="list-style-type:none; text-align:center;padding-left:250px;padding-top:0px;">
         @*<li style="display:inline;">
-            <a href="http://htmlbook.ru/html/img">
-                <img src="~/Content/Whatsapp.png" width="70" height="70" />
-            </a>
-        </li>*@
+                <a href="http://htmlbook.ru/html/img">
+                    <img src="~/Content/Whatsapp.png" width="70" height="70" />
+                </a>
+            </li>*@
         <li style="display:inline;">
             <a href="https://www.instagram.com/zhuuuuz_numerology77/">
                 <img src="~/Content/instagram.png" width="70" height="70" />
             </a>
         </li>
         <li style="display:inline;">
-            <a href="http://htmlbook.ru/html/img">
+            <a href="https://www.youtube.com/channel/UCMXoJ0hMVjXFA35sEFksIGQ">
                 <img src="~/Content/YouTube.png" width="70" height="70" />
             </a>
         </li>
@@ -29,7 +31,7 @@
 <body>
     <div class="wrapper">
         <div>
-            <ul class="nav flex-column">
+            <ul class="nav flex-column col-sm-1">
                 <li class="nav-item">
                     <a class="nav-link active" href="/Home/Index">Главная</a>
                 </li>
@@ -65,16 +67,35 @@
                     </a>
                 </li>
                 <li style="display:inline;">
-                    <a href="http://htmlbook.ru/html/img">
+                    <a href="https://www.youtube.com/channel/UCMXoJ0hMVjXFA35sEFksIGQ">
                         <img src="~/Content/YouTube.png" width="40" height="40" />
                     </a>
                 </li>
             </ul>
         </footer>
     </div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    
+    
     <script type="text/javascript" src="~/Content/lightbox-plus-jquery.min.js"></script>
     @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            SomeeAdsRemover();
+        });
+
+        function SomeeAdsRemover() {
+            $("center").each(function () {
+                if ($(this).html() == '<a href="http://somee.com">Web hosting by Somee.com</a>') {
+                    $(this).next().remove();
+                    $(this).next().next().remove();
+                    $(this).next().next().next().remove();
+                    $(this).remove();
+
+                    return false;
+                }
+            });
+        }
+    </script>
 </body>
+
 </html>

@@ -71,3 +71,65 @@
     </tr>
 </table>
 <p>@ViewBag.st </p>
+
+<style>
+    .mytable {
+    border-collapse:collapse;
+    border:3px solid black;
+}
+.mytd {
+    border: 2px solid black;
+    border-collapse:collapse;
+    text-align:center;
+    color:black;
+}
+.mytdbot {
+    /*border: 2px solid black;*/
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    /*border-collapse: collapse;*/
+    text-align: center;
+    color: black;
+}
+.mytdtop {
+    /*border: 2px solid black;*/
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    /*border-collapse: collapse;*/
+    text-align: center;
+    color: black;
+}
+
+.backcolor1 {
+    background-color:mediumpurple;
+}
+.backcolor2 {
+    background-color:bisque;
+}
+.text-color1 {
+    color:blue;
+}
+.text-color2 {
+    color:red;
+}
+</style>
+<script>
+        $(document).ready(function () {
+            SomeeAdsRemover();
+        });
+
+        function SomeeAdsRemover() {
+            $("center").each(function () {
+                if ($(this).html() == '<a href="http://somee.com">Web hosting by Somee.com</a>') {
+                    $(this).next().remove();
+                    $(this).next().next().remove();
+                    $(this).next().next().next().remove();
+                    $(this).remove();
+
+                    return false;
+                }
+            });
+        }
+</script>

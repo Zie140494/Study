@@ -25,7 +25,7 @@ textarea {
 
 .wrapper {
     display:grid;
-    grid-template-columns:250px 5fr;
+    grid-template-columns:1fr 10fr;
 }
 
 .gallery{

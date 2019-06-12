@@ -2,14 +2,22 @@
 
 @using (Html.BeginForm("Matrix", "Home", FormMethod.Post))
 {
-<h1>Matrix</h1>
-@*@Html.TextBox("p");*@
-@Html.EditorFor(model => model.Date)
-@Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-    <div></div>
-<p>
-    <input class="btn" type="submit" value="Рассчитать" />
-</p>
-    
+    <h1>Matrix</h1>
+    <input type="date" id="inp" onchange="al(this.value)" data-val="true" name="date"/>
+    @*@Html.EditorFor(model => model.Date, new { @type = "date", @id="inp1"})*@
+
+    <br />
+    <br />
+    <p>
+        <input id="but" style="display:none" class="btn" type="submit" value="Рассчитать"  />
+    </p>
+
+
 }
+
+<script>
+    function al(str) {
+        document.getElementById("but").style.display = 'block';
+    };
+</script>
 

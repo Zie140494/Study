@@ -442,7 +442,7 @@ namespace Numeric
                     string SecSkill6 = Calculation.Calc.GetNumSecSkill(d2[4], d2[5], d2[6]);
                     string SecSkill7 = Calculation.Calc.GetNumSecSkill(d2[7], d2[8], d2[9]);
                     string SecSkill8 = Calculation.Calc.GetNumSecSkill(d2[1], d2[5], d2[9]);
-                    
+
                     excel.WriteToCell(3, 4, addingNum.ToString());
 
                     excel.WriteToCell(4, 3, SecSkill1);
@@ -634,19 +634,18 @@ namespace Numeric
                     }
                     excel.Unhide(225 + Calculation.Calc.GetFakeSum(dt1.Day));
 
-                    //Task[] tasks1 = new Task[4]
-                    //{
-                    //     new Task(() => MatrixCalc(excelCom,all,2500,true,false)),
-                    //     new Task(() => MatrixCalc(excelProf1,all,2602,true,false)),
-                    //     new Task(() => MatrixCalc(excelProf2,all,2700,false,false)),
-                    //     new Task(() => MatrixCalc(excelSoch,all,2000,true,dt1.Year<1999))
-                    //};
-                    //foreach (var t in tasks1)
-                    //    t.Start();
-                    //Task.WaitAll(tasks1);
+                    Task[] tasks1 = new Task[3]
+                    {
+                         new Task(() => MatrixCalc(excelProf1,all,2602,true,false)),
+                         new Task(() => MatrixCalc(excelProf2,all,2700,false,false)),
+                         new Task(() => MatrixCalc(excelSoch,all,2000,true,dt1.Year<1999))
+                    };
+                    foreach (var t in tasks1)
+                        t.Start();
+                    Task.WaitAll(tasks1);
 
 
-                    
+                    MatrixCalc(excelCom, all, 2500, true, false);
 
                     excel.HideCol(5);
 
@@ -1864,7 +1863,7 @@ namespace Numeric
         {
             if (!isKids)
             {
-                int t=1;
+                int t = 1;
                 if (isFirstDesc)
                 {
                     excel.Unhide(1);

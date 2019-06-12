@@ -8,26 +8,39 @@ namespace WebNumeric.Calculation
     public static class Calculate
     { 
         //Из даты в строку
-        public static NumericRow GetRow(DateTime dt)
+        public static NumericRow GetRow(DateTime? dt)
         {
             var nr = new NumericRow(0);
-            string sDate = dt.ToString();
-            sDate = sDate.Replace(".", string.Empty);
-            char[] t = sDate.ToCharArray();
-            nr.n1 = (int)char.GetNumericValue(t[0]);
-            nr.n2 = (int)char.GetNumericValue(t[1]);
-            nr.n3 = (int)char.GetNumericValue(t[2]);
-            nr.n4 = (int)char.GetNumericValue(t[3]);
-            nr.n5 = (int)char.GetNumericValue(t[4]);
-            nr.n6 = (int)char.GetNumericValue(t[5]);
-            nr.n7 = (int)char.GetNumericValue(t[6]);
-            nr.n8 = (int)char.GetNumericValue(t[7]);
+            nr.n1 = dt.Value.Day / 10;
+            nr.n2 = dt.Value.Day %10;
+            nr.n3 = dt.Value.Month / 10;
+            nr.n4 = dt.Value.Month %10;
+            nr.n5 = dt.Value.Year/1000;
+            nr.n6 = dt.Value.Year / 100%10;
+            nr.n7 = dt.Value.Year / 10%10;
+            nr.n8 = dt.Value.Year%10;
+
+            return nr;
+        }
+        //для английского формата даты
+        public static NumericRow GetRow1(DateTime? dt)
+        {
+            var nr = new NumericRow(0);
+            nr.n3 = dt.Value.Day / 10;
+            nr.n4 = dt.Value.Day % 10;
+            nr.n1 = dt.Value.Month / 10;
+            nr.n2 = dt.Value.Month % 10;
+            nr.n5 = dt.Value.Year / 1000;
+            nr.n6 = dt.Value.Year / 100 % 10;
+            nr.n7 = dt.Value.Year / 10 % 10;
+            nr.n8 = dt.Value.Year % 10;
 
             return nr;
         }
         //Метод высчитывания по псевдосумме
         public static int GetFakeSum(int i)
         {
+            //throw new Exception("Test");
             string s;
             while (i >= 10)
             {
@@ -43,9 +56,9 @@ namespace WebNumeric.Calculation
             return i;
         }
         //Из даты в жизненный код
-        public static int GetLC(DateTime dt)
+        public static int GetLC(DateTime? dt)
         {
-            string s = dt.ToShortDateString();
+            string s = dt.Value.ToShortDateString();
             s = s.Replace(".", string.Empty);
             var c = s.ToCharArray();
             char[] ch1 = new char[2] { c[0], c[1] };
@@ -55,6 +68,14 @@ namespace WebNumeric.Calculation
             string s2 = new string(ch2);
             string s3 = new string(ch3);
             int i = Convert.ToInt32(s1) * Convert.ToInt32(s2) * Convert.ToInt32(s3);
+
+            return i;
+        }
+        //для англ
+        public static int GetLC1(DateTime? dt)
+        {
+            
+            int i = dt.Value.Month * dt.Value.Day * dt.Value.Year;
 
             return i;
         }

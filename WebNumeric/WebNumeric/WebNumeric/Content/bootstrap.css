@@ -6791,47 +6791,7 @@ th.visible-print,
 td.visible-print {
   display: none !important;
 }
-.mytable {
-    border-collapse:collapse;
-    border:3px solid black;
-}
-.mytd {
-    border: 2px solid black;
-    border-collapse:collapse;
-    text-align:center;
-    color:black;
-}
-.mytdbot {
-    /*border: 2px solid black;*/
-    border-top: 2px solid black;
-    border-left: 2px solid black;
-    border-right: 2px solid black;
-    /*border-collapse: collapse;*/
-    text-align: center;
-    color: black;
-}
-.mytdtop {
-    /*border: 2px solid black;*/
-    border-bottom: 2px solid black;
-    border-left: 2px solid black;
-    border-right: 2px solid black;
-    /*border-collapse: collapse;*/
-    text-align: center;
-    color: black;
-}
 
-.backcolor1 {
-    background-color:mediumpurple;
-}
-.backcolor2 {
-    background-color:bisque;
-}
-.text-color1 {
-    color:blue;
-}
-.text-color2 {
-    color:red;
-}
 
 @media print {
   .visible-print {

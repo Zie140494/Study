@@ -38,39 +38,39 @@ namespace WebNumeric.Controllers
         [HttpPost]
         public ActionResult Matrix(DateTime? Date)
         {
-            //ViewBag.Error = Date.ToString();
-            //return View("~/Views/Home/MatrixError.cshtml");
             if (Date != null)
             {
-                //Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
                 try
                 {
-                    var dtStr = String.Format("{0:dd-MM-yyyy}", Date);
-                    //DateTime dt = DateTime.ParseExact(Date.Value.ToShortDateString(), "DD.MM.yyyy", CultureInfo.InvariantCulture);
-                    DateTime dt = Convert.ToDateTime(dtStr);
-                    dt.ToUniversalTime();
-                    
-                    var nr8 = Calculation.Calculate.GetRow1(dt);
+                    var nr8 = Calculation.Calculate.GetRow1(Date);
                     string s = nr8.n1.ToString() + nr8.n2.ToString() + nr8.n3.ToString() + nr8.n4.ToString() + nr8.n5.ToString() + nr8.n6.ToString() + nr8.n7.ToString() + nr8.n8.ToString();
+
+                    int numOfFate= Calculation.Calculate.GetSum(Convert.ToInt32(s)); ;
+                    while (numOfFate>14)
+                    {
+                        if (numOfFate==22 || numOfFate==33)
+                        {
+                            break;
+                        }
+                        numOfFate = Calculation.Calculate.GetSum(Convert.ToInt32(numOfFate.ToString()));
+                    }
                     
-                    //6-19-12019
-                    int numOfFate = Calculation.Calculate.GetFakeSum(Convert.ToInt32(s));
                     //ViewBag.Error = numOfFate.ToString();
                     //return View("~/Views/Home/MatrixError.cshtml");
-                    int LC = Calculation.Calculate.GetLC1(dt);
+                    int LC = Calculation.Calculate.GetLC1(Date);
                     int firstNum = nr8.n1 + nr8.n2 + nr8.n3 + nr8.n4 + nr8.n5 + nr8.n6 + nr8.n7 + nr8.n8;
-                    int secondNum = Calculation.Calculate.GetFakeSum(firstNum);
+                    int secondNum = Calculation.Calculate.GetSum(firstNum);
                     int cnt;
                     if (nr8.n1 != 0)
                         cnt = 2 * nr8.n1;
                     else
                         cnt = 2 * nr8.n2;
                     int thirdNum = firstNum - cnt;
-                    int fourthNum = Calculation.Calculate.GetFakeSum(thirdNum);
+                    int fourthNum = Calculation.Calculate.GetSum(thirdNum);
                     int addingNum;
-                    if (dt.Year > 1999)
+                    if (Date.Value.Year > 1999)
                     {
-                        addingNum = dt.Year - dt.Day - dt.Month - firstNum - secondNum - thirdNum - fourthNum;
+                        addingNum = Date.Value.Year - Date.Value.Day - Date.Value.Month - firstNum - secondNum - thirdNum - fourthNum;
                     }
                     else
                         addingNum = 0;
@@ -89,7 +89,7 @@ namespace WebNumeric.Controllers
                     string SecSkill8 = Calculation.Calculate.GetNumSecSkill(d2[1], d2[5], d2[9]);
 
                     #region Формирование сумки на форму
-                    ViewBag.date = dt.ToShortDateString();
+                    ViewBag.date = Date.Value.ToShortDateString();
                     ViewBag.fateNum = numOfFate;
                     ViewBag.lifeCode = LC;
 

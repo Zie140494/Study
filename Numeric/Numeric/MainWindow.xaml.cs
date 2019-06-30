@@ -260,12 +260,12 @@ namespace Numeric
                     excel.WriteToCell(1, 1, SYtb1.Text);
 
                     var del = 31;
-                    for (int h = -1; h < 10; h++)
+                    for (int h = -1; h < 11; h++)
                     {
                         excel.Hide(del + h);
                     }
                     
-                    excel.Unhide(del + Calculation.Calc.SYCurrentValue(nr12, dt1));
+                    excel.Unhide(++del + Calculation.Calc.SYCurrentValue(nr12, dt1));
                     
                     excel.Save();
                     excel.Close();
@@ -289,54 +289,57 @@ namespace Numeric
             bool IsDate1 = DateTime.TryParse(MPtb1.Text, out dt1);
             if (IsDate1)
             {
-                var nr8 = Calculation.Calc.GetRow(dt1);
-                string s = nr8.n1.ToString() + nr8.n2.ToString() + nr8.n3.ToString() + nr8.n4.ToString() + nr8.n5.ToString() + nr8.n6.ToString() + nr8.n7.ToString() + nr8.n8.ToString();
-                int numOfFate = 0;
-                int TestFate = Convert.ToInt32(s);
-                while (!(TestFate<10 || TestFate==11||TestFate==22||TestFate==33))
-                {
-                    TestFate = Calculation.Calc.GetSum(Convert.ToInt32(TestFate));
-                }
-                switch (TestFate)
-                {
-                    case 11:
-                        numOfFate = 11;
-                        break;
-                    case 22:
-                        numOfFate = 22;
-                        break;
-                    case 33:
-                        numOfFate = 33;
-                        break;
-                    default:
-                        numOfFate = TestFate;
-                        break;
-                }
-
-                int LC = Calculation.Calc.GetLC(dt1);
-                int firstNum = nr8.n1 + nr8.n2 + nr8.n3 + nr8.n4 + nr8.n5 + nr8.n6 + nr8.n7 + nr8.n8;
-                int secondNum = Calculation.Calc.GetFakeSum(firstNum);
-                int cnt;
-                if (nr8.n1 != 0)
-                    cnt = 2 * nr8.n1;
-                else
-                    cnt = 2 * nr8.n2;
-                int thirdNum = firstNum - cnt;
-                int fourthNum = Calculation.Calc.GetFakeSum(thirdNum);
-                int addingNum;
-                if (dt1.Year > 1999)
-                {
-                    addingNum = dt1.Year - dt1.Day - dt1.Month - firstNum - secondNum - thirdNum - fourthNum;
-                }
-                else
-                    addingNum = 0;
-
-                var d = Calculation.Calc.GetSequenceForm(Convert.ToInt32(s), firstNum, secondNum, thirdNum, fourthNum);
-                var d2 = Calculation.Calc.GetSequencecalc(Convert.ToInt32(s), firstNum, secondNum, thirdNum, fourthNum);
-                
-
                 try
                 {
+                    MessageBox.Show("Начинается рассчет, нажмите /'ОК/' для продолжения");
+                    var nr8 = Calculation.Calc.GetRow(dt1);
+                    string s = nr8.n1.ToString() + nr8.n2.ToString() + nr8.n3.ToString() + nr8.n4.ToString() + nr8.n5.ToString() + nr8.n6.ToString() + nr8.n7.ToString() + nr8.n8.ToString();
+                    int numOfFate = 0;
+                    int TestFate = Convert.ToInt32(s);
+                    while (!(TestFate<10 || TestFate==11||TestFate==22||TestFate==33))
+                    {
+                        TestFate = Calculation.Calc.GetSum(Convert.ToInt32(TestFate));
+                    }
+                    switch (TestFate)
+                    {
+                        case 11:
+                            numOfFate = 11;
+                            break;
+                        case 22:
+                            numOfFate = 22;
+                            break;
+                        case 33:
+                            numOfFate = 33;
+                            break;
+                        default:
+                            numOfFate = TestFate;
+                        break;
+                }
+
+                    int LC = Calculation.Calc.GetLC(dt1);
+                    int firstNum = nr8.n1 + nr8.n2 + nr8.n3 + nr8.n4 + nr8.n5 + nr8.n6 + nr8.n7 + nr8.n8;
+                    int secondNum = Calculation.Calc.GetFakeSum(firstNum);
+                    int cnt;
+                    if (nr8.n1 != 0)
+                        cnt = 2 * nr8.n1;
+                    else
+                        cnt = 2 * nr8.n2;
+                    int thirdNum = firstNum - cnt;
+                    int fourthNum = Calculation.Calc.GetFakeSum(thirdNum);
+                    int addingNum;
+                    if (dt1.Year > 1999)
+                    {
+                        addingNum = dt1.Year - dt1.Day - dt1.Month - firstNum - secondNum - thirdNum - fourthNum;
+                    }
+                    else
+                        addingNum = 0;
+
+                    var d = Calculation.Calc.GetSequenceForm(Convert.ToInt32(s), firstNum, secondNum, thirdNum, fourthNum);
+                    var d2 = Calculation.Calc.GetSequencecalc(Convert.ToInt32(s), firstNum, secondNum, thirdNum, fourthNum);
+
+                    //MessageBox.Show("Рассчет окончен, нажмите /'ОК/' для продолжения");
+
+                    //MessageBox.Show("Начинается генерация файлов Excel, нажмите /'ОК/' для продолжения");
                     #region excel
                     string pathEx = @"C:\Test\MPTest.xlsx";
                     string pathPdf = string.Format(@"C:\Test\{0}.pdf", MPtbF.Text);
@@ -413,6 +416,8 @@ namespace Numeric
                         pathPdfSoch = string.Format(@"C:\Test\{0}_Soch_{1}.pdf", MPtbF.Text, i.ToString());
                     }
 
+                    //MessageBox.Show("Генерация файлов Excel окончена, нажмите /'ОК/' для продолжения");
+                    //MessageBox.Show("Начало обработки файла Excel, нажмите /'ОК/' для продолжения");
                     Excel excelSoch = new Excel(pathExSoch, 1);
                     #endregion
 
@@ -634,23 +639,28 @@ namespace Numeric
                     }
                     excel.Unhide(225 + Calculation.Calc.GetFakeSum(dt1.Day));
 
-                    Task[] tasks1 = new Task[3]
-                    {
-                         new Task(() => MatrixCalc(excelProf1,all,2602,true,false)),
-                         new Task(() => MatrixCalc(excelProf2,all,2700,false,false)),
-                         new Task(() => MatrixCalc(excelSoch,all,2000,true,dt1.Year<1999))
-                    };
-                    foreach (var t in tasks1)
-                        t.Start();
-                    Task.WaitAll(tasks1);
+                    //Task[] tasks1 = new Task[3]
+                    //{
+                    //     new Task(() => MatrixCalc(excelProf1,all,2602,true,false)),
+                    //     new Task(() => MatrixCalc(excelProf2,all,2700,false,false)),
+                    //     new Task(() => MatrixCalc(excelSoch,all,2000,true,dt1.Year<1999))
+                    //};
+                    //foreach (var t in tasks1)
+                    //    t.Start();
+                    //Task.WaitAll(tasks1);
 
 
                     MatrixCalc(excelCom, all, 2500, true, false);
+
+                    MatrixCalc(excelProf1, all, 2602, true, false);
+                    MatrixCalc(excelProf2, all, 2700, false, false);
+                    MatrixCalc(excelSoch, all, 2000, true, dt1.Year < 1999);
 
                     excel.HideCol(5);
 
                     excel.Save();
                     excel.Close();
+                    //MessageBox.Show("Обработка окончера, генерация pdf-файлов, нажмите /'ОК/' для продолжения");
                     Calculation.Calc.ExportWorkbookToPdf(pathEx, pathPdf);
                     Calculation.Calc.ExportWorkbookToPdf(pathExCom, pathPdfCom);
                     Calculation.Calc.ExportWorkbookToPdf(pathExProf1, pathPdfProf1);
@@ -829,6 +839,12 @@ namespace Numeric
                             {
                                 excel.Hide(del + h);
                             }
+
+                            for (int h = 4; h < 11; h++)
+                            {
+                                excel.Unhide(h);
+                            }
+
                             foreach (var nt in Calculation.Calc.GetWithoutDublicate6(nr6cell7Sum))
                             {
                                 excel.Unhide(del + nt);

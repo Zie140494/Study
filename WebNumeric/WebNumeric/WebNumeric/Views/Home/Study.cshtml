@@ -1,175 +1,138 @@
 ﻿<p>
-    <ol>
-        Виды обучения - Пифагорейская школа
-        <li>Классическая Нумерология - «сам себе Нумеролог» или «Новичок»</li>
-        <li>Ведическая и Индийская Нумерология</li>
-        <li>Нумерология Таро</li>
-        <li>Мандалы</li>
-        <li>Нумерология здоровья</li>
-        <li>Прогнозирование</li>
-    </ol>
+    Виды обучения - Пифагорейская школа
 </p>
+<ul class="list4b">
+    <li>Классическая Нумерология - «сам себе Нумеролог» или «Новичок»</li>
+    <li>Ведическая и Индийская Нумерология</li>
+    <li>Нумерология Таро</li>
+    <li>Мандалы</li>
+    <li>Нумерология здоровья</li>
+    <li>Прогнозирование</li>
+</ul>
 
+<ul class="rslides">
+    <li><img src="~/Content/Study/1.jpg" alt="" /></li>
+    <li><img src="~/Content/Study/2.jpg" alt="" /></li>
+    <li><img src="~/Content/Study/3.jpg" alt="" /></li>
+    <li><img src="~/Content/Study/4.jpg" alt="" /></li>
+    <li><video autoplay controls loop height="550"><source src="~/Content/Study/Video1.mov" /></video></li>
+    <li><video autoplay controls loop height="550"><source src="~/Content/Study/Video2.mov" /></video></li>
+</ul>
 
-<div class="all">
-    <input checked type="radio" name="respond" id="desktop">
-    <article id="slider">
-        <input checked type="radio" name="slider" id="switch1">
-        <input type="radio" name="slider" id="switch2">
-        <input type="radio" name="slider" id="switch3">
-        <div id="slides">
-            <div id="overflow">
-                <div class="image">
-                    <article><img src="~/Content/Study/1.jpg"></article>
-                    <article><img src="~/Content/Study/2.JPG"></article>
-                    <article><img src="~/Content/Study/3.JPG"></article>
-                    <article><img src="~/Content/Study/4.jpg"></article>
-                    <article><video autoplay controls loop height="550"><source src="~/Content/Study/Video1.mov"/></video></article>
-                    <article><video autoplay controls loop height="550"><source src="~/Content/Study/Video2.mov"/></video></article>
-                </div>
-            </div>
-        </div>
-        <div id="controls">
-            <label for="switch1"></label>
-            <label for="switch2"></label>
-            <label for="switch3"></label>
-        </div>
-        <div id="active">
-            <label for="switch1"></label>
-            <label for="switch2"></label>
-            <label for="switch3"></label>
-        </div>
-    </article>
-</div>
 
 <style>
-    #slider { /*положение слайдера*/
+    .rslides {
         position: relative;
-        text-align: center;
-        top: 10px;
-    }
-
-    #slider { /*центровка слайдера*/
-        margin: 0 auto;
-    }
-
-    #slides article { /*все изображения справа друг от доруга*/
-        width: 10%;
-        float: left;
-        
-    }
-
-    #slides .image { /*устанавливает общий размер блока с изображениями*/
-        width: 500%;
-        line-height: 0;
-        display: flex;
-        align-items: center;
-    }
-
-    #overflow { /*сркывает все, что находится за пределами этого блока*/
-        width: 100%;
+        list-style: none;
         overflow: hidden;
-    }
-
-    article img { /*размер изображений слайдера*/
-        width: 98%;
-        height: 98%;
-        
-        /*padding-top: 100px;*/
-    }
-       
-    #desktop:checked ~ #slider { /*размер всего слайдера*/
-        max-width: 960px; /*максимальнная длинна*/
-    }
-
-    /*настройка переключения и положения для левой стрелки*/
-    /*если свич1-5 активны, то идет обращение к лейблу из блока с id контролс*/
-    #switch1:checked ~ #controls label:nth-child(3),
-    #switch2:checked ~ #controls label:nth-child(1),
-    #switch3:checked ~ #controls label:nth-child(2){
-        background: url('/Content/prev.png') no-repeat; /*заливка фона картинкой без повторений*/
-        float: left;
-        margin: 0 0 0 -84px; /*сдвиг влево*/
-        display: block;
-        height: 68px;
-        width: 68px;
-    }
-
-    /*настройка переключения и положения для правой стрелки*/
-    #switch1:checked ~ #controls label:nth-child(2),
-    #switch2:checked ~ #controls label:nth-child(3),
-    #switch3:checked ~ #controls label:nth-child(1) {
-        background: url('/Content/next.png') no-repeat; /*заливка фона картинкой без повторений*/
-        float: right;
-        margin: 0 -84px 0 0; /*сдвиг вправо*/
-        display: block;
-        height: 68px;
-        width: 68px;
-    }
-
-    label, a { /*при наведении на стрелки или переключатели - курсор изменится*/
-        cursor: pointer;
-    }
-
-    .all input { /*скрывает стандартные инпуты (чекбоксы) на странице*/
-        display: none;
-    }
-
-    /*позиция изображения при активации переключателя*/
-    #switch1:checked ~ #slides .image {
-        margin-left: 0;
-    }
-
-    #switch2:checked ~ #slides .image {
-        margin-left: -100%;
-    }
-
-    #switch3:checked ~ #slides .image {
-        margin-left: -200%;
-    }
-
-    #controls { /*положение блока всех управляющих элементов*/
-        margin: -25% 0 0 0;
         width: 100%;
-        height: 50px;
+        padding: 0;
+        margin: 0;
     }
 
-    #active label { /*стиль отдельного переключателя*/
-        border-radius: 10px; /*скругление углов*/
-        display: inline-block; /*расположение в строку*/
-        width: 15px;
-        height: 15px;
-        background: #bbb;
-    }
-
-    #active { /*расположение блока с переключателями*/
-        margin: 23% 0 0;
-        text-align: center;
-    }
-
-        #active label:hover { /*поведение чекбокса при наведении*/
-            background: #76c8ff;
-            border-color: #777 !important; /*выполнение в любом случае*/
+        .rslides li {
+            position: absolute;
+            display: none;
+            width: 100%;
+            left: 0;
+            top: 0;
         }
 
-    /*цвет активного лейбла при активации чекбокса*/
-    #switch1:checked ~ #active label:nth-child(1),
-    #switch2:checked ~ #active label:nth-child(2),
-    #switch3:checked ~ #active label:nth-child(3){
-        background: #18a3dd;
-        border-color: #18a3dd !important;
-    }
+            .rslides li:first-child {
+                position: relative;
+                display: block;
+                float: left;
+            }
 
-    #slides .image { /*анимация пролистывания изображений*/
-        transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+        .rslides img {
+            display: block;
+            height: auto;
+            float: left;
+            width: 100%;
+            border: 0;
+        }
+.list4b {
+    padding:0;
+    list-style: none;
+    counter-reset: li;
+}    
+.list4b li {
+    position: relative;
+    padding:12px 20px 20px 28px;
+    margin-left: 40px;
+    transition-duration: 0.3s;
+}
+.list4b li:before {
+    border: 6px solid transparent;
+    line-height: 30px;
+    position: absolute;
+    top: 0;
+    left:-30px;
+    width:42px;
+    text-align:center;
+    font-size: 13px;
+    font-weight: bold;
+    color: #ADCEE9;
+    counter-increment: li;
+    content: counter(li);
+    transition-duration: 0.3s;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;    
+}
+.list4b li:hover:before {
+    color: #337AB7;
+}
+.list4b li:after {
+    position: absolute;
+    top: 0;
+    left: -30px;
+    width: 42px;
+    height: 42px;
+    border: 6px solid #DDDDDD;
+    border-radius: 50%;
+    content: '';
+    opacity: 0.5;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;    
+}
+.list4b li:hover:after {
+    animation: 500ms ease-in-out 0s bounceIn;
+    opacity: 1;
+    border: 6px solid #ADCEE9;    
+}    
+ 
+keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale3d(.3, .3, .3);
     }
-
-    #controls label:hover { /*прозрачность стрелок при наведении*/
-        opacity: 0.6;
+    20% {
+        transform: scale3d(1.3, 1.3, 1.3);
     }
-
-    #controls label { /*прозрачность стрелок при отводе курсора*/
-        transition: opacity 0.2s ease-out;
+    40% {
+        transform: scale3d(.9, .9, .9);
     }
+    60% {
+        opacity: 1;
+        transform: scale3d(1.03, 1.03, 1.03);
+    }
+    80% {
+        transform: scale3d(.97, .97, .97);
+    }
+    to {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+    }
+}
 </style>
+<script type="text/javascript">
+        $(function () {
+            $(".rslides").responsiveSlides(
+                {
+                    auto: true
+                })
+        });
+</script>
 

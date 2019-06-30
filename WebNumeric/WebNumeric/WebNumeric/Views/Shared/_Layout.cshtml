@@ -4,98 +4,98 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <META NAME="robots" CONTENT="noindex,nofollow">
     <title>Нумерология</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <link rel="stylesheet" type="text/css" href="~/Content/lightbox.min.css" />
-    <ul style="list-style-type:none; text-align:center;padding-left:250px;padding-top:0px;">
-        @*<li style="display:inline;">
-                <a href="http://htmlbook.ru/html/img">
-                    <img src="~/Content/Whatsapp.png" width="70" height="70" />
-                </a>
-            </li>*@
-        <li style="display:inline;">
-            <a href="https://www.instagram.com/zhuuuuz_numerology77/">
-                <img src="~/Content/instagram.png" width="70" height="70" />
-            </a>
-        </li>
-        <li style="display:inline;">
-            <a href="https://www.youtube.com/channel/UCMXoJ0hMVjXFA35sEFksIGQ">
-                <img src="~/Content/YouTube.png" width="70" height="70" />
-            </a>
-        </li>
-    </ul>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="~/Scripts/responsiveslides.min.js"></script>
 </head>
 <body>
-    <div class="wrapper">
-        <div>
-            <ul class="nav flex-column col-sm-1">
-                <li class="nav-item">
-                    <a class="nav-link active" href="/Home/Index">Главная</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/Home/About">О нумерологии</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/Home/Result">Стоимость консультации</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/Home/Study">Обучение и мастер-классы</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/Home/Review">Отзывы</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/Home/Matrix">Матрица пифагора</a>
-                </li>
-            </ul>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="/Home/Index" class="navbar-brand" >zhuuuuznumerology77</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="/Home/About">О нумерологии</a>
+                        </li>
+                        <li>
+                            <a href="/Home/Result">Стоимость консультации</a>
+                        </li>
+                        <li>
+                            <a href="/Home/Study">Обучение и мастер-классы</a>
+                        </li>
+                        <li>
+                            <a href="/Home/Review">Отзывы</a>
+                        </li>
+                        <li>
+                            <a href="/Home/Matrix">Матрица пифагора</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <partial name="_CookieConsentPartial" />
+
+        <div class="container body-content" style="width:100%">
+            @RenderBody()
+            <hr />
+            <footer>
+                <ul style="list-style-type:none; text-align:center;padding-left:0;">
+                    @*<li style="display:inline;">
+                <a href="http://htmlbook.ru/html/img">
+                    <img src="~/Content/Whatsapp.png" width="40" height="40" />
+                </a>
+            </li>*@
+                    <li style="display:inline;">
+                        <a href="https://www.instagram.com/zhuuuuz_numerology77/">
+                            <img src="~/Content/instagram.png" width="40" height="40" />
+                        </a>
+                    </li>
+                    <li style="display:inline;">
+                        <a href="https://www.youtube.com/channel/UCMXoJ0hMVjXFA35sEFksIGQ">
+                            <img src="~/Content/YouTube.png" width="40" height="40" />
+                        </a>
+                    </li>
+                </ul>
+            </footer>
         </div>
-        <div>@RenderBody()</div>
-        <hr />
-        <footer>
-            <ul style="list-style-type:none; text-align:center;padding-left:0;">
-                @*<li style="display:inline;">
-                    <a href="http://htmlbook.ru/html/img">
-                        <img src="~/Content/Whatsapp.png" width="40" height="40" />
-                    </a>
-                </li>*@
-                <li style="display:inline;">
-                    <a href="https://www.instagram.com/zhuuuuz_numerology77/">
-                        <img src="~/Content/instagram.png" width="40" height="40" />
-                    </a>
-                </li>
-                <li style="display:inline;">
-                    <a href="https://www.youtube.com/channel/UCMXoJ0hMVjXFA35sEFksIGQ">
-                        <img src="~/Content/YouTube.png" width="40" height="40" />
-                    </a>
-                </li>
-            </ul>
-        </footer>
-    </div>
-    
-    
-    <script type="text/javascript" src="~/Content/lightbox-plus-jquery.min.js"></script>
-    @RenderSection("scripts", required: false)
-    <script>
-        $(document).ready(function () {
-            SomeeAdsRemover();
-        });
 
-        function SomeeAdsRemover() {
-            $("center").each(function () {
-                if ($(this).html() == '<a href="http://somee.com">Web hosting by Somee.com</a>') {
-                    $(this).next().remove();
-                    $(this).next().next().remove();
-                    $(this).next().next().next().remove();
-                    $(this).remove();
-
-                    return false;
-                }
+        @RenderSection("scripts", required: false)
+        
+        <script>
+            $(document).ready(function () {
+                SomeeAdsRemover();
             });
-        }
-    </script>
-</body>
+
+            function SomeeAdsRemover() {
+                $("center").each(function () {
+                    if ($(this).html() == '<a href="http://somee.com">Web hosting by Somee.com</a>') {
+                        $(this).next().remove();
+                        $(this).next().next().remove();
+                        $(this).next().next().next().remove();
+                        $(this).remove();
+
+                        return false;
+                    }
+                });
+            }
+        </script>
+
+    </body>
 
 </html>

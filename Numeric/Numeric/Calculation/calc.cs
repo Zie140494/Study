@@ -116,7 +116,7 @@ namespace Numeric.Calculation
                     list.Add(1);
                     break;
                 case 33:
-                    list.Add(1);
+                    list.Add(3);
                     break;
                 case 22:
                     list.Add(4);
@@ -196,7 +196,7 @@ namespace Numeric.Calculation
                     return "20/1";
                     break;
                 case 33:
-                    return "33/1";
+                    return "33/3";
                     break;
                 case 22:
                     return "22/4";

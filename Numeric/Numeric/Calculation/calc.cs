@@ -107,6 +107,8 @@ namespace Numeric.Calculation
         }
         public static void addWithAddingNum(List<int> list, int i)
         {
+            if (i > 57)
+                i = GetSum(i);
             switch (i)
             {
                 case 56:

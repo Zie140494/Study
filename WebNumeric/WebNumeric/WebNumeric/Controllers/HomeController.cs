@@ -66,6 +66,7 @@ namespace WebNumeric.Controllers
                     else
                         cnt = 2 * nr8.n2;
                     int thirdNum = firstNum - cnt;
+                    thirdNum = thirdNum < 0 ? 0 : thirdNum;
                     int fourthNum = Calculation.Calculate.GetSum(thirdNum);
                     int addingNum;
                     if (Date.Value.Year > 1999)
@@ -119,6 +120,8 @@ namespace WebNumeric.Controllers
 
                     string st = "";
 
+                    if (SecSkill3 == "нет")
+                        SecSkill3 = "0";
 
                     switch (Convert.ToInt32(SecSkill3))
                     {

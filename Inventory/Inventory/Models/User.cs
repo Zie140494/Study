@@ -7,12 +7,11 @@ namespace Inventory.Models
     public class User
     {
         public int Id { get; set; }
-        public string Adress { get; set; }
-        public string Division { get; set; }
-        public string Status { get; set; }
-        public string Division2 { get; set; }
-        public string Division3 { get; set; }
         public string Position { get; set; }
         public string Name { get; set; }
+        public SysBlock SysBlock { get; set; }
+        public SysBlock Monitor { get; set; }
+        public SysBlock Printer { get; set; }
+        public SysBlock Phone { get; set; }
     }
 }

@@ -5,8 +5,149 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Inventory"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Инвентаризация" Height="450" Width="800">
     <Grid>
-
+        <TabControl x:Name="tabControl" SelectionChanged="tabControl_SelectionChanged">
+            <TabItem Header="Пользователи">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8">Добавить</Button>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8">Изменить</Button>
+                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8">Удалить</Button>
+                    <DataGrid Grid.ColumnSpan="3" Margin="7" x:Name="userGrid" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" />
+                            <DataGridTextColumn Header="Сотрудник" Binding="{Binding Path=Name}" />
+                            <DataGridTextColumn Header="Должность" Binding="{Binding Path=Position}" />
+                            <DataGridTextColumn Header="№ Системного блока" Binding="{Binding Path=SysBlock.Id}" />
+                            <DataGridTextColumn Header="№ Монитора" Binding="{Binding Path=Monitor.Id}" />
+                            <DataGridTextColumn Header="№ Принтера" Binding="{Binding Path=Printer.Id}" />
+                            <DataGridTextColumn Header="№ Телефона" Binding="{Binding Path=Phone.Id}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Системники">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8">Добавить</Button>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8">Изменить</Button>
+                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8">Удалить</Button>
+                    <DataGrid Grid.ColumnSpan="3" Margin="7" x:Name="sysBlockGrid" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" />
+                            <DataGridCheckBoxColumn Header="Используется" Binding="{Binding Path=Status}"/>
+                            <DataGridTextColumn Header="Тип" Binding="{Binding Path=TypeDevice}"/>
+                            <DataGridTextColumn Header="Модель" Binding="{Binding Path=Model}"/>
+                            <DataGridTextColumn Header="CPU" Binding="{Binding Path=CPU}"/>
+                            <DataGridTextColumn Header="Частота" Binding="{Binding Path=Frequency}"/>
+                            <DataGridTextColumn Header="ОЗУ" Binding="{Binding Path=RAM}"/>
+                            <DataGridTextColumn Header="HDD" Binding="{Binding Path=HDD}"/>
+                            <DataGridTextColumn Header="Серийный номер" Binding="{Binding Path=SerialNumber}"/>
+                            <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Provider}"/>
+                            <DataGridTextColumn Header="Дата покупки" Binding="{Binding Path=DateOfPurchase}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Мониторы">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8">Добавить</Button>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8">Изменить</Button>
+                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8">Удалить</Button>
+                    <DataGrid Grid.ColumnSpan="3" Margin="7" x:Name="monitorGrid" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" />
+                            <DataGridCheckBoxColumn Header="Используется" Binding="{Binding Path=Status}"/>
+                            <DataGridTextColumn Header="Тип" Binding="{Binding Path=TypeDevice}"/>
+                            <DataGridTextColumn Header="Модель" Binding="{Binding Path=Model}"/>
+                            <DataGridTextColumn Header="Диагональ" Binding="{Binding Path=Diagonal}"/>
+                            <DataGridTextColumn Header="Серийный номер" Binding="{Binding Path=SerialNumber}"/>
+                            <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Provider}"/>
+                            <DataGridTextColumn Header="Дата покупки" Binding="{Binding Path=DateOfPurchase}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Принтеры">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8">Добавить</Button>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8">Изменить</Button>
+                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8">Удалить</Button>
+                    <DataGrid Grid.ColumnSpan="3" Margin="7" x:Name="printerGrid" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" />
+                            <DataGridCheckBoxColumn Header="Используется" Binding="{Binding Path=Status}"/>
+                            <DataGridTextColumn Header="Тип" Binding="{Binding Path=TypeDevice}"/>
+                            <DataGridTextColumn Header="Модель" Binding="{Binding Path=Model}"/>
+                            <DataGridTextColumn Header="Серийный номер" Binding="{Binding Path=SerialNumber}"/>
+                            <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Provider}"/>
+                            <DataGridTextColumn Header="Дата покупки" Binding="{Binding Path=DateOfPurchase}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Телефоны">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8">Добавить</Button>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8">Изменить</Button>
+                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8">Удалить</Button>
+                    <DataGrid Grid.ColumnSpan="3" Margin="7" x:Name="phoneGrid" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" />
+                            <DataGridCheckBoxColumn Header="Используется" Binding="{Binding Path=Status}"/>
+                            <DataGridTextColumn Header="Тип" Binding="{Binding Path=TypeDevice}"/>
+                            <DataGridTextColumn Header="Модель" Binding="{Binding Path=Model}"/>
+                            <DataGridTextColumn Header="Серийный номер" Binding="{Binding Path=SerialNumber}"/>
+                            <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Provider}"/>
+                            <DataGridTextColumn Header="Дата покупки" Binding="{Binding Path=DateOfPurchase}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

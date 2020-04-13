@@ -7,7 +7,7 @@ namespace Inventory.Models
 {
     public class Monitor : Device
     {
-        [Key]
+       
         public int Id { get; set; }
         public string Diagonal { get; set; }
     }

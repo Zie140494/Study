@@ -14,4 +14,22 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="Forms\SysBlockForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Forms\MonitorForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Forms\PhoneForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Forms\PrinterForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Forms\UserForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

@@ -7,7 +7,7 @@ namespace Inventory.Models
 {
     public class Phone : Device
     {
-        [Key]
-        public int Id { get; set; }
+
+        
     }
 }

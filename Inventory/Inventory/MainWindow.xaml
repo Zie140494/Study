@@ -19,9 +19,9 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8">Добавить</Button>
-                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8">Изменить</Button>
-                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8">Удалить</Button>
+                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8" Click="Add">Добавить</Button>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8" Click="Edit">Изменить</Button>
+                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8" Click="Delete">Удалить</Button>
                     <DataGrid Grid.ColumnSpan="3" Margin="7" x:Name="userGrid" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" />
@@ -46,9 +46,9 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8">Добавить</Button>
-                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8">Изменить</Button>
-                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8">Удалить</Button>
+                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8" Click="Add">Добавить</Button>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8" Click="Edit">Изменить</Button>
+                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8" Click="Delete">Удалить</Button>
                     <DataGrid Grid.ColumnSpan="3" Margin="7" x:Name="sysBlockGrid" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" />
@@ -77,9 +77,9 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8">Добавить</Button>
-                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8">Изменить</Button>
-                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8">Удалить</Button>
+                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8" Click="Add">Добавить</Button>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8" Click="Edit">Изменить</Button>
+                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8" Click="Delete">Удалить</Button>
                     <DataGrid Grid.ColumnSpan="3" Margin="7" x:Name="monitorGrid" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" />
@@ -105,9 +105,9 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8">Добавить</Button>
-                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8">Изменить</Button>
-                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8">Удалить</Button>
+                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8" Click="Add">Добавить</Button>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8" Click="Edit">Изменить</Button>
+                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8" Click="Delete">Удалить</Button>
                     <DataGrid Grid.ColumnSpan="3" Margin="7" x:Name="printerGrid" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" />
@@ -132,9 +132,9 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8">Добавить</Button>
-                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8">Изменить</Button>
-                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8">Удалить</Button>
+                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8" Click="Add">Добавить</Button>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8" Click="Edit">Изменить</Button>
+                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8" Click="Delete">Удалить</Button>
                     <DataGrid Grid.ColumnSpan="3" Margin="7" x:Name="phoneGrid" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" />

@@ -7,6 +7,8 @@ namespace Inventory.Models
 {
     public abstract class Device
     {
+        [Key]
+        public int Id { get; set; }
         public bool Status { get; set; }
         public string TypeDevice { get; set; }
         public string Model { get; set; }

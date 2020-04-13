@@ -7,7 +7,5 @@ namespace Inventory.Models
 {
     public class Printer : Device
     {
-        [Key]
-        public int Id { get; set; }
     }
 }

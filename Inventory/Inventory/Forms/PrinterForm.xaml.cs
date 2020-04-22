@@ -35,17 +35,36 @@ namespace Inventory
             var dt = new DateTime();
             if (DateTime.TryParse(DateTb.Text, out dt))
             {
-                Printer p = new Printer()
-                {
-                    Model = ModelTb.Text,
-                    DateOfPurchase = dt,
-                    Provider = ProviderTb.Text,
-                    SerialNumber = SerialTb.Text,
-                    Status = (bool)StatusTb.IsChecked,
-                    TypeDevice = TypeTb.Text
-                };
+                
 
-                db.Printers.Add(p);
+                if (string.IsNullOrEmpty(this.Title))
+                {
+                    Printer p = new Printer()
+                    {
+                        Model = ModelTb.Text,
+                        DateOfPurchase = dt,
+                        Provider = ProviderTb.Text,
+                        SerialNumber = SerialTb.Text,
+                        Status = (bool)StatusTb.IsChecked,
+                        TypeDevice = TypeTb.Text
+                    };
+
+                    db.Printers.Add(p);
+                }
+                    
+                else
+                {
+                    var pr = db.Printers.FirstOrDefault(_ => _.Id == Convert.ToInt32(this.Title));
+                    pr.Model = ModelTb.Text;
+                    pr.DateOfPurchase = dt;
+                    pr.Provider = ProviderTb.Text;
+                    pr.SerialNumber = SerialTb.Text;
+                    pr.Status = (bool)StatusTb.IsChecked;
+                    pr.TypeDevice = TypeTb.Text;
+
+
+                    db.Printers.Update(pr);
+                }
                 db.SaveChanges();
                 this.Close();
             }

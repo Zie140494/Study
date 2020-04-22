@@ -32,6 +32,7 @@ namespace Inventory
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
+            int i;
             var dt = new DateTime();
             if ( DateTime.TryParse(DateTb.Text,out dt))
             {
@@ -46,7 +47,13 @@ namespace Inventory
                     TypeDevice = TypeTb.Text
                 };
 
-                db.Monitors.Add(m);
+                if (string.IsNullOrEmpty(this.Title))
+                    db.Monitors.Add(m);
+                else
+                {
+                    m.Id = Convert.ToInt32(this.Title);
+                    db.Monitors.Update(m);
+                }
                 db.SaveChanges();
                 this.Close();
             }

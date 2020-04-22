@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Inventory"
         mc:Ignorable="d"
-        Title="Инвентаризация" Height="360" Width="300">
+        Height="360" Width="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>

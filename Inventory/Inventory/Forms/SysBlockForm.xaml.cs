@@ -49,7 +49,14 @@ namespace Inventory
                     HDD = HDDTb.Text
                 };
 
-                db.SysBlocks.Add(s);
+                if (string.IsNullOrEmpty(this.Title))
+                    db.SysBlocks.Add(s);
+                else
+                {
+                    s.Id = Convert.ToInt32(this.Title);
+                    db.SysBlocks.Update(s);
+                }
+                
                 db.SaveChanges();
                 this.Close();
             }

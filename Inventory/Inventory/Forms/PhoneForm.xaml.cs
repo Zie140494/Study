@@ -45,7 +45,14 @@ namespace Inventory
                     TypeDevice = TypeTb.Text
                 };
 
-                db.Phones.Add(p);
+                if (string.IsNullOrEmpty(this.Title))
+                    db.Phones.Add(p);
+                else
+                {
+                    p.Id = Convert.ToInt32(this.Title);
+                    db.Phones.Update(p);
+                }
+                
                 db.SaveChanges();
                 this.Close();
             }

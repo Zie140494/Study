@@ -31,7 +31,7 @@ import { Test2Component } from './Test2/test2.component';
     MatButtonModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
+      { path: 'Result', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'Test2', component: Test2Component }
     ])

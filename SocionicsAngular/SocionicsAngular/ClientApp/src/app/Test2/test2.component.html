@@ -1,26 +1,60 @@
-<div>
+<div *ngIf="ResArray.length!=23">
   <div>
-    <label>Имя: </label>
-    <input type="text" [(ngModel)]="name" />
+    <div>
+      <label>Имя: </label>
+      <input type="text" [(ngModel)]="name" />
+    </div>
+
+    <div>
+      <label>Фамилия: </label>
+      <input type="text" [(ngModel)]="secondName" />
+    </div>
+    <div>
+      <label>Дата рождения: </label>
+      <input type="date" [(ngModel)]="dateBirth" />
+    </div>
   </div>
 
-  <div>
-    <label>Фамилия: </label>
-    <input type="text" [(ngModel)]="secondName" />
+  <div [ngSwitch]="ResArray.length">
+    <p *ngSwitchCase="0">Любите ли вы фантазировать (сочинять сцены и разыгрывать роли воображаемых героев)?</p>
+    <p *ngSwitchCase="1">Любите и вы быть в центре внимания?</p>
+    <p *ngSwitchCase="2">Любите ли заводить новые знакомства?</p>
+    <p *ngSwitchCase="3">Поражаются ли ваши друзья вашей работоспособностью и неутомимостью?</p>
+    <p *ngSwitchCase="4">Не говорили ли вам, что вы разбрасываетесь?</p>
+    <p *ngSwitchCase="5">Бывает ли, что вы много говорите и вам трудно остановиться?</p>
+    <p *ngSwitchCase="6">В детстве вы были боязливы или пугливы?</p>
+    <p *ngSwitchCase="7">Вы склонны видеть у себя много недостатков?</p>
+    <p *ngSwitchCase="8">Вы ранимы?</p>
+    <p *ngSwitchCase="9">Бывает, что вы невольно раздражаетесь при обращении с людьми?</p>
+    <p *ngSwitchCase="10">Часто ли вы чувствуете утомение от дел и общую слабость?</p>
+    <p *ngSwitchCase="11">Часто ли вы испытываете усталость?</p>
+    <p *ngSwitchCase="12">Бывало ли, что вы совершаете поступки, о которых приходлось жалеть?</p>
+    <p *ngSwitchCase="13">Можете ли вы выйти из себя и даже дать волю рукам, если вас кто то рассердит?</p>
+    <p *ngSwitchCase="14">Вы достигли бы большего, если бы люди не были настроены против вас и правильно бы понимали ваши поступки?</p>
+    <p *ngSwitchCase="15">Бывает ли, что вы не можете выбрать одно из нескольких решений?</p>
+    <p *ngSwitchCase="16">Правда ли, что вы оставляли какое то дело, т.к боялись, что не сравитесь с ним?</p>
+    <p *ngSwitchCase="17">Действительно ли, что прежде чем что-то сделать, или принять решение (даже в мелочах) вам приходится подумать?</p>
+    <p *ngSwitchCase="18">Ваше настроение улучшается, когда вы остаетесь один (одна)?</p>
+    <p *ngSwitchCase="19">Вы любите придумывать все переинаивать, делать по-своему, не так как все?</p>
+    <p *ngSwitchCase="20">Ваш внутренний мир заполнен отвлеченными идеями и фантазиями?</p>
+    <p *ngSwitchCase="21">В детстве вы отличались непослушанием?</p>
+    <p *ngSwitchCase="22">Вы наблюдаете у себя повышенную тягу к развлечениям и удовольствиям?</p>
+    <p *ngSwitchCase="23">Вы не способны сами себя занять и плохо переносите одиночество?</p>
   </div>
-  <div>
-    <label>Дата рождения: </label>
-    <input type="date" [(ngModel)]="dateBirth" />
-  </div>
+  <select [(ngModel)]="preResult">
+    <option label="Нет" value="1">Test</option>
+    <option label="Скорее нет, чем скорее да" value="2">Test2</option>
+    <option label="Скорее да, чем скорее нет" value="4">Test3</option>
+    <option label="Да" value="5">Test4</option>
+  </select>
+  <button (click)="Next()">Вперед</button>
+  <button (click)="Back()" *ngIf="ResArray.length!=0">Назад</button>
 </div>
-
-<div [ngSwitch]="preResult.length">
-  <p *ngSwitchCase="0">Вопрос1</p>
-  <p *ngSwitchCase="1">Вопрос2</p>
-  <p *ngSwitchCase="2">Вопрос3</p>
-  <div *ngSwitchCase="1">1</div>
-  <div *ngSwitchCase="2">2</div>
-  <div *ngSwitchCase="3">3</div>
-  <div *ngSwitchDefault>Test</div>
+<div *ngIf="ResArray.length==23">
+  <p>{{name}}</p>
+  <p>{{secondName}}</p>
+  <p>{{dateBirth | date: 'dd/MM/yyyy'}}</p>
+    <ul>
+      <li *ngFor="let item of ResArray">{{item}}</li>
+    </ul>
 </div>
-<

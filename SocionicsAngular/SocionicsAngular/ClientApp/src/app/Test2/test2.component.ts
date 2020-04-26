@@ -9,14 +9,24 @@ export class Test2Component implements OnInit {
   name: string;
   secondName: string;
   dateBirth: Date;
-  preResult: string = "t";
+  preResult: string = "";
   result: string = "";
   test: number = 3;
-
+  ResArray: string[]=[];
+  
   constructor() { }
 
   ngOnInit(): void {
-    this.preResult = "";
+    this.preResult = "5";
   }
-  
+
+  Next() {
+    this.ResArray.push(this.preResult);
+    if (this.ResArray.length == 23) {
+      console.log('test');
+    }
+  }
+  Back() {
+    this.ResArray.splice(-1, 1)
+  }
 }

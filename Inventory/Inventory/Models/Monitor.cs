@@ -8,7 +8,6 @@ namespace Inventory.Models
     public class Monitor : Device
     {
        
-        public int Id { get; set; }
         public string Diagonal { get; set; }
     }
 }

@@ -21,9 +21,10 @@ namespace Inventory
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window,IDisposable
     {
         DataContext db = new DataContext();
+        int tabIndex = -1;
         public MainWindow()
         {
             InitializeComponent();
@@ -31,7 +32,9 @@ namespace Inventory
 
         private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Refresh();
+            if (tabControl.SelectedIndex!=TabIndex)
+                Refresh();
+            TabIndex = tabControl.SelectedIndex;
         }
 
         private void Delete(object sender, RoutedEventArgs e)
@@ -204,6 +207,7 @@ namespace Inventory
 
         private void Refresh()
         {
+            db = new DataContext();
             switch (tabControl.SelectedIndex)
             {
                 case (int)TabEnum.User:
@@ -231,5 +235,9 @@ namespace Inventory
             }
         }
 
+        public void Dispose()
+        {
+            ((IDisposable)db).Dispose();
+        }
     }
 }

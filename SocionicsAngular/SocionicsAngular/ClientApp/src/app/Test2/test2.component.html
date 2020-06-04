@@ -1,21 +1,28 @@
-<div *ngIf="ResArray.length!=23">
-  <div>
-    <div>
+<div *ngIf="ResArray.length!=23 ">
+  <div style="display: grid" *ngIf="GetDisabled()">
+    <div class="personInfo">
       <label>Имя: </label>
-      <input type="text" [(ngModel)]="name" />
+      <input type="text" [(ngModel)]="name" class="personInfoInput" />
     </div>
 
-    <div>
+    <div class="personInfo">
       <label>Фамилия: </label>
-      <input type="text" [(ngModel)]="secondName" />
+      <input type="text" [(ngModel)]="secondName" class="personInfoInput" />
     </div>
-    <div>
+
+    <div class="personInfo">
       <label>Дата рождения: </label>
-      <input type="date" [(ngModel)]="dateBirth" />
+      <input type="date" [(ngModel)]="dateBirth" class="personInfoInput" />
     </div>
+
+    <!--<button (click)="infoSet=true" disabled="name==undefined || secondName == undefined || dateBirth== undefined">Далее</button>-->
+    <button (click)="Test()">Далее</button>
   </div>
 
-  <div [ngSwitch]="ResArray.length">
+  <h1 *ngIf="!(name == undefined || secondName == undefined || dateBirth == undefined)">TEST</h1>
+  <h1 *ngIf="GetDisabled()">TEST2</h1>
+
+  <div [ngSwitch]="ResArray.length" style="margin:5px" *ngIf="!GetDisabled()">
     <p *ngSwitchCase="0">Любите ли вы фантазировать (сочинять сцены и разыгрывать роли воображаемых героев)?</p>
     <p *ngSwitchCase="1">Любите и вы быть в центре внимания?</p>
     <p *ngSwitchCase="2">Любите ли заводить новые знакомства?</p>
@@ -41,14 +48,22 @@
     <p *ngSwitchCase="22">Вы наблюдаете у себя повышенную тягу к развлечениям и удовольствиям?</p>
     <p *ngSwitchCase="23">Вы не способны сами себя занять и плохо переносите одиночество?</p>
   </div>
-  <select [(ngModel)]="preResult">
-    <option label="Нет" value="1">Test</option>
-    <option label="Скорее нет, чем скорее да" value="2">Test2</option>
-    <option label="Скорее да, чем скорее нет" value="4">Test3</option>
-    <option label="Да" value="5">Test4</option>
-  </select>
-  <button (click)="Next()">Вперед</button>
-  <button (click)="Back()" *ngIf="ResArray.length!=0">Назад</button>
+  <div *ngIf="!GetDisabled()">
+    <div>
+      <select [(ngModel)]="preResult">
+        <option label="Нет" value="1">Test</option>
+        <option label="Скорее нет, чем скорее да" value="2">Test2</option>
+        <option label="Скорее да, чем скорее нет" value="4">Test3</option>
+        <option label="Да" value="5">Test4</option>
+      </select>
+    </div>
+    <div>
+      <button (click)="Next()">Далее</button>
+      <button (click)="Back()" *ngIf="ResArray.length!=0">Назад</button>
+    </div>
+  </div>
+
+
 </div>
 <div *ngIf="ResArray.length==23">
   <p>{{name}}</p>
@@ -58,3 +73,14 @@
       <li *ngFor="let item of ResArray">{{item}}</li>
     </ul>
 </div>
+
+
+<style>
+  .personInfo{
+    margin:5px;
+    display:grid;
+  }
+  .personInfoInput{
+    width:30%;
+  }
+</style>

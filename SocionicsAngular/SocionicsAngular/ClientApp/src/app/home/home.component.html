@@ -13,7 +13,6 @@
     <label>Дата рождения: </label>
     <input type="date" [(ngModel)]="dateBirth" />
   </div>
-  
 </div>
 
   <div *ngIf="resView">
@@ -254,8 +253,3 @@
   <div>
     <button [disabled]="preResult.length==0" *ngIf="result.length<4" (click)="Next()">Далее</button>
   </div>
-
-  <button (click)="test()">Test</button>
-
-
-

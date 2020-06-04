@@ -79,7 +79,6 @@ export class HomeComponent implements OnInit {
           break;
 
       }
-      //this.resView = this.result;
 
     }
   }

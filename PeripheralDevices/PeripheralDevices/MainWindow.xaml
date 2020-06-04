@@ -1,0 +1,116 @@
+﻿<Window x:Class="PeripheralDevices.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PeripheralDevices"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl x:Name="tabControl" SelectionChanged="tabControl_SelectionChanged">
+            <TabItem Header="Техника">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8" Click="Add">Добавить</Button>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8" Click="Edit">Изменить</Button>
+                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8" Click="Delete">Удалить</Button>
+                    <DataGrid Grid.ColumnSpan="3" Margin="7" x:Name="deviceGrid" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" />
+                            <DataGridTextColumn Header="Марка" Binding="{Binding Path=Type}" />
+                            <DataGridTextColumn Header="Модель" Binding="{Binding Path=Model}" />
+                            <DataGridTextColumn Header="№ Сотрудника" Binding="{Binding Path=Employee.Id}" />
+                            <DataGridTextColumn Header="№ Передачи" Binding="{Binding Path=Transfer.Id}" />
+                            <DataGridTextColumn Header="№ Ремонта" Binding="{Binding Path=Repair.Id}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Сотрудники">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8" Click="Add">Добавить</Button>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8" Click="Edit">Изменить</Button>
+                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8" Click="Delete">Удалить</Button>
+                    <DataGrid Grid.ColumnSpan="3" Margin="7" x:Name="employeeGrid" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" />
+                            <DataGridTextColumn Header="Имя" Binding="{Binding Path=FirstName}"/>
+                            <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=SecondName}"/>
+                            <DataGridTextColumn Header="Отчество" Binding="{Binding Path=FatherName}"/>
+                            <DataGridTextColumn Header="Звание" Binding="{Binding Path=Rank}"/>
+                            <DataGridTextColumn Header="Должность" Binding="{Binding Path=Position}"/>
+                            <DataGridTextColumn Header="Телефон" Binding="{Binding Path=Phone}"/>
+                            <DataGridTextColumn Header="Кабинет" Binding="{Binding Path=Room}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Передачи">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8" Click="Add">Добавить</Button>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8" Click="Edit">Изменить</Button>
+                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8" Click="Delete">Удалить</Button>
+                    <DataGrid Grid.ColumnSpan="3" Margin="7" x:Name="transferGrid" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" />
+                            <DataGridTextColumn Header="Номер комнаты" Binding="{Binding Path=RoomNumber}"/>
+                            <DataGridTextColumn Header="Куда отправлено" Binding="{Binding Path=Where}"/>
+                            <DataGridTextColumn Header="Дата отправки" Binding="{Binding Path=TransferDate}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Ремонты">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Grid.Row="1" Margin="25 8" Click="Add">Добавить</Button>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="25 8" Click="Edit">Изменить</Button>
+                    <Button Grid.Column="2" Grid.Row="1" Margin="25 8" Click="Delete">Удалить</Button>
+                    <DataGrid Grid.ColumnSpan="3" Margin="7" x:Name="repairGrid" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" />
+                            <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Name}" />
+                            <DataGridTextColumn Header="Сотрудник" Binding="{Binding Path=Employee}"/>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Path=Status}"/>
+                            <DataGridTextColumn Header="Дата" Binding="{Binding Path=RepairDate}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

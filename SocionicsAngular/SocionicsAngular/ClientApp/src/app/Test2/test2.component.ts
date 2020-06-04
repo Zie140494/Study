@@ -12,7 +12,8 @@ export class Test2Component implements OnInit {
   preResult: string = "";
   result: string = "";
   test: number = 3;
-  ResArray: string[]=[];
+  ResArray: string[] = [];
+  infoSet: boolean = false;
   
   constructor() { }
 
@@ -21,6 +22,8 @@ export class Test2Component implements OnInit {
   }
 
   Next() {
+    console.log(this.name, this.secondName, this.dateBirth)
+    
     this.ResArray.push(this.preResult);
     if (this.ResArray.length == 23) {
       console.log('test');
@@ -28,5 +31,12 @@ export class Test2Component implements OnInit {
   }
   Back() {
     this.ResArray.splice(-1, 1)
+  }
+  GetDisabled(): boolean {
+    
+    return this.name == undefined || this.secondName == undefined || this.dateBirth == undefined;
+  }
+  Test() {
+    console.log(this.name == undefined || this.secondName == undefined || this.dateBirth == undefined);
   }
 }

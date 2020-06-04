@@ -1,0 +1,41 @@
+﻿<Window x:Class="PeripheralDevices.EmployeeForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PeripheralDevices"
+        mc:Ignorable="d"
+        Height="400" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center">Имя</Label>
+        <Label Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">Фамилия</Label>
+        <Label Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">Отчество</Label>
+        <Label Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">Звание</Label>
+        <Label Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">Должность</Label>
+        <Label Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center">Телефон</Label>
+        <Label Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center">Кабинет</Label>
+        <TextBox x:Name="FirstNameTb" Grid.Column="1" Margin="10" ></TextBox>
+        <TextBox x:Name="LastNameTb" Grid.Column="1" Grid.Row="1" Margin="10"></TextBox>
+        <TextBox x:Name="FatherNameTb" Grid.Column="1" Grid.Row="2" Margin="10"></TextBox>
+        <TextBox x:Name="RankTb" Grid.Column="1" Grid.Row="3" Margin="10"></TextBox>
+        <TextBox x:Name="PositionTb" Grid.Column="1" Grid.Row="4" Margin="10"></TextBox>
+        <TextBox x:Name="PhoneTb" Grid.Column="1" Grid.Row="5" Margin="10"></TextBox>
+        <TextBox x:Name="CabinetTb" Grid.Column="1" Grid.Row="6" Margin="10"></TextBox>
+        <Button Grid.Row="7" Margin="10" Click="OK_Click">OK</Button>
+        <Button Grid.Column="1" Grid.Row="7" Margin="10" Click="Cancel_Click">Отмена</Button>
+    </Grid>
+</Window>
